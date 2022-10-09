@@ -24,7 +24,7 @@ public class GestorBD {
 
 	private static String driver = "com.mysql.cj.jdbc.Driver";
 	private static String user = "root";
-	private static String password = "victor2";
+	private static String password = "victor";
 
 	public static void conectarBD() throws ClassNotFoundException, SQLException {
 		try {
