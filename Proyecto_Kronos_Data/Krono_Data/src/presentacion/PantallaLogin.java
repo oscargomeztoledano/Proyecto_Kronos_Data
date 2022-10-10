@@ -10,6 +10,8 @@ import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.border.EmptyBorder;
 
+import persistencia.GestorBD;
+
 public class PantallaLogin extends JFrame {
 	private JTextPane textPane;
 	private JPanel contentPane;
@@ -23,6 +25,7 @@ public class PantallaLogin extends JFrame {
 				try {
 
 					PantallaLogin frame = new PantallaLogin();
+					GestorBD.conectarBD();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

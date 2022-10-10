@@ -31,6 +31,7 @@ public class GestorBD {
 			Class.forName(driver);
 			mBD = DriverManager.getConnection(url, user, password);
 			mBD.setAutoCommit(true);
+			System.out.println("Conectado");
 		} catch (Exception e) {
 			System.out.println(e);
 		}
