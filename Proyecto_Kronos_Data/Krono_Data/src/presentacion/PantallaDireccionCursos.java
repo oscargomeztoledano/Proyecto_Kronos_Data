@@ -1,7 +1,10 @@
 package presentacion;
 
-public class PantallaDireccionCursos {
+import java.awt.EventQueue;
+import java.sql.SQLException;
 
+
+public class PantallaDireccionCursos {
 	public void altaCurso() {
 		// TODO - implement PantallaDireccionCursos.altaCurso
 		throw new UnsupportedOperationException();
