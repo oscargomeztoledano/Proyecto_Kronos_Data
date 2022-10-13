@@ -29,7 +29,7 @@ public class PantallaLogin extends JFrame {
 					GestorBD.conectarBD();
 					GestorBD.desconectarBD();
 					frame.setVisible(true);
-				} catch (Exception e) {
+				} catch (Exception e) {    
 					e.printStackTrace();
 				}
 			}
