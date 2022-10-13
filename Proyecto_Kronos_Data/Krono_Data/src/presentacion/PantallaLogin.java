@@ -23,9 +23,8 @@ public class PantallaLogin extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					System.out.println("hola");
+				
 					PantallaLogin frame = new PantallaLogin();
-					System.out.println("adios");
 					GestorBD.conectarBD();
 					GestorBD.desconectarBD();
 					frame.setVisible(true);
