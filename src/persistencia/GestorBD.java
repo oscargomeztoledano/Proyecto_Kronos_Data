@@ -1,40 +1,30 @@
 package persistencia;
 
-import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLClientInfoException;
 import java.sql.SQLException;
-import java.sql.SQLWarning;
-import java.sql.Statement;
-import java.util.LinkedList;
-import java.util.PriorityQueue;
-import java.util.Queue;
-import java.util.Vector;
-
 public class GestorBD {
 	protected static GestorBD mInstancia = null;
 	// Conexion con la base de datos
 	protected static Connection mBD;
 	// Identificador ODBC de la base de datos
-	private static String url = "jdbc:mysql://localhost:3306/titulospropiosuclm2022";
+	private static String url = "jdbc:mysql://localhost:3306/titulospropiosuclm2022?user=root&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 	// Driven para conectar con bases de datos MySQL
-
 	private static String driver = "com.mysql.cj.jdbc.Driver";
 	private static String user = "root";
 	private static String password = "victor";
+	
 
-	public static void conectarBD() throws ClassNotFoundException, SQLException {
+	public static void conectarBD() throws  SQLException {
 		try {
 			Class.forName(driver);
-			mBD = DriverManager.getConnection(url, user, password);
+			mBD = DriverManager.getConnection(url, "root", "victor");
 			mBD.setAutoCommit(true);
 			System.out.println("Conectado");
+			
 		} catch (Exception e) {
-			System.out.println(e);
-		}
+			   System.out.println("Error al registrar el driver de MySQL: " + e);	
+          }
 
 	}
 

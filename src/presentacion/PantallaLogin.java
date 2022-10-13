@@ -20,16 +20,18 @@ public class PantallaLogin extends JFrame {
 	private JTextPane textPaneEstado;
 
 	public static void main(String[] args) throws SQLException {
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 
 					PantallaLogin frame = new PantallaLogin();
-					GestorBD.conectarBD();
-					GestorBD.desconectarBD();
 					frame.setVisible(true);
+					//GestorBD.conectarBD();
+				
 				} catch (Exception e) {
 					e.printStackTrace();
+				
 				}
 			}
 		});
