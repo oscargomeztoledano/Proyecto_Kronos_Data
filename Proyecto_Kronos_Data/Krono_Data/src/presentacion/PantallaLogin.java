@@ -25,6 +25,7 @@ public class PantallaLogin extends JFrame {
 				try {
 
 					PantallaLogin frame = new PantallaLogin();
+					System.out.println("adios");
 					GestorBD.conectarBD();
 					GestorBD.desconectarBD();
 					frame.setVisible(true);
