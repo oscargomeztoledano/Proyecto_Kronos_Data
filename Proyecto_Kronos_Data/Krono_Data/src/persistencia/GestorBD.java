@@ -47,18 +47,29 @@ public class GestorBD {
 
 	}
 
-	public void select(String sql) {
-		// TODO - implement GestorBD.select
-		throw new UnsupportedOperationException();
+	public int select(String sql) throws ClassNotFoundException, SQLException {
+		conectarBD();
+		PreparedStatement stmt = mBD.prepareStatement(sql);
+		int res = stmt.executeUpdate(sql);
+		stmt.close();
+		desconectarBD();
+		return res;
 	}
-
+	
 	/**
 	 * 
 	 * @param sql
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
 	 */
-	public int insert(String sql) {
-		// TODO - implement GestorBD.insert
-		throw new UnsupportedOperationException();
+	public int insert(String sql) throws ClassNotFoundException, SQLException {
+		
+		conectarBD();
+		PreparedStatement stmt = mBD.prepareStatement(sql);
+		int res = stmt.executeUpdate(sql);
+		stmt.close();
+		desconectarBD();
+		return res;
 	}
 
 	/**

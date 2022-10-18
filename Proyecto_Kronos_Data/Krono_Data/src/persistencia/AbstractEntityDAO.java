@@ -1,5 +1,6 @@
 package persistencia;
 
+import java.sql.SQLException;
 import java.util.Date;
 
 public abstract class AbstractEntityDAO<E> {
@@ -11,10 +12,14 @@ public abstract class AbstractEntityDAO<E> {
 	/**
 	 * 
 	 * @param id
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
 	 */
-	public E get(String id) {
+	public E get(String id) throws ClassNotFoundException, SQLException {
 		// TODO - implement AbstractEntityDAO.get
-		throw new UnsupportedOperationException();
+		E Entidad=null;
+		
+		return Entidad;		
 	}
 
 	/**

@@ -1,8 +1,11 @@
 package presentacion;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -10,13 +13,14 @@ import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.border.EmptyBorder;
 
+import negocio.controllers.*;
 import persistencia.GestorBD;
 
-public class PantallaLogin extends JFrame {
+public class PantallaLogin extends JFrame implements ActionListener {
 	private JTextPane textPane;
 	private JPanel contentPane;
 	private JTextField textFieldDNI;
-	private JTextField textFieldNombre;
+	private JTextField textFieldContraseña;
 	private JTextPane textPaneEstado;
 
 	public static void main(String[] args) throws SQLException {
@@ -25,8 +29,6 @@ public class PantallaLogin extends JFrame {
 				try {
 				
 					PantallaLogin frame = new PantallaLogin();
-					GestorBD.conectarBD();
-					GestorBD.desconectarBD();
 					frame.setVisible(true);
 				} catch (Exception e) {    
 					e.printStackTrace();
@@ -44,34 +46,49 @@ public class PantallaLogin extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JLabel lblLogin = new JLabel("DNI:");
-		lblLogin.setBounds(6, 81, 69, 16);
-		contentPane.add(lblLogin);
-
-		textFieldDNI = new JTextField();
-		textFieldDNI.setColumns(10);
-		textFieldDNI.setBounds(87, 75, 134, 28);
-		contentPane.add(textFieldDNI);
-
-		JLabel lblDNI = new JLabel("Nombre:");
+		JLabel lblDNI = new JLabel("DNI:");
 		lblDNI.setBounds(6, 37, 69, 16);
 		contentPane.add(lblDNI);
 
-		textFieldNombre = new JTextField();
-		textFieldNombre.setBounds(87, 31, 134, 28);
-		contentPane.add(textFieldNombre);
-		textFieldNombre.setColumns(10);
+		textFieldDNI = new JTextField();
+		textFieldDNI.setColumns(10);
+		textFieldDNI.setBounds(87, 31, 134, 28);
+		contentPane.add(textFieldDNI);
+
+		JLabel lblContraseña = new JLabel("Contraseña:");
+		lblContraseña.setBounds(6, 81, 69, 16);
+		contentPane.add(lblContraseña);
+
+		textFieldContraseña = new JTextField();
+		textFieldContraseña.setBounds(87, 75, 134, 28);
+		contentPane.add(textFieldContraseña);
+		textFieldContraseña.setColumns(10);
+		
+		JButton Blogin= new JButton("Login");
+		Blogin.setBounds(300, 80, 70, 35);
+		contentPane.add(Blogin);
+		Blogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				login(textFieldDNI.getText(),textFieldContraseña.getText());
+			}
+		});
 	}
 
-	public void login() {
-
-		// TODO - implement PantallaLogin.login
-		throw new UnsupportedOperationException();
+	public void login(String textFieldDNI, String textFieldContraseña) {		
+      	GestorUsuario usuario= new GestorUsuario();
+      	usuario.login(textFieldDNI, textFieldContraseña);
+	
 	}
+
 
 	public void logout() {
 		// TODO - implement PantallaLogin.logout
 		throw new UnsupportedOperationException();
+	}
+
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
