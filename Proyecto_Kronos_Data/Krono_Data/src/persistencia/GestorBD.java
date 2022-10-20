@@ -46,8 +46,8 @@ public class GestorBD {
 		}
 
 	}
-	
-	public static Vector<Object> ExecuteQuery(String SQL) throws ClassNotFoundException {  // Sacar datos de BD
+
+	public static Vector<Object> ExecuteQuery(String SQL) throws ClassNotFoundException { // Sacar datos de BD
 		try {
 			conectarBD();
 			Statement st = mBD.createStatement();
@@ -61,8 +61,8 @@ public class GestorBD {
 			return null;
 		}
 	}
-	
-	public static Vector<Object> oneExecuteQuery(String SQL) throws Exception { 
+
+	public static Vector<Object> oneExecuteQuery(String SQL) throws Exception {
 		try {
 			conectarBD();
 			Statement st = mBD.createStatement();
@@ -75,9 +75,8 @@ public class GestorBD {
 			return null;
 		}
 	}
-		
-	
-	public static void ExecuteUpdate(String SQL) throws ClassNotFoundException {  // Updates a BD 
+
+	public static void ExecuteUpdate(String SQL) throws ClassNotFoundException { // Updates a BD
 		try {
 			conectarBD();
 			Statement st = mBD.createStatement();
@@ -88,7 +87,7 @@ public class GestorBD {
 			System.err.println(e);
 		}
 	}
-	
+
 	public static Vector<Object> obtenerResulset(ResultSet result) throws SQLException {
 		Vector<Object> vectoradevolver = new Vector<Object>();
 		while (result.next()) {
@@ -106,7 +105,7 @@ public class GestorBD {
 		}
 		return vectoradevolver;
 	}
-	
+
 	public static Vector<Object> OneResulset(ResultSet result) throws SQLException {
 		Vector<Object> v = new Vector<Object>();
 		int i = 1;

@@ -7,17 +7,17 @@ import negocio.entities.Usuario;
 public abstract class AbstractEntityDAO<E> {
 
 	public E get(String s) throws ClassNotFoundException, SQLException {
-		return null;		
+		return null;
 	}
 
 	public E insert(E entity) {
 		return null;
-		
+
 	}
 
 	public E update(E entity) {
 		return entity;
-	
+
 	}
 
 	public E delete(E entity) {
@@ -25,7 +25,7 @@ public abstract class AbstractEntityDAO<E> {
 	}
 
 	public void operation() {
-		
+
 	}
 
 }
