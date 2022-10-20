@@ -46,53 +46,74 @@ public class GestorBD {
 		}
 
 	}
-
-	public int select(String sql) throws ClassNotFoundException, SQLException {
-		conectarBD();
-		PreparedStatement stmt = mBD.prepareStatement(sql);
-		int res = stmt.executeUpdate(sql);
-		stmt.close();
-		desconectarBD();
-		return res;
+	
+	public static Vector<Object> ExecuteQuery(String SQL) throws ClassNotFoundException {
+		try {
+			conectarBD();
+			Statement st = mBD.createStatement();
+			ResultSet result = st.executeQuery(SQL);
+			Vector<Object> v = obtenerResulset(result);
+			st.close();
+			desconectarBD();
+			return v;
+		} catch (SQLException e) {
+			System.err.println(e);
+			return null;
+		}
 	}
 	
-	/**
-	 * 
-	 * @param sql
-	 * @throws SQLException 
-	 * @throws ClassNotFoundException 
-	 */
-	public int insert(String sql) throws ClassNotFoundException, SQLException {
+	public static Vector<Object> oneExecuteQuery(String SQL) throws Exception {
+		try {
+			conectarBD();
+			Statement st = mBD.createStatement();
+			ResultSet result = st.executeQuery(SQL);
+			Vector<Object> v = OneResulset(result);
+			st.close();
+			desconectarBD();
+			return v;
+		} catch (SQLException e) {
+			return null;
+		}
+	}
 		
-		conectarBD();
-		PreparedStatement stmt = mBD.prepareStatement(sql);
-		int res = stmt.executeUpdate(sql);
-		stmt.close();
-		desconectarBD();
-		return res;
+	
+	public static void ExecuteUpdate(String SQL) throws ClassNotFoundException {
+		try {
+			conectarBD();
+			Statement st = mBD.createStatement();
+			st.executeUpdate(SQL);
+			st.close();
+			desconectarBD();
+		} catch (SQLException e) {
+			System.err.println(e);
+		}
 	}
-
-	/**
-	 * 
-	 * @param sql
-	 */
-	public int update(String sql) {
-		// TODO - implement GestorBD.update
-		throw new UnsupportedOperationException();
+	
+	public static Vector<Object> obtenerResulset(ResultSet result) throws SQLException {
+		Vector<Object> vectoradevolver = new Vector<Object>();
+		while (result.next()) {
+			Vector<Object> v = new Vector<Object>();
+			int i = 1;
+			while (true) {
+				try {
+					v.add(result.getObject(i));
+					i++;
+				} catch (SQLException ex) {
+					break;
+				}
+			}
+			vectoradevolver.add(v);
+		}
+		return vectoradevolver;
 	}
-
-	/**
-	 * 
-	 * @param sql
-	 */
-	public int delete(String sql) {
-		// TODO - implement GestorBD.delete
-		throw new UnsupportedOperationException();
+	
+	public static Vector<Object> OneResulset(ResultSet result) throws SQLException {
+		Vector<Object> v = new Vector<Object>();
+		int i = 1;
+		while (result.next()) {
+			v.add(result.getObject(i));
+			i++;
+		}
+		return v;
 	}
-
-	public void operation() {
-		// TODO - implement GestorBD.operation
-		throw new UnsupportedOperationException();
-	}
-
 }

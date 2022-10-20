@@ -1,57 +1,31 @@
 package persistencia;
 
 import java.sql.SQLException;
-import java.util.Date;
+
+import negocio.entities.Usuario;
 
 public abstract class AbstractEntityDAO<E> {
 
-	private String id;
-	private Date fechaCreacion;
-	private Date fechaActualizacion;
+	public E get(String s) throws ClassNotFoundException, SQLException {
+		return null;		
+	}
 
-	/**
-	 * 
-	 * @param id
-	 * @throws SQLException 
-	 * @throws ClassNotFoundException 
-	 */
-	public E get(String id) throws ClassNotFoundException, SQLException {
-		// TODO - implement AbstractEntityDAO.get
-		E Entidad=null;
+	public E insert(E entity) {
+		return null;
 		
-		return Entidad;		
 	}
 
-	/**
-	 * 
-	 * @param entity
-	 */
-	public int insert(E entity) {
-		// TODO - implement AbstractEntityDAO.insert
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * 
-	 * @param entity
-	 */
 	public E update(E entity) {
-		// TODO - implement AbstractEntityDAO.update
-		throw new UnsupportedOperationException();
+		return entity;
+	
 	}
 
-	/**
-	 * 
-	 * @param entity
-	 */
-	public int delete(E entity) {
-		// TODO - implement AbstractEntityDAO.delete
-		throw new UnsupportedOperationException();
+	public E delete(E entity) {
+		return null;
 	}
 
 	public void operation() {
-		// TODO - implement AbstractEntityDAO.operation
-		throw new UnsupportedOperationException();
+		
 	}
 
 }
