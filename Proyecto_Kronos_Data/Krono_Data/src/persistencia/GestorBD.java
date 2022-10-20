@@ -47,7 +47,7 @@ public class GestorBD {
 
 	}
 	
-	public static Vector<Object> ExecuteQuery(String SQL) throws ClassNotFoundException {
+	public static Vector<Object> ExecuteQuery(String SQL) throws ClassNotFoundException {  // Sacar datos de BD
 		try {
 			conectarBD();
 			Statement st = mBD.createStatement();
@@ -62,7 +62,7 @@ public class GestorBD {
 		}
 	}
 	
-	public static Vector<Object> oneExecuteQuery(String SQL) throws Exception {
+	public static Vector<Object> oneExecuteQuery(String SQL) throws Exception { 
 		try {
 			conectarBD();
 			Statement st = mBD.createStatement();
@@ -77,7 +77,7 @@ public class GestorBD {
 	}
 		
 	
-	public static void ExecuteUpdate(String SQL) throws ClassNotFoundException {
+	public static void ExecuteUpdate(String SQL) throws ClassNotFoundException {  // Updates a BD 
 		try {
 			conectarBD();
 			Statement st = mBD.createStatement();
