@@ -3,4 +3,4 @@
 
 Proyecto para la asignatura ISO2.
 
-##Historial de los Sprit realizados
+- Historial de los Sprit realizados:
