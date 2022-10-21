@@ -1,37 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/Users/Victo/Downloads/ISO2/lib/commons-lang3-3.8.1.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Victo/Downloads/ISO2/lib/commons-logging-1.2.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Victo/Downloads/ISO2/lib/jackcess-3.0.1.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Victo/Downloads/ISO2/lib/ucanaccess-5.0.1.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Victo/Downloads/ISO2/lib/hsqldb-2.5.0.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Victo/.m2/repository/org/apache/derby/derby/10.14.2.0/derby-10.14.2.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Victo/Downloads/ISO2/lib/mysql-connector-java-8.0.29.jar"/>
+	<classpathentry kind="lib" path="/home/david/Escritorio/librerias/ucanaccess-5.0.1.jar"/>
+	<classpathentry kind="lib" path="/home/david/Escritorio/librerias/mysql-connector-java-8.0.29.jar"/>
+	<classpathentry kind="lib" path="/home/david/Escritorio/librerias/jackcess-3.0.1.jar"/>
+	<classpathentry kind="lib" path="/home/david/Escritorio/librerias/hsqldb-2.5.0.jar"/>
+	<classpathentry kind="lib" path="/home/david/Escritorio/librerias/derby-10.14.2.0.jar"/>
+	<classpathentry kind="lib" path="/home/david/Escritorio/librerias/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="/home/david/Escritorio/librerias/commons-lang3-3.8.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

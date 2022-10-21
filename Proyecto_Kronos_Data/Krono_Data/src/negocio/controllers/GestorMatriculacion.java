@@ -10,8 +10,10 @@ public class GestorMatriculacion {
 	 * @param estudiante
 	 */
 	public void realizarMatriculacion(CursoPropio curso, Estudiante estudiante) {
-		// TODO - implement GestorMatriculacion.realizarMatriculacion
-		throw new UnsupportedOperationException();
+		
+		
+		
+		
 	}
 
 	/**
