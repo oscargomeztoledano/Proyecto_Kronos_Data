@@ -3,7 +3,6 @@ package presentacion;
 import java.awt.EventQueue;
 import java.sql.SQLException;
 
-
 public class PantallaDireccionCursos {
 	public void altaCurso() {
 		// TODO - implement PantallaDireccionCursos.altaCurso

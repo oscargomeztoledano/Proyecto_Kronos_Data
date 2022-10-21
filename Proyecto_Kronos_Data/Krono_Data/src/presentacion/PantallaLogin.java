@@ -20,17 +20,17 @@ public class PantallaLogin extends JFrame implements ActionListener {
 	private JTextPane textPane;
 	private JPanel contentPane;
 	private JTextField textFieldDNI;
-	private JTextField textFieldContraseña;
+	private JTextField textFieldContrasena;
 	private JTextPane textPaneEstado;
 
 	public static void main(String[] args) throws SQLException {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-				
+
 					PantallaLogin frame = new PantallaLogin();
 					frame.setVisible(true);
-				} catch (Exception e) {    
+				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
@@ -55,31 +55,30 @@ public class PantallaLogin extends JFrame implements ActionListener {
 		textFieldDNI.setBounds(87, 31, 134, 28);
 		contentPane.add(textFieldDNI);
 
-		JLabel lblContraseña = new JLabel("Contraseña:");
-		lblContraseña.setBounds(6, 81, 69, 16);
-		contentPane.add(lblContraseña);
+		JLabel lblContrasena = new JLabel("Contraseï¿½a:");
+		lblContrasena.setBounds(6, 81, 69, 16);
+		contentPane.add(lblContrasena);
 
-		textFieldContraseña = new JTextField();
-		textFieldContraseña.setBounds(87, 75, 134, 28);
-		contentPane.add(textFieldContraseña);
-		textFieldContraseña.setColumns(10);
-		
-		JButton Blogin= new JButton("Login");
+		textFieldContrasena = new JTextField();
+		textFieldContrasena.setBounds(87, 75, 134, 28);
+		contentPane.add(textFieldContrasena);
+		textFieldContrasena.setColumns(10);
+
+		JButton Blogin = new JButton("Login");
 		Blogin.setBounds(300, 80, 70, 35);
 		contentPane.add(Blogin);
 		Blogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				login(textFieldDNI.getText(),textFieldContraseña.getText());
+				login(textFieldDNI.getText(), textFieldContrasena.getText());
 			}
 		});
 	}
 
-	public void login(String textFieldDNI, String textFieldContraseña) {		
-      	GestorUsuario usuario= new GestorUsuario();
-      	usuario.login(textFieldDNI, textFieldContraseña);
-	
-	}
+	public void login(String textFieldDNI, String textFieldContrasena) {
+		GestorUsuario usuario = new GestorUsuario();
+		usuario.login(textFieldDNI, textFieldContrasena);
 
+	}
 
 	public void logout() {
 		// TODO - implement PantallaLogin.logout
@@ -88,7 +87,7 @@ public class PantallaLogin extends JFrame implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
