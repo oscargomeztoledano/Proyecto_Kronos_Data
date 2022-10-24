@@ -6,13 +6,13 @@ import negocio.entities.*;
 
 public class EstudianteDAO<E> {
 
-	public Vector<Object> get(String SQL) throws Exception {
+	public static Vector<Object> get(String SQL) throws Exception {
 		Vector<Object> estudiante = GestorBD.oneExecuteQuery(SQL);
 
 		return estudiante;
 	}
 
-	public Estudiante seleccionarEstudiante(String DNI) throws Exception {
+	public static Estudiante seleccionarEstudiante(String DNI) throws Exception {
 		String SQL = "SELECT * FROM Estudiante WHERE Dni = " + DNI;
 
 		Vector<Object> estudiante = get(SQL);

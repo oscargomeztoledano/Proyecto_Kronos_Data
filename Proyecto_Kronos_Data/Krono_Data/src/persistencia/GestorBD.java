@@ -41,6 +41,8 @@ public class GestorBD {
 	public static void desconectarBD() throws SQLException {
 		try {
 			mBD.close();
+			System.out.println("Desconectado");
+
 		} catch (Exception e) {
 			System.out.println(e);
 		}

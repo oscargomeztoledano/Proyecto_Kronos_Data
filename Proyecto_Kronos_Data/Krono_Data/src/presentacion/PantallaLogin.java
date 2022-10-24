@@ -69,14 +69,26 @@ public class PantallaLogin extends JFrame implements ActionListener {
 		contentPane.add(Blogin);
 		Blogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				login(textFieldDNI.getText(), textFieldContrasena.getText());
+				try {
+					
+					login(textFieldDNI.getText(), textFieldContrasena.getText());
+				
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 	}
 
-	public void login(String textFieldDNI, String textFieldContrasena) {
+	public void login(String textFieldDNI, String textFieldContrasena) throws Exception {
 		GestorUsuario usuario = new GestorUsuario();
-		usuario.login(textFieldDNI, textFieldContrasena);
+		
+		if(usuario.login(textFieldDNI, textFieldContrasena)) {
+			
+		}else {
+			
+		}
 
 	}
 
