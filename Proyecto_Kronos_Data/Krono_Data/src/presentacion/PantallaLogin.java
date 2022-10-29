@@ -14,7 +14,11 @@ import javax.swing.JTextPane;
 import javax.swing.border.EmptyBorder;
 
 import negocio.controllers.*;
+import negocio.entities.Estudiante;
+import negocio.entities.Profesor;
+import persistencia.EstudianteDAO;
 import persistencia.GestorBD;
+import persistencia.ProfesorDAO;
 
 public class PantallaLogin extends JFrame implements ActionListener {
 	private JTextPane textPane;
@@ -70,9 +74,9 @@ public class PantallaLogin extends JFrame implements ActionListener {
 		Blogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					
+
 					login(textFieldDNI.getText(), textFieldContrasena.getText());
-				
+
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -83,13 +87,32 @@ public class PantallaLogin extends JFrame implements ActionListener {
 
 	public void login(String textFieldDNI, String textFieldContrasena) throws Exception {
 		GestorUsuario usuario = new GestorUsuario();
-		
-		if(usuario.login(textFieldDNI, textFieldContrasena)) {
-			
-		}else {
-			
-		}
+		switch (usuario.login(textFieldDNI, textFieldContrasena)) {
+		case 'E':
+			PantallaMatriculacion frame = new PantallaMatriculacion();
+			frame.setVisible(true);			
+			break;
 
+		case 'P':
+			PantallaDireccionCursos frame1 = new PantallaDireccionCursos();
+			frame1.setVisible(true);			
+			break;
+
+		case 'G':
+			PantallaJefeGabineteVicerrectorado frame2 = new PantallaJefeGabineteVicerrectorado();
+			frame2.setVisible(true);		
+			break;
+		case 'J':
+			PantallaEmpleadosVicerrectorado frame3 = new PantallaEmpleadosVicerrectorado();
+			frame3.setVisible(true);	
+			break;
+		case '0':
+			//No existe esa contraseña
+			break;
+		case '1':
+			//El usuario no tiene tipousuario
+			break;
+		}
 	}
 
 	public void logout() {
