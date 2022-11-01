@@ -3,9 +3,9 @@ package negocio.entities;
 public class Usuario {
 	String DNI;
 	String Contrasena;
-	char tipo;
+	String tipo;
 
-	public Usuario(String DNI, String Contrasena, char tipo) {
+	public Usuario(String DNI, String Contrasena, String tipo) {
 		this.DNI = DNI;
 		this.Contrasena = Contrasena;
 		this.tipo = tipo;
@@ -31,12 +31,15 @@ public class Usuario {
 		Contrasena = contrasena;
 	}
 
-	public char getTipo() {
+	public String getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(char tipo) {
+	public void setTipo(String tipo) {
 		this.tipo = tipo;
+	}
+	public String toString() {
+		return "Usuario con Dni: "+ DNI + " y con contraseña: "+ Contrasena + " y es un usuario de tipo: "+ tipo;
 	}
 
 }

@@ -10,7 +10,7 @@ public class Estudiante extends Usuario {
 	private String titulacion;
 	private String cualificacion;
 
-	public Estudiante(String DNI, String contrasena, char tipo, Collection<Matricula> matriculas, String nombre,
+	public Estudiante(String DNI, String contrasena, String tipo, Collection<Matricula> matriculas, String nombre,
 			String apellidos, String titulacion, String cualificacion) {
 		super(DNI, contrasena, tipo);
 		this.matriculas = matriculas;
