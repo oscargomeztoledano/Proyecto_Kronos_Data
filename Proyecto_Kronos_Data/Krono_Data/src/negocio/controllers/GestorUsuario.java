@@ -11,7 +11,7 @@ public class GestorUsuario {
 
 	Estudiante estudiante;
 	Profesor profesor;
-	public char login(String DNI, String Contraseña) throws Exception {
+	public char login(String DNI, String Contrasena) throws Exception {
 
 		char login = '0';
 		Estudiante estudiante;
