@@ -1,18 +1,26 @@
 package persistencia;
 
+import java.text.SimpleDateFormat;
 import java.util.Vector;
 import negocio.entities.Matricula;
 
 public class MatriculaDAO {
 
-	public Vector<Object> get(String s) throws Exception {
+	
 
-		return null;
+
+public static void insert(Matricula mat) throws ClassNotFoundException {
+	
+	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+	String fechaTexto = formatter.format( mat.getFecha() );
+	int bit;
+	if(mat.isPagado()) {
+		bit=1;
+	}else {
+		bit=0;
 	}
-
-	public static void insert(Matricula mat) throws ClassNotFoundException {
 		String sql = "INSERT INTO Matricula (CursoId, DniAlumno, fecha, pagado) VALUES ( '" + mat.getTitulo().getId()
-				+ "', " + mat.getEstudiante().getDNI() + ", '" + mat.getFecha() + "', " + mat.isPagado() + ")";
+				+ "', '" + mat.getEstudiante().getDNI() + "', '" + fechaTexto + "'," + bit + ")";
 		GestorBD.ExecuteUpdate(sql);
 
 	}
