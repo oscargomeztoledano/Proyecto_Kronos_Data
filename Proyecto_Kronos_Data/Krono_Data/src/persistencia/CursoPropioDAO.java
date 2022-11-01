@@ -1,7 +1,9 @@
 package persistencia;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Vector;
 
 import negocio.entities.*;
 
@@ -64,6 +66,24 @@ public class CursoPropioDAO {
 	public void listarEdicionesCursos(Date fechaInicio, Date fechaFin) {
 		// TODO - implement CursoPropioDAO.listarEdicionesCursos
 		throw new UnsupportedOperationException();
+	}
+
+	public List<CursoPropio> obtenerCursos() throws ClassNotFoundException {
+		String sql = "Select * FROM CursoPropio";
+		Vector<Object> cursos = GestorBD.ExecuteQuery(sql);
+
+		List<CursoPropio> listaCursos = new ArrayList<CursoPropio>();
+		int i = 0;
+		while (!cursos.isEmpty()) {
+			Vector<Object> v = (Vector<Object>) cursos.get(i);
+			
+			CursoPropio c = new CursoPropio(v.get(0).toString(), v.get(1).toString(), (Integer) v.get(2), (Date) v.get(3),
+					(Date) v.get(4), (Double) v.get(5), (Integer) v.get(6));
+			
+			listaCursos.add(c);
+
+		}
+		return listaCursos;
 	}
 
 }

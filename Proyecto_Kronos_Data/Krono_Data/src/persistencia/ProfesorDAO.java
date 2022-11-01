@@ -13,7 +13,7 @@ public class ProfesorDAO {
 	}
 
 	public static Profesor seleccionarProfesor(String DNI) throws Exception {
-		String SQL = "SELECT * FROM profesor WHERE Dni = " + DNI;
+		String SQL = "SELECT * FROM profesor WHERE Dni = \'"+DNI+"\'";
 
 		Vector<Object> profesor = get(SQL);
 

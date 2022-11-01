@@ -21,6 +21,13 @@ public class Matricula {
 		this.pagado = pagado;
 		this.attribute = attribute;
 	}
+	
+	public Matricula(Estudiante estudiante, CursoPropio titulo, Date fecha) {
+		this.estudiante = estudiante;
+		this.titulo = titulo;
+		this.fecha = fecha;
+		pagado = false;
+	}
 
 	public Estudiante getEstudiante() {
 		return estudiante;

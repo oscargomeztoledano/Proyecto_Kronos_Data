@@ -31,7 +31,6 @@ public class GestorBD {
 			Class.forName(driver);
 			mBD = DriverManager.getConnection(url, user, password);
 			mBD.setAutoCommit(true);
-			System.out.println("Conectado");
 		} catch (Exception e) {
 			System.out.println(e);
 		}
@@ -41,7 +40,6 @@ public class GestorBD {
 	public static void desconectarBD() throws SQLException {
 		try {
 			mBD.close();
-			System.out.println("Desconectado");
 
 		} catch (Exception e) {
 			System.out.println(e);
@@ -110,10 +108,15 @@ public class GestorBD {
 
 	public static Vector<Object> OneResulset(ResultSet result) throws SQLException {
 		Vector<Object> v = new Vector<Object>();
-		int i = 1;
+
 		while (result.next()) {
-			v.add(result.getObject(i));
-			i++;
+			for (int i = 1; i < 20; i++) {
+				try {
+					v.add(result.getObject(i));
+				} catch (SQLException ex) {
+					continue;
+				}
+			}
 		}
 		return v;
 	}
