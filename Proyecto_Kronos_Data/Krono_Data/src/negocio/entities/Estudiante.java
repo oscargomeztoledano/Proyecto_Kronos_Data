@@ -69,5 +69,8 @@ public class Estudiante extends Usuario {
 	public void setCualificacion(String cualificacion) {
 		this.cualificacion = cualificacion;
 	}
+	public String toString() {
+		return "Estudiante con Dni: "+ DNI + " y con nombre: "+ nombre + " y apellidos: "+ apellidos +" con una titulacion de: "+ titulacion+ " y una cualificacion de: "+cualificacion;
+	}
 
 }

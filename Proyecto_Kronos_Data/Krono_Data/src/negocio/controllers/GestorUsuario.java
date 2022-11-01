@@ -8,31 +8,33 @@ import persistencia.ProfesorDAO;
 import persistencia.UsuarioDAO;
 
 public class GestorUsuario {
+	Estudiante estudiante;
+	Profesor profesor;
 	public char login(String DNI, String Contraseña) throws Exception {
 		char login = '0';
+		Estudiante estudiante;
+		Profesor profesor;
 		Usuario usuario;
 		usuario = UsuarioDAO.seleccionarUsuario(DNI);
 		if (usuario.getContrasena().equals(Contraseña)) {
 			switch (usuario.getTipo()) {
 			case "E":
-				System.out.println("Estudiante");
-				Estudiante estudiante = EstudianteDAO.seleccionarEstudiante(DNI);
+				 estudiante = EstudianteDAO.seleccionarEstudiante(DNI);
+				 setEstudiante(estudiante);
 				login = 'E';
 				break;
 
 			case "P":
-				System.out.println("Profesor");
-				Profesor profesor = ProfesorDAO.seleccionarProfesor(DNI);
+				 profesor = ProfesorDAO.seleccionarProfesor(DNI);
+				setProfesor(profesor);
 				login = 'P';
 				break;
 
 			case "G":
-				System.out.println("Jefe de Gabinete de Vicerrectorado");
 				login = 'G';
 				break;
 
 			case "J":
-				System.out.println("Personal de Vicerrectorado");
 				login = 'J';
 				break;
 			default:
@@ -43,6 +45,18 @@ public class GestorUsuario {
 		}
 
 		return login;
+	}
+	public void setEstudiante(Estudiante estudiante) {
+		this.estudiante = estudiante;
+	}
+	public Estudiante getEstudiante() {
+		return estudiante;
+	}
+	public void setProfesor(Profesor profesor) {
+		this.profesor = profesor;
+	}
+	public Profesor getProfesor() {
+		return profesor;
 	}
 
 }
