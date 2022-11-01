@@ -8,15 +8,17 @@ import persistencia.ProfesorDAO;
 import persistencia.UsuarioDAO;
 
 public class GestorUsuario {
+
 	Estudiante estudiante;
 	Profesor profesor;
-	public char login(String DNI, String Contraseña) throws Exception {
+	public char login(String DNI, String ContraseÃ±a) throws Exception {
+
 		char login = '0';
 		Estudiante estudiante;
 		Profesor profesor;
 		Usuario usuario;
 		usuario = UsuarioDAO.seleccionarUsuario(DNI);
-		if (usuario.getContrasena().equals(Contraseña)) {
+		if (usuario.getContrasena().equals(Contrasena)) {
 			switch (usuario.getTipo()) {
 			case "E":
 				 estudiante = EstudianteDAO.seleccionarEstudiante(DNI);

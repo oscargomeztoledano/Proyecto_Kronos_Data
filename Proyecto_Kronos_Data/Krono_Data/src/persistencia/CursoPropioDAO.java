@@ -68,7 +68,7 @@ public class CursoPropioDAO {
 		throw new UnsupportedOperationException();
 	}
 
-	public List<CursoPropio> obtenerCursos() throws ClassNotFoundException {
+	public static List<CursoPropio> obtenerCursos() throws ClassNotFoundException {
 		String sql = "Select * FROM CursoPropio";
 		Vector<Object> cursos = GestorBD.ExecuteQuery(sql);
 

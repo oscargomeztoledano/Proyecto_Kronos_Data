@@ -19,12 +19,12 @@ public class GestorBD {
 	// Conexion con la base de datos
 	protected static Connection mBD;
 	// Identificador ODBC de la base de datos
-	private static String url = "jdbc:mysql://localhost:3306/titulospropiosuclm2022";
+	private static String url = "jdbc:mysql://localhost:3306/TitulosPropiosUCLM2022";
 	// Driven para conectar con bases de datos MySQL
 
 	private static String driver = "com.mysql.cj.jdbc.Driver";
 	private static String user = "root";
-	private static String password = "victor";
+	private static String password = "root";
 
 	public static void conectarBD() throws ClassNotFoundException, SQLException {
 		try {
