@@ -3,4 +3,8 @@
 
 Proyecto para la asignatura ISO2.
 
-- Historial de los Sprit realizados:
+
+
+## Informe planificación del primer sprint
+
+  - 
