@@ -18,7 +18,7 @@ public class ProfesorDAO {
 		Vector<Object> profesor = get(SQL);
 
 		Profesor prof = new Profesor(DNI, profesor.get(1).toString(),profesor.get(2).toString(),profesor.get(3).toString(),profesor.get(4).toString(),Boolean.parseBoolean(profesor.get(5).toString()));
-
+        prof.toString();
 		return prof;
 	}
 }

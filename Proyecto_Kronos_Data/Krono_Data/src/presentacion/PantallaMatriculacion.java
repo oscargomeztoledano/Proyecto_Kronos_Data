@@ -1,5 +1,6 @@
 package presentacion;
 
+
 import java.util.List;
 
 import negocio.entities.CursoPropio;
@@ -19,7 +20,7 @@ public class PantallaMatriculacion extends javax.swing.JFrame {
      * Creates new form PantallaMatriculacion
      * @throws ClassNotFoundException 
      */
-    public PantallaMatriculacion() throws ClassNotFoundException {
+    public PantallaMatriculacion(Estudiante estudiante) throws ClassNotFoundException {
     	List<CursoPropio> cursos = CursoPropioDAO.obtenerCursos();
     	String[] c = new String[cursos.size()];
     	int i = 0;
@@ -46,6 +47,7 @@ public class PantallaMatriculacion extends javax.swing.JFrame {
         jComboBox2 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
 
         jLabel1.setText("Usuario");
 

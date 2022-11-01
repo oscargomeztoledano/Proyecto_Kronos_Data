@@ -15,5 +15,10 @@ public class Profesor extends Usuario{
 		this.apellidos=apellidos;
 		this.doctor=doctor;
 	}
+	
+	
+	public String toString() {
+		return "Profesor con Dni: "+ DNI + " y con nombre: "+ nombre + " y apellidos: "+ apellidos ;
+	}
 
 }
