@@ -59,7 +59,7 @@ public class PantallaLogin extends JFrame implements ActionListener {
 		textFieldDNI.setBounds(87, 31, 134, 28);
 		contentPane.add(textFieldDNI);
 
-		JLabel lblContrasena = new JLabel("Contraseï¿½a:");
+		JLabel lblContrasena = new JLabel("Contrasena:");
 		lblContrasena.setBounds(6, 81, 69, 16);
 		contentPane.add(lblContrasena);
 
@@ -107,7 +107,7 @@ public class PantallaLogin extends JFrame implements ActionListener {
 			frame3.setVisible(true);	
 			break;
 		case '0':
-			//No existe esa contraseña
+			//No existe esa contraseï¿½a
 			break;
 		case '1':
 			//El usuario no tiene tipousuario
