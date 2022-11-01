@@ -9,11 +9,16 @@ public class Profesor extends Usuario{
 	private String apellidos;
 	private boolean doctor;
 	
-	public Profesor(String DNI,String contrasena,char tipo, String nombre,String apellidos,boolean doctor) {
+	public Profesor(String DNI,String contrasena,String tipo, String nombre,String apellidos,boolean doctor) {
 		super(DNI,contrasena,tipo);
 		this.nombre=nombre;
 		this.apellidos=apellidos;
 		this.doctor=doctor;
+	}
+	
+	
+	public String toString() {
+		return "Profesor con Dni: "+ DNI + " y con nombre: "+ nombre + " y apellidos: "+ apellidos ;
 	}
 
 }

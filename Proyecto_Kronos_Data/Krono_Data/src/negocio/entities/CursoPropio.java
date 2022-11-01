@@ -42,6 +42,31 @@ public class CursoPropio {
 		this.edicion = edicion;
 	}
 
+	public CursoPropio(String id, String nombre, int eCTS, Date fechaInicio, Date fechaFin, double tasaMatricula,
+			int edicion,TipoCurso TipoCurso,EstadoCurso EstadoCurso) {
+
+		this.id = id;
+		this.nombre = nombre;
+		ECTS = eCTS;
+		this.fechaInicio = fechaInicio;
+		this.fechaFin = fechaFin;
+		this.tasaMatricula = tasaMatricula;
+		this.edicion = edicion;
+		this.estado=EstadoCurso;
+		this.tipo=TipoCurso;
+	}
+	public CursoPropio(String id, String nombre, int eCTS, Date fechaInicio, Date fechaFin, double tasaMatricula,
+			int edicion) {
+
+		this.id = id;
+		this.nombre = nombre;
+		ECTS = eCTS;
+		this.fechaInicio = fechaInicio;
+		this.fechaFin = fechaFin;
+		this.tasaMatricula = tasaMatricula;
+		this.edicion = edicion;
+	}
+
 	public CursoPropio(String id, String nombre) {
 		this.id = id;
 		this.nombre = nombre;
