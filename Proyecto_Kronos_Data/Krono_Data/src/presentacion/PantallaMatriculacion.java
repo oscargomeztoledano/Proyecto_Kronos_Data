@@ -71,18 +71,17 @@ public class PantallaMatriculacion extends javax.swing.JFrame {
 				CursoPropio curso = cursos.get(s);
 
 				String SeleccionTipoPago = (String) jComboBox2.getSelectedItem();
-				ModoPago Pago=null;
+				ModoPago Pago = null;
 				switch (SeleccionTipoPago) {
 				case "Transferencia":
-					Pago=ModoPago.TRANSFERENCIA;
+					Pago = ModoPago.TRANSFERENCIA;
 					break;
 				case "Tarjeta Credito":
-					Pago=ModoPago.TARJETA_CREDITO;
+					Pago = ModoPago.TARJETA_CREDITO;
 					break;
-					
-				
+
 				}
-				
+
 				try {
 					GestorMatriculacion.realizarMatriculacion(curso, estudiante, Pago);
 				} catch (ClassNotFoundException e) {
