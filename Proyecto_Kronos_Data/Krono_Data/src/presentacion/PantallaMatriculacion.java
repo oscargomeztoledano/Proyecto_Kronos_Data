@@ -1,5 +1,6 @@
 package presentacion;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 import negocio.controllers.GestorMatriculacion;
@@ -41,6 +42,7 @@ public class PantallaMatriculacion extends javax.swing.JFrame {
 	 */
 	@SuppressWarnings("unchecked")
 	// <editor-fold defaultstate="collapsed" desc="Generated
+	// <editor-fold defaultstate="collapsed" desc="Generated
 	// Code">//GEN-BEGIN:initComponents
 	private void initComponents(String[] c, final Estudiante estudiante, final List<CursoPropio> cursos) {
 
@@ -50,23 +52,27 @@ public class PantallaMatriculacion extends javax.swing.JFrame {
 		jComboBox1 = new javax.swing.JComboBox<>();
 		jComboBox2 = new javax.swing.JComboBox<>();
 		jButton1 = new javax.swing.JButton();
+		jLabel4 = new javax.swing.JLabel();
+		jScrollPane1 = new javax.swing.JScrollPane();
+		jTextArea1 = new javax.swing.JTextArea();
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-		jLabel1.setText("Usuario: " + estudiante.getDNI());
+		jLabel1.setText("Usuario");
 
-		jLabel2.setText("jLabel2");
+		jLabel2.setText("Seleccione curso");
 
 		jLabel3.setText("Modo de pago");
 
 		jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(c));
 
-		jComboBox2
-				.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Transferencia", "Tarjeta Credito" }));
+		jComboBox2.setModel(
+				new javax.swing.DefaultComboBoxModel<>(new String[] { "Transferencia", "Tarjeta Credito"}));
 
 		jButton1.setText("Validar");
 		jButton1.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				jButton1ActionPerformed(evt);
 				int s = jComboBox1.getSelectedIndex();
 				CursoPropio curso = cursos.get(s);
 
@@ -91,28 +97,37 @@ public class PantallaMatriculacion extends javax.swing.JFrame {
 			}
 		});
 
+		jLabel4.setForeground(java.awt.Color.red);
+		jLabel4.setText("Estado");
+
+		jTextArea1.setEditable(false);
+		jTextArea1.setColumns(20);
+		jTextArea1.setRows(5);
+		jScrollPane1.setViewportView(jTextArea1);
+
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+
 		getContentPane().setLayout(layout);
-		layout.setHorizontalGroup(
-				layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-						.addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-								.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-										.addGroup(layout.createSequentialGroup()
-												.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-												.addComponent(jButton1))
-										.addGroup(layout.createSequentialGroup().addGap(32, 32, 32).addGroup(layout
-												.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-												.addComponent(jLabel2).addComponent(jLabel3).addComponent(jLabel1))
-												.addPreferredGap(
-														javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85,
-														Short.MAX_VALUE)
-												.addGroup(layout
-														.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING,
-																false)
-														.addComponent(jComboBox1, 0, 150, Short.MAX_VALUE).addComponent(
-																jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE,
-																Short.MAX_VALUE))))
-								.addGap(42, 42, 42)));
+		layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(
+				javax.swing.GroupLayout.Alignment.TRAILING,
+				layout.createSequentialGroup().addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE,
+								javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED).addComponent(jButton1)
+						.addContainerGap())
+				.addGroup(layout.createSequentialGroup().addGap(32, 32, 32).addGroup(layout
+						.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+						.addGroup(layout.createSequentialGroup().addComponent(jLabel4)
+								.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+						.addGroup(layout.createSequentialGroup()
+								.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+										.addComponent(jLabel2).addComponent(jLabel3).addComponent(jLabel1))
+								.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85,
+										Short.MAX_VALUE)
+								.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+										.addComponent(jComboBox1, 0, 150, Short.MAX_VALUE).addComponent(jComboBox2, 0,
+												javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+								.addGap(42, 42, 42)))));
 		layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 				.addGroup(layout.createSequentialGroup().addGap(24, 24, 24).addComponent(jLabel1).addGap(46, 46, 46)
 						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -122,8 +137,13 @@ public class PantallaMatriculacion extends javax.swing.JFrame {
 						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
 								.addComponent(jLabel3).addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE,
 										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
-						.addComponent(jButton1).addGap(35, 35, 35)));
+						.addGap(18, 18, 18).addComponent(jLabel4)
+						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+								.addGroup(layout.createSequentialGroup().addGap(78, 78, 78).addComponent(jButton1))
+								.addGroup(layout.createSequentialGroup().addGap(18, 18, 18).addComponent(jScrollPane1,
+										javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
+										javax.swing.GroupLayout.PREFERRED_SIZE)))
+						.addContainerGap(18, Short.MAX_VALUE)));
 
 		pack();
 	}// </editor-fold>//GEN-END:initComponents
@@ -147,5 +167,8 @@ public class PantallaMatriculacion extends javax.swing.JFrame {
 	private javax.swing.JLabel jLabel1;
 	private javax.swing.JLabel jLabel2;
 	private javax.swing.JLabel jLabel3;
+	private javax.swing.JLabel jLabel4;
+	private javax.swing.JScrollPane jScrollPane1;
+	private javax.swing.JTextArea jTextArea1;
 	// End of variables declaration//GEN-END:variables
 }

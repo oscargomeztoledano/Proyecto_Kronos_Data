@@ -132,8 +132,8 @@ public class CursoPropioDAO {
 			estado=EstadoCurso.EN_MATRICULACION;
 
 			break;
-		case "EN_IMPARTIZICION":
-			estado=EstadoCurso.EN_IMPARTIZICION;
+		case "EN_IMPARTICION":
+			estado=EstadoCurso.EN_IMPARTICICION;
 			break;
 		case "TERMINADO":
 			estado=EstadoCurso.TERMINADO;
