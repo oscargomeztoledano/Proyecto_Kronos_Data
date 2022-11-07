@@ -39,7 +39,7 @@ public class Usuario {
 		this.tipo = tipo;
 	}
 	public String toString() {
-		return "Usuario con Dni: "+ DNI + " y con contraseña: "+ Contrasena + " y es un usuario de tipo: "+ tipo;
+		return "Usuario con Dni: "+ DNI + " y con contrasena: "+ Contrasena + " y es un usuario de tipo: "+ tipo;
 	}
 
 }
