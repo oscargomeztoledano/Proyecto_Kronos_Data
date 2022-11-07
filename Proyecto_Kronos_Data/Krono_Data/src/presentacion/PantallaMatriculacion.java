@@ -88,18 +88,12 @@ public class PantallaMatriculacion extends javax.swing.JFrame {
 
 				}
 
-				try {
-					GestorMatriculacion.realizarMatriculacion(curso, estudiante, Pago);
-				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				GestorMatriculacion.realizarMatriculacion(curso, estudiante, Pago);
 			}
 		});
 
 		jLabel4.setForeground(java.awt.Color.red);
 		jLabel4.setText("Estado");
-
 		jTextArea1.setEditable(false);
 		jTextArea1.setColumns(20);
 		jTextArea1.setRows(5);
@@ -169,6 +163,6 @@ public class PantallaMatriculacion extends javax.swing.JFrame {
 	private javax.swing.JLabel jLabel3;
 	private javax.swing.JLabel jLabel4;
 	private javax.swing.JScrollPane jScrollPane1;
-	private javax.swing.JTextArea jTextArea1;
+	public static javax.swing.JTextArea jTextArea1;
 	// End of variables declaration//GEN-END:variables
 }

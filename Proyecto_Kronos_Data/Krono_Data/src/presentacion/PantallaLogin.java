@@ -22,7 +22,7 @@ import persistencia.GestorBD;
 import persistencia.ProfesorDAO;
 
 public class PantallaLogin extends JFrame implements ActionListener {
-	private JTextPane textPane;
+	 private static JTextPane textPane;
 	private JPanel contentPane;
 	private JTextField textFieldDNI;
 	private JTextField textFieldContrasena;
@@ -130,10 +130,10 @@ public class PantallaLogin extends JFrame implements ActionListener {
 			frame3.setVisible(true);	
 			break;
 		case '0':
-			//No existe esa contraseï¿½a
+			PantallaLogin.textPane.setText("Usted a metido mal la contrasena");
 			break;
 		case '1':
-			//El usuario no tiene tipousuario
+			PantallaLogin.textPane.setText("El DNI introducido no corresponde con ningun usuario");
 			break;
 		}
 	}

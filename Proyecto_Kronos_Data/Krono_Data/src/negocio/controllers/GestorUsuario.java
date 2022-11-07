@@ -6,18 +6,21 @@ import negocio.entities.*;
 import persistencia.EstudianteDAO;
 import persistencia.ProfesorDAO;
 import persistencia.UsuarioDAO;
+import presentacion.PantallaLogin;
 
 public class GestorUsuario {
 
 	Estudiante estudiante;
 	Profesor profesor;
-	public char login(String DNI, String Contrasena) throws Exception {
+	public char login(String DNI, String Contrasena) {
 
-		char login = '0';
+		char login = '1';
 		Estudiante estudiante;
 		Profesor profesor;
 		Usuario usuario;
-		usuario = UsuarioDAO.seleccionarUsuario(DNI);
+		try {
+			usuario = UsuarioDAO.seleccionarUsuario(DNI);
+		
 		if (usuario.getContrasena().equals(Contrasena)) {
 			switch (usuario.getTipo()) {
 			case "E":
@@ -39,14 +42,18 @@ public class GestorUsuario {
 			case "J":
 				login = 'J';
 				break;
-			default:
-				login = '1';
-
-				break;
 			}
+		}else {
+			login='0';
+		}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			 login='1';
+			
 		}
 
 		return login;
+		
 	}
 	public void setEstudiante(Estudiante estudiante) {
 		this.estudiante = estudiante;

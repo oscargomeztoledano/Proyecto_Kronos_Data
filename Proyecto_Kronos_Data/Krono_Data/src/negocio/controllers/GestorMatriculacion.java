@@ -2,13 +2,14 @@ package negocio.controllers;
 
 import negocio.entities.*;
 import persistencia.MatriculaDAO;
+import presentacion.PantallaMatriculacion;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class GestorMatriculacion {
 
-	public static void realizarMatriculacion(CursoPropio curso, Estudiante estudiante, ModoPago tipoPago) throws ClassNotFoundException {
+	public static void realizarMatriculacion(CursoPropio curso, Estudiante estudiante, ModoPago tipoPago)  {
 		Date fecha = new Date();
 		
 		
@@ -16,7 +17,13 @@ public class GestorMatriculacion {
 		
 		mat = realizarPagoMatricula(curso, estudiante, tipoPago, mat);
 		
-		MatriculaDAO.insert(mat);
+		try {
+			MatriculaDAO.insert(mat);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			PantallaMatriculacion.jTextArea1.setText("Ha ocurrido un problema con la matricula");
+			e.printStackTrace();
+		}
 
 	}
 
