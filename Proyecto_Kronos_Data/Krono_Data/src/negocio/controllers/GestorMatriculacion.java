@@ -17,13 +17,7 @@ public class GestorMatriculacion {
 		
 		mat = realizarPagoMatricula(curso, estudiante, tipoPago, mat);
 		
-		try {
-			MatriculaDAO.insert(mat);
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			PantallaMatriculacion.jTextArea1.setText("Ha ocurrido un problema con la matricula");
-			e.printStackTrace();
-		}
+		MatriculaDAO.insert(mat);
 
 	}
 
