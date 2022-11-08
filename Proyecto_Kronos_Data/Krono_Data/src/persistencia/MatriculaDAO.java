@@ -7,8 +7,8 @@ import presentacion.PantallaMatriculacion;
 
 public class MatriculaDAO {
 
-	public static void insert(Matricula mat)  {
-
+	public static int insert(Matricula mat) {
+		int resultadoMatricula = 0;
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		String fechaTexto = formatter.format(mat.getFecha());
 		int bit;
@@ -20,11 +20,13 @@ public class MatriculaDAO {
 		String sql = "INSERT INTO Matricula (CursoId, DniAlumno, fecha, pagado) VALUES ( '" + mat.getTitulo().getId()
 				+ "', '" + mat.getEstudiante().getDNI() + "', '" + fechaTexto + "'," + bit + ")";
 		try {
-			GestorBD.ExecuteUpdate(sql);
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			PantallaMatriculacion.jTextArea1.setText("Ha ocurrido un problema al realizar la matricula");
-		}
+			resultadoMatricula = GestorBD.ExecuteUpdate(sql);
 
+		} catch (ClassNotFoundException e) {
+
+			PantallaMatriculacion.jTextArea1.setText("Ha ocurrido un problema al realizar la matricula");
+
+		}
+		return resultadoMatricula;
 	}
 }

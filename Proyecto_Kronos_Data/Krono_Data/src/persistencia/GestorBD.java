@@ -21,39 +21,40 @@ public class GestorBD {
 	// Identificador ODBC de la base de datos
 	private static String url = "titulospropiosuclm2022.cq9ufzvy2if8.eu-west-3.rds.amazonaws.com";
 	// Driven para conectar con bases de datos MySQL
-	private static String driver2="org.postgresql.Driver";
+	private static String driver2 = "org.postgresql.Driver";
 	private static String driver = "com.mysql.cj.jdbc.Driver";
 	private static String user = "admin";
 	private static String password = "admin1234";
+
 	private static Connection getRemoteConnection() {
-		Connection con =null;
-	      try {
-	      Class.forName(driver);
-	      String dbName = "titulospropiosuclm2022";
-	      String userName = "admin";
-	      String password = "admin1234";
-	      String hostname = "titulospropiosuclm2022.cq9ufzvy2if8.eu-west-3.rds.amazonaws.com";
-	      String port = "3306";
-	      String jdbcUrl = "jdbc:mysql://" + hostname + ":" + port + "/" + dbName + "?user=" + userName + "&password=" + password;
-	      
-	       con = DriverManager.getConnection(jdbcUrl);
-	      
-	      return con;
-	    }
-	    catch (ClassNotFoundException e) { e.printStackTrace();}
-	    catch (SQLException e) {
-	    	e.printStackTrace();
-	    	}
+		Connection con = null;
+		try {
+			Class.forName(driver);
+			String dbName = "titulospropiosuclm2022";
+			String userName = "admin";
+			String password = "admin1234";
+			String hostname = "titulospropiosuclm2022.cq9ufzvy2if8.eu-west-3.rds.amazonaws.com";
+			String port = "3306";
+			String jdbcUrl = "jdbc:mysql://" + hostname + ":" + port + "/" + dbName + "?user=" + userName + "&password="
+					+ password;
+
+			con = DriverManager.getConnection(jdbcUrl);
+
+			return con;
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return con;
-	    }
-	    
-	  
+	}
+
 	public static void conectarBD() throws ClassNotFoundException, SQLException {
 		try {
 			Class.forName(driver);
-	mBD=getRemoteConnection();
+			mBD = getRemoteConnection();
 			mBD.setAutoCommit(true);
-			
+
 		} catch (Exception e) {
 			System.out.println(e);
 		}
@@ -72,7 +73,7 @@ public class GestorBD {
 
 	public static Vector<Object> ExecuteQuery(String SQL) throws ClassNotFoundException { // Sacar datos de BD
 		try {
-		
+
 			conectarBD();
 			Statement st = mBD.createStatement();
 			ResultSet result = st.executeQuery(SQL);
@@ -88,7 +89,6 @@ public class GestorBD {
 
 	public static Vector<Object> oneExecuteQuery(String SQL) throws Exception {
 		try {
-			
 
 			conectarBD();
 			Statement st = mBD.createStatement();
@@ -102,7 +102,8 @@ public class GestorBD {
 		}
 	}
 
-	public static void ExecuteUpdate(String SQL) throws ClassNotFoundException { // Updates a BD
+	public static int ExecuteUpdate(String SQL) throws ClassNotFoundException { // Updates a BD
+		int resultado = 0;
 		try {
 
 			conectarBD();
@@ -110,9 +111,11 @@ public class GestorBD {
 			st.executeUpdate(SQL);
 			st.close();
 			desconectarBD();
+			resultado = 1;
 		} catch (SQLException e) {
-			System.err.println(e);
+			resultado = 0;
 		}
+		return resultado;
 	}
 
 	public static Vector<Object> obtenerResulset(ResultSet result) throws SQLException {
@@ -137,16 +140,16 @@ public class GestorBD {
 		Vector<Object> v = new Vector<Object>();
 
 		while (result.next()) {
-			for(int i=1;i<20;i++) {
+			for (int i = 1; i < 20; i++) {
 				try {
 					v.add(result.getObject(i));
-				
+
 				} catch (SQLException ex) {
 					continue;
 				}
 			}
 		}
-		
+
 		return v;
 	}
 }

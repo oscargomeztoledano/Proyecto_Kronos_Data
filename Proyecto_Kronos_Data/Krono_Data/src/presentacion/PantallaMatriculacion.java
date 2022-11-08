@@ -58,7 +58,7 @@ public class PantallaMatriculacion extends javax.swing.JFrame {
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-		jLabel1.setText("Usuario");
+		jLabel1.setText("Usuario: " + estudiante.getDNI());
 
 		jLabel2.setText("Seleccione curso");
 
@@ -66,8 +66,8 @@ public class PantallaMatriculacion extends javax.swing.JFrame {
 
 		jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(c));
 
-		jComboBox2.setModel(
-				new javax.swing.DefaultComboBoxModel<>(new String[] { "Transferencia", "Tarjeta Credito"}));
+		jComboBox2
+				.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Transferencia", "Tarjeta Credito" }));
 
 		jButton1.setText("Validar");
 		jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -87,15 +87,22 @@ public class PantallaMatriculacion extends javax.swing.JFrame {
 					break;
 
 				}
+				if (GestorMatriculacion.realizarMatriculacion(curso, estudiante, Pago) == 1) {
+					jTextArea1.setText("La matricula realizada del curso: " + curso.getNombre()
+							+ " por el estudiante con DNI: " + estudiante.getDNI());
 
-				GestorMatriculacion.realizarMatriculacion(curso, estudiante, Pago);
+				} else {
+					jTextArea1.setText("Error, la matricula ya existe");
+
+				}
+
 			}
 		});
 
 		jLabel4.setForeground(java.awt.Color.red);
 		jLabel4.setText("Estado");
 		jTextArea1.setEditable(false);
-		jTextArea1.setColumns(20);
+		jTextArea1.setColumns(36);
 		jTextArea1.setRows(5);
 		jScrollPane1.setViewportView(jTextArea1);
 

@@ -15,23 +15,21 @@ public class UsuarioDAO<E> {
 		return usuario;
 	}
 
-	public static  Usuario seleccionarUsuario(String DNI)  {
-		Usuario us=null;
+	public static Usuario seleccionarUsuario(String DNI) {
+		Usuario us = null;
 		try {
-		String SQL = "SELECT * FROM Usuarios WHERE Dni = \'"+DNI+"\'";
+			String SQL = "SELECT * FROM Usuarios WHERE Dni = \'" + DNI + "\'";
 
-		Vector<Object> usuario;
-		
+			Vector<Object> usuario;
+
 			usuario = get(SQL);
-		
-		 us = new Usuario(DNI, usuario.get(1).toString(),usuario.get(2).toString());
-		
-		return us;
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			
 
-			e.printStackTrace();
+			us = new Usuario(DNI, usuario.get(1).toString(), usuario.get(2).toString());
+
+			return us;
+		} catch (Exception e) {
+
+			PantallaLogin.textPane.setText("Ha ocurrido un problema al introducir el usuario");
 		}
 		return us;
 	}
