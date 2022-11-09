@@ -13,4 +13,4 @@ Proyecto para la asignatura ISO2.
       - Previo comienzo del sprint: https://github.com/oscargomeztoledano/Proyecto_Kronos_Data/blob/master/Planificaci%C3%B3n/0.png
       - Comienzo del sprint: https://github.com/oscargomeztoledano/Proyecto_Kronos_Data/blob/master/Planificaci%C3%B3n/1.png
       - Mitad del sprint: https://github.com/oscargomeztoledano/Proyecto_Kronos_Data/blob/master/Planificaci%C3%B3n/2.png
-      - Fin del sprint: https://github.com/oscargomeztoledano/Proyecto_Kronos_Data/blob/master/Planificaci%C3%B3n/2.png
+      - Fin del sprint: https://github.com/oscargomeztoledano/Proyecto_Kronos_Data/blob/master/Planificaci%C3%B3n/3.png
