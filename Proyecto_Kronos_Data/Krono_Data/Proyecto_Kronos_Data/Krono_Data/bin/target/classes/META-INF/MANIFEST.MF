@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Built-By: Victo
+Build-Jdk: 17.0.3
+Class-Path: ucanaccess-5.0.1.jar mysql-connector-java-8.0.29.jar protobu
+ f-java-3.19.4.jar jackcess-3.0.1.jar commons-logging-1.2.jar commons-la
+ ng3-3.8.1.jar
+Main-Class: C:\Users\Victo\git\Proyecto_Kronos_Data\Proyecto_Kronos_Data
+ \Krono_Data\Proyecto_Kronos_Data\Krono_Data\src\presentacion\PantallaLo
+ gin.java
+Created-By: Maven Integration for Eclipse
+
