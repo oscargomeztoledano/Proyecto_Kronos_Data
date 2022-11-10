@@ -1,12 +1,21 @@
 package persistencia;
 
+import java.util.Vector;
+
 import negocio.entities.*;
 
-public class EstudianteDAO {
+public class EstudianteDAO<E> {
 
-	public Estudiante seleccionarEstudiante() {
-		// TODO - implement EstudianteDAO.seleccionarEstudiante
-		throw new UnsupportedOperationException();
+	
+
+	public static Estudiante seleccionarEstudiante(String DNI) throws Exception {
+		String SQL = "SELECT * FROM Estudiante WHERE Dni =\'"+DNI+"\'";
+
+		Vector<Object> estudiante = GestorBD.oneExecuteQuery(SQL);
+		Estudiante est = new Estudiante(estudiante.get(0).toString(), estudiante.get(1).toString(),
+				estudiante.get(2).toString(), estudiante.get(3).toString(), estudiante.get(4).toString());
+
+		return est;
 	}
 
 }

@@ -1,52 +1,40 @@
 package negocio.controllers;
 
 import negocio.entities.*;
+import persistencia.MatriculaDAO;
+import presentacion.PantallaMatriculacion;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class GestorMatriculacion {
 
-	/**
-	 * 
-	 * @param curso
-	 * @param estudiante
-	 */
-	public void realizarMatriculacion(CursoPropio curso, Estudiante estudiante) {
-		// TODO - implement GestorMatriculacion.realizarMatriculacion
-		throw new UnsupportedOperationException();
+	public static int realizarMatriculacion(CursoPropio curso, Estudiante estudiante, ModoPago tipoPago) {
+		Date fecha = new Date();
+
+		Matricula mat = new Matricula(estudiante, curso, fecha);
+
+		mat = realizarPagoMatricula(curso, estudiante, tipoPago, mat);
+
+		int i = MatriculaDAO.insert(mat);
+
+		return i;
 	}
 
-	/**
-	 * 
-	 * @param curso
-	 * @param estudiante
-	 */
-	public void realizarPagoMatricula(CursoPropio curso, Estudiante estudiante) {
-		// TODO - implement GestorMatriculacion.realizarPagoMatricula
-		throw new UnsupportedOperationException();
-	}
+	public static Matricula realizarPagoMatricula(CursoPropio curso, Estudiante estudiante, ModoPago tipoPago,
+			Matricula mat) {
+		switch (tipoPago) {
+		case TARJETA_CREDITO:
+			mat.setTipoPago(ModoPago.TARJETA_CREDITO);
+			mat.setPagado(true);
+			break;
 
-	/**
-	 * 
-	 * @param curso
-	 * @param estudiante
-	 */
-	private void realizarPagoTarjeta(CursoPropio curso, Estudiante estudiante) {
-		// TODO - implement GestorMatriculacion.realizarPagoTarjeta
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * 
-	 * @param curso
-	 * @param estudiante
-	 */
-	private void realizarPagoTransferencia(CursoPropio curso, Estudiante estudiante) {
-		// TODO - implement GestorMatriculacion.realizarPagoTransferencia
-		throw new UnsupportedOperationException();
-	}
-
-	private void operation() {
-		// TODO - implement GestorMatriculacion.operation
-		throw new UnsupportedOperationException();
+		case TRANSFERENCIA:
+			mat.setTipoPago(ModoPago.TRANSFERENCIA);
+			mat.setPagado(true);
+			break;
+		}
+		return mat;
 	}
 
 }
