@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>Krono_Data</groupId>
 	<artifactId>Krono_Data</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<packaging>jar</packaging>
 	<name>Krono_Data</name>
 
@@ -64,6 +64,21 @@
 		</resources>
 		<sourceDirectory>src/</sourceDirectory>
 		<testSourceDirectory>test</testSourceDirectory>
+
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<mainClass>${project.basedir}\src\presentacion\PantallaLogin.java</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+		</plugins>
 
 	</build>
 
