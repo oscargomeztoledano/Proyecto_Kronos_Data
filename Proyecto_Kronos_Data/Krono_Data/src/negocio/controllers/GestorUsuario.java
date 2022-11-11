@@ -11,14 +11,14 @@ import presentacion.PantallaLogin;
 public class GestorUsuario {
 
 	Estudiante estudiante;
-	Profesor profesor;
+	ProfesorUCLM profesor;
 	Usuario usuario;
 
 	public char login(String DNI, String Contrasena) {
 
 		char login = '1';
 		Estudiante estudiante;
-		Profesor profesor;
+		ProfesorUCLM profesor;
 		Usuario usuario;
 		try {
 			usuario = UsuarioDAO.seleccionarUsuario(DNI);
@@ -33,8 +33,8 @@ public class GestorUsuario {
 					break;
 
 				case "P":
-					profesor = ProfesorDAO.seleccionarProfesor(DNI);
-					setProfesor(profesor);
+					profesor = ProfesorDAO.seleccionarProfesorUCLM(ProfesorDAO.seleccionarProfesor(usuario, DNI),DNI);
+					setProfesorUCLM(profesor);
 					login = 'P';
 					break;
 
@@ -69,11 +69,11 @@ public class GestorUsuario {
 		return estudiante;
 	}
 
-	public void setProfesor(Profesor profesor) {
+	public void setProfesorUCLM(ProfesorUCLM profesor) {
 		this.profesor = profesor;
 	}
 
-	public Profesor getProfesor() {
+	public ProfesorUCLM getProfesorUCLM() {
 		return profesor;
 	}
 

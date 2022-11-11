@@ -8,6 +8,9 @@ public class Centro {
 	Collection<ProfesorUCLM> plantilla;
 	private String nombre;
 	private String localizacion;
-	private int attribute;
-
+	public Centro(String nombre,String localizacion) {
+		this.nombre=nombre;
+		this.localizacion=localizacion;
+		}
 }
+

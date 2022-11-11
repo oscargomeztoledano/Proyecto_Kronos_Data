@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextPane;
 import javax.swing.border.EmptyBorder;
 
+import negocio.controllers.GestorPropuestasCursos;
 import negocio.entities.Profesor;
 
 public class PantallaDireccionCursos extends JFrame {
