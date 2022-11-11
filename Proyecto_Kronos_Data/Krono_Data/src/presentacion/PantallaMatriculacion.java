@@ -5,6 +5,7 @@ import java.util.List;
 
 import negocio.controllers.GestorMatriculacion;
 import negocio.entities.CursoPropio;
+import negocio.entities.EstadoCurso;
 import negocio.entities.Estudiante;
 import negocio.entities.ModoPago;
 import persistencia.*;
@@ -25,11 +26,13 @@ public class PantallaMatriculacion extends javax.swing.JFrame {
 	 * @throws ClassNotFoundException
 	 */
 	public PantallaMatriculacion(Estudiante estudiante) throws ClassNotFoundException {
-		List<CursoPropio> cursos = CursoPropioDAO.obtenerCursos();
+	
+		List<CursoPropio> cursos = CursoPropioDAO.obtenerCursosPorTipo(CursoPropioDAO.obtenerCursos(), EstadoCurso.EN_IMPARTICICION);
 		String[] c = new String[cursos.size()];
 		int i = 0;
 		for (CursoPropio cp : cursos) {
 			c[i] = cursos.get(i++).getNombre();
+			
 		}
 
 		initComponents(c, estudiante, cursos);

@@ -67,6 +67,7 @@ public class CursoPropioDAO {
 		// TODO - implement CursoPropioDAO.listarEdicionesCursos
 		throw new UnsupportedOperationException();
 	}
+
 	public static List<CursoPropio> obtenerCursos() throws ClassNotFoundException {
 		String sql = "Select * FROM CursoPropio";
 		Vector<Object> cursos = GestorBD.ExecuteQuery(sql);
@@ -75,74 +76,93 @@ public class CursoPropioDAO {
 		while (!cursos.isEmpty()) {
 			@SuppressWarnings("unchecked")
 			Vector<Object> v = (Vector<Object>) cursos.get(0);
-			
-			CursoPropio c = new CursoPropio(v.get(0).toString(), v.get(1).toString(), (Integer) v.get(2), (Date) v.get(3),(Date) v.get(4), (Integer) v.get(5), (Integer) v.get(6), ComparacionTipoCurso(v.get(7).toString()),ComparacionEstadoCurso(v.get(8).toString()));
-			if(c.getEstado().equals(EstadoCurso.EN_MATRICULACION)) {
+
+			CursoPropio c = new CursoPropio(v.get(0).toString(), v.get(1).toString(), (Integer) v.get(2),
+					(Date) v.get(3), (Date) v.get(4), (Integer) v.get(5), (Integer) v.get(6),
+					ComparacionTipoCurso(v.get(7).toString()), ComparacionEstadoCurso(v.get(8).toString()));
+
 			listaCursos.add(c);
-			}
+
 			cursos.remove(0);
 		}
 		return listaCursos;
 	}
+
+	public static List<CursoPropio> obtenerCursosPorTipo(List<CursoPropio> cursos, EstadoCurso estado)
+			throws ClassNotFoundException {
+
+		List<CursoPropio> listaCursos = new ArrayList<CursoPropio>();
+		while (!cursos.isEmpty()) {
+			CursoPropio curso = cursos.get(0);
+			if (curso.getEstado().equals(estado)) {
+				listaCursos.add(curso);
+				
+			}
+			cursos.remove(0);
+		}
+
+		return listaCursos;
+	}
+
 	public static TipoCurso ComparacionTipoCurso(String tipocurso) {
-		TipoCurso tipo=null;
-		switch(tipocurso) {
+		TipoCurso tipo = null;
+		switch (tipocurso) {
 		case "MASTER":
-			tipo=TipoCurso.MASTER;
+			tipo = TipoCurso.MASTER;
 			break;
 		case "EXPERTO":
-			tipo=TipoCurso.EXPERTO;
+			tipo = TipoCurso.EXPERTO;
 			break;
 		case "ESPECIALISTA":
-			tipo=TipoCurso.ESPECIALISTA;
+			tipo = TipoCurso.ESPECIALISTA;
 
 			break;
 		case "FORMACION_AVANZADA":
-			tipo=TipoCurso.FORMACION_AVANZADA;
+			tipo = TipoCurso.FORMACION_AVANZADA;
 
 			break;
 		case "FORMACION_CONTINUA":
-			tipo=TipoCurso.FORMACION_CONTINUA;
+			tipo = TipoCurso.FORMACION_CONTINUA;
 			break;
 		case "MICROCREDENCIALES":
-			tipo=TipoCurso.MICROCREDENCIALES;
+			tipo = TipoCurso.MICROCREDENCIALES;
 
 			break;
 		case "CORTA_DURACION":
-			tipo=TipoCurso.CORTA_DURACION;
+			tipo = TipoCurso.CORTA_DURACION;
 			break;
-		
+
 		}
 		return tipo;
-		
+
 	}
+
 	public static EstadoCurso ComparacionEstadoCurso(String estadocurso) {
-		EstadoCurso estado=null;
-		switch(estadocurso) {
+		EstadoCurso estado = null;
+		switch (estadocurso) {
 		case "PROPUESTO":
-			estado=EstadoCurso.PROPUESTO;
+			estado = EstadoCurso.PROPUESTO;
 			break;
 		case "VALIDADO":
-			estado=EstadoCurso.VALIDADO;
+			estado = EstadoCurso.VALIDADO;
 			break;
 		case "PROPUESTA_RECHAZADA":
-			estado=EstadoCurso.PROPUESTA_RECHAZADA;
+			estado = EstadoCurso.PROPUESTA_RECHAZADA;
 
 			break;
 		case "EN_MATRICULACION":
-			estado=EstadoCurso.EN_MATRICULACION;
+			estado = EstadoCurso.EN_MATRICULACION;
 
 			break;
 		case "EN_IMPARTICION":
-			estado=EstadoCurso.EN_IMPARTICICION;
+			estado = EstadoCurso.EN_IMPARTICICION;
 			break;
 		case "TERMINADO":
-			estado=EstadoCurso.TERMINADO;
+			estado = EstadoCurso.TERMINADO;
 			break;
 		}
 		return estado;
-		
+
 	}
-	
 
 }
