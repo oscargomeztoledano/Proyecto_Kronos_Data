@@ -33,7 +33,7 @@ public class GestorUsuario {
 					break;
 
 				case "P":
-					profesor = ProfesorDAO.seleccionarProfesorUCLM(ProfesorDAO.seleccionarProfesor(usuario, DNI),DNI);
+					profesor = ProfesorDAO.seleccionarProfesorUCLM(ProfesorDAO.seleccionarProfesor(usuario));
 					setProfesorUCLM(profesor);
 					login = 'P';
 					break;

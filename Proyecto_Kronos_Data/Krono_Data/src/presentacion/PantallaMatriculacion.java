@@ -22,10 +22,9 @@ public class PantallaMatriculacion extends javax.swing.JFrame {
 
 	/**
 	 * Creates new form PantallaMatriculacion
-	 * 
-	 * @throws ClassNotFoundException
+	 * @throws Exception 
 	 */
-	public PantallaMatriculacion(Estudiante estudiante) throws ClassNotFoundException {
+	public PantallaMatriculacion(Estudiante estudiante) throws Exception {
 	
 		List<CursoPropio> cursos = CursoPropioDAO.obtenerCursosPorTipo(CursoPropioDAO.obtenerCursos(), EstadoCurso.EN_MATRICULACION);
 		String[] c = new String[cursos.size()];

@@ -68,7 +68,7 @@ public class CursoPropioDAO {
 		throw new UnsupportedOperationException();
 	}
 
-	public static List<CursoPropio> obtenerCursos() throws ClassNotFoundException {
+	public static List<CursoPropio> obtenerCursos() throws Exception {
 		String sql = "Select * FROM CursoPropio";
 		Vector<Object> cursos = GestorBD.ExecuteQuery(sql);
 
@@ -76,7 +76,10 @@ public class CursoPropioDAO {
 		while (!cursos.isEmpty()) {
 			@SuppressWarnings("unchecked")
 			Vector<Object> v = (Vector<Object>) cursos.get(0);
-			CursoPropio c = new CursoPropio(v.get(0).toString(), v.get(1).toString(), (Integer) v.get(2),(Date) v.get(3), (Date) v.get(4), (Integer) v.get(5), (Integer) v.get(6),ComparacionTipoCurso(v.get(7).toString()), ComparacionEstadoCurso(v.get(8).toString()));
+			ProfesorUCLM dir=ProfesorDAO.seleccionarProfesorUCLM(ProfesorDAO.seleccionarProfesor(UsuarioDAO.seleccionarUsuario(v.get(10).toString())));
+			ProfesorUCLM sec=ProfesorDAO.seleccionarProfesorUCLM(ProfesorDAO.seleccionarProfesor(UsuarioDAO.seleccionarUsuario(v.get(11).toString())));
+
+			CursoPropio c = new CursoPropio(v.get(0).toString(), v.get(1).toString(), (Integer) v.get(2),(Date) v.get(3), (Date) v.get(4), (Integer) v.get(5), (Integer) v.get(6),ComparacionTipoCurso(v.get(7).toString()), ComparacionEstadoCurso(v.get(8).toString()),CentroDAO.seleccionarCentro(v.get(9).toString()),dir,sec);
 
 			listaCursos.add(c);
 

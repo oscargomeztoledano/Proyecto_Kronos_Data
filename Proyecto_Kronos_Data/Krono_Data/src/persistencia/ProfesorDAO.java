@@ -20,21 +20,21 @@ public class ProfesorDAO {
 		return profesor;
 	}
 
-	public static Profesor seleccionarProfesor(Usuario usuario,String DNI) throws Exception {
-		String SQL = "SELECT * FROM profesor WHERE Dni = \'"+DNI+"\'";
+	public static Profesor seleccionarProfesor(Usuario usuario) throws Exception {
+		String SQL = "SELECT * FROM Profesor WHERE Dni = \'"+usuario.getDNI()+"\'";
 
 		Vector<Object> profesor = getOne(SQL);
 
-		Profesor prof = new Profesor(DNI,usuario.getContrasena(),usuario.getTipo(), profesor.get(1).toString(),profesor.get(2).toString(),Boolean.parseBoolean(profesor.get(3).toString()));
-        prof.toString();
+		Profesor prof = new Profesor(usuario.getDNI(),usuario.getContrasena(),usuario.getTipo(), profesor.get(1).toString(),profesor.get(2).toString(),Boolean.parseBoolean(profesor.get(3).toString()));
+        
 		return prof;
 	}
-	public static ProfesorUCLM seleccionarProfesorUCLM(Profesor profesor,String DNI) throws Exception {
-		String SQL = "SELECT * FROM profesoruclm WHERE Dni = \'"+DNI+"\'";
+	public static ProfesorUCLM seleccionarProfesorUCLM(Profesor profesor) throws Exception {
+		String SQL = "SELECT * FROM ProfesorUCLM WHERE Dni = \'"+profesor.getDNI()+"\'";
 
 		Vector<Object> profesorUCLM = getOne(SQL);
 		
-		ProfesorUCLM prof = new ProfesorUCLM(DNI,profesor.getContrasena(),profesor.getTipo(),profesor.getNombre(),profesor.getApellidos(),profesor.isDoctor(),ComparacionCategoriaProfesor(profesorUCLM.get(1).toString()),CentroDAO.seleccionarCentro(profesorUCLM.get(2).toString()));
+		ProfesorUCLM prof = new ProfesorUCLM(profesor.getDNI(),profesor.getContrasena(),profesor.getTipo(),profesor.getNombre(),profesor.getApellidos(),profesor.isDoctor(),ComparacionCategoriaProfesor(profesorUCLM.get(1).toString()),CentroDAO.seleccionarCentro(profesorUCLM.get(2).toString()));
         
 		return prof;
 	}
