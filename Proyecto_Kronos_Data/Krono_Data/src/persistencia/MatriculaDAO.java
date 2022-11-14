@@ -2,6 +2,10 @@ package persistencia;
 
 import java.text.SimpleDateFormat;
 import java.util.Vector;
+
+import com.mysql.cj.x.protobuf.MysqlxCrud.Collection;
+import java.util.Date;
+import negocio.entities.CursoPropio;
 import negocio.entities.Matricula;
 import presentacion.PantallaMatriculacion;
 
@@ -28,5 +32,18 @@ public class MatriculaDAO {
 
 		}
 		return resultadoMatricula;
+	}
+	
+	public static Collection obtenerMatriculasCurso(CursoPropio curso) throws ClassNotFoundException{
+		String sql = "SELECT * FROM Matriculas WHERE CursoId = '" + curso.getId() + "'";
+		Vector<Object> matriculas = GestorBD.ExecuteQuery(sql);
+		Collection mat;
+		
+		while(!matriculas.isEmpty()) {
+			Vector<Object> v = (Vector<Object>) matriculas.get(0);
+			//Matricula m = new Matricula(curso, EstudianteDAO.seleccionarEstudiante(v.get(1).toString()), (Date) v.get(2), (boolean) v.get(3));
+		}
+		
+		return null;
 	}
 }
