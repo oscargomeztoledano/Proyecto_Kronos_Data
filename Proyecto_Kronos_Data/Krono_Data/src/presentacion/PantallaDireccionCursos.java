@@ -18,7 +18,7 @@ public class PantallaDireccionCursos extends JFrame {
 	private JTextPane textPane;
 	
 	public PantallaDireccionCursos(Profesor profesor) {
-		setTitle("Realizar Cursos");
+		setTitle("Interfaz profesor");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 485, 285);
 		contentPane = new JPanel();
@@ -30,6 +30,11 @@ public class PantallaDireccionCursos extends JFrame {
 		label_1.setForeground(Color.RED);
 		label_1.setBounds(6, 120, 61, 16);
 		contentPane.add(label_1);
+		
+		JLabel label_2 = new JLabel("Como profesor puede: ");
+		label_2.setForeground(Color.BLACK);
+		label_2.setBounds(10,20,130,30);
+		contentPane.add(label_2);
 		
 		textPane = new JTextPane();
 		textPane.setToolTipText("Panel para mostrar el restultado de la comprobaci\u00F3n de login o las excepciones lanzadas");
