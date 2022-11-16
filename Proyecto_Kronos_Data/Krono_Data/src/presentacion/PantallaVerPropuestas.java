@@ -1,5 +1,7 @@
 package presentacion;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 
 import javax.swing.JFrame;
@@ -11,8 +13,8 @@ import javax.swing.border.EmptyBorder;
 
 import negocio.entities.CursoPropio;
 import negocio.entities.EstadoCurso;
-import negocio.entities.Profesor;
 import persistencia.*;
+import presentacion.PantallaVerInfor;
 
 public class PantallaVerPropuestas extends javax.swing.JFrame {
 
@@ -59,16 +61,31 @@ public class PantallaVerPropuestas extends javax.swing.JFrame {
 		contentPane.add(textPane);
 		
 		int e=40;
-		JLabel label = new JLabel("- " + a[0]);
-		label.setBounds(125, e, 115, 30);
-		contentPane.add(label);
 		
-//		for(int i = 0; i <= a.length; i++) {
-//			JLabel label = new JLabel("- " + a[i]);
-//			label.setBounds(125, e, 115, 30);
-//			contentPane.add(label);
-//			e+=30;
-//		}
+		
+		for(int i = 0; i < a.length; i++) {
+			JButton Bpropuesta = new JButton(a[i]);
+			Bpropuesta.setBounds(190, e, 115, 30);
+			contentPane.add(Bpropuesta);
+			e+=35;
+			Bpropuesta.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					PantallaVerInfor frame;
+					try {
+						frame = new PantallaVerInfor();
+						frame.setVisible(true);
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+						
+				}
+			});
+			
+			
+		}
 		
 	}
 	

@@ -53,8 +53,10 @@ public class PantallaDireccionCursos extends JFrame {
 			
 			
 			public void actionPerformed(ActionEvent e) {
+				PantallaProponerEditar frame;
 				try {
-					PantallaProponerEditar frame1 = new PantallaProponerEditar();
+					 frame = new PantallaProponerEditar();
+					 frame.setVisible(true);
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
