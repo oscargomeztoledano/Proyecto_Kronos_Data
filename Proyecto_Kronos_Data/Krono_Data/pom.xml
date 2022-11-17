@@ -11,8 +11,11 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.7</maven.compiler.source>
 		<maven.compiler.target>1.7</maven.compiler.target>
+		<sonar.projectKey>projecto_krono_data</sonar.projectKey>
+ 		<sonar.organization>oscargomeztoledano</sonar.organization>
+  		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+		<sonar.login>06a588c71b46aa2e7477c2ff8e7bb6be6e103b92</sonar.login>
 	</properties>
-
 
 	<dependencies>
 		<dependency>
