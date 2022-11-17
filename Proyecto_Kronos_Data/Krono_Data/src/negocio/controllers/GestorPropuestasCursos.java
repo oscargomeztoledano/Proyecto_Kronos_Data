@@ -1,12 +1,41 @@
 package negocio.controllers;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import negocio.entities.*;
+import persistencia.CentroDAO;
+import persistencia.ProfesorDAO;
+import persistencia.UsuarioDAO;
+import persistencia.CursoPropioDAO;
 
 public class GestorPropuestasCursos {
 
-	public CursoPropio realizarPropuestaCurso() {
-		// TODO - implement GestorPropuestasCursos.realizarPropuestaCurso
-		throw new UnsupportedOperationException();
+	public void realizarPropuestaCurso(String nombre, int eCTS, String fechaI, String fechaFin, double tasaMatricula,
+            int edicion, String TipoCurso, String centro_nombre, ProfesorUCLM director, String secretarioDni) throws Exception {
+		
+		SimpleDateFormat fecha = new SimpleDateFormat("yyyy-MM-dd");
+		Date fechaInicio = fecha.parse(fechaI);
+		Date fechaFinal = fecha.parse(fechaFin);
+		
+		Centro centro = CentroDAO.seleccionarCentro(centro_nombre);
+		
+		ProfesorUCLM secretario = ProfesorDAO.seleccionarProfesorUCLM(ProfesorDAO.seleccionarProfesor(UsuarioDAO.seleccionarUsuario(secretarioDni)));
+		
+		TipoCurso tipoCurso = CursoPropioDAO.ComparacionTipoCurso(TipoCurso);
+		
+		switch(tipoCurso) {
+			case EXPERTO:
+				if (eCTS<15 && eCTS>29) {
+					
+				}
+				break;
+		}
+		
+		
+		CursoPropio curso = new CursoPropio("7", nombre, eCTS, fechaInicio, fechaFinal, tasaMatricula, edicion,
+				tipoCurso, EstadoCurso.PROPUESTO, centro, director, secretario);
 		
 	}
 
