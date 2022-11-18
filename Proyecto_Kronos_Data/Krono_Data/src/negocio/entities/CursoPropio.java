@@ -1,5 +1,6 @@
 package negocio.entities;
 
+import java.time.LocalDate;
 import java.util.*;
 import persistencia.*;
 
@@ -16,14 +17,14 @@ public class CursoPropio {
 	private String id;
 	private String nombre;
 	private int ECTS;
-	private Date fechaInicio;
-	private Date fechaFin;
+	private LocalDate fechaInicio;
+	private LocalDate fechaFin;
 	private double tasaMatricula;
 	private int edicion;
 
 	public CursoPropio(Collection<Matricula> matriculas, Centro centro, ProfesorUCLM director, ProfesorUCLM secretario,
 			Collection<Materia> materias, EstadoCurso estado, TipoCurso tipo, CursoPropioDAO cursoPropioDao, String id,
-			String nombre, int eCTS, Date fechaInicio, Date fechaFin, double tasaMatricula, int edicion) {
+			String nombre, int eCTS, LocalDate fechaInicio, LocalDate fechaFin, double tasaMatricula, int edicion) {
 		super();
 		this.matriculas = matriculas;
 		this.centro = centro;
@@ -42,7 +43,7 @@ public class CursoPropio {
 		this.edicion = edicion;
 	}
 
-	public CursoPropio(String id, String nombre, int eCTS, Date fechaInicio, Date fechaFin, double tasaMatricula,
+	public CursoPropio(String id, String nombre, int eCTS, LocalDate fechaInicio, LocalDate fechaFin, double tasaMatricula,
 			int edicion,TipoCurso TipoCurso,EstadoCurso EstadoCurso,Centro centro,ProfesorUCLM director,ProfesorUCLM secretario) {
 
 		this.id = id;
@@ -59,7 +60,7 @@ public class CursoPropio {
 		this.secretario=secretario;
 		
 	}
-	public CursoPropio(String id, String nombre, int eCTS, Date fechaInicio, Date fechaFin, double tasaMatricula,
+	public CursoPropio(String id, String nombre, int eCTS, LocalDate fechaInicio, LocalDate fechaFin, double tasaMatricula,
 			int edicion,TipoCurso TipoCurso,EstadoCurso EstadoCurso) {
 
 		this.id = id;
@@ -169,19 +170,19 @@ public class CursoPropio {
 		ECTS = eCTS;
 	}
 
-	public Date getFechaInicio() {
+	public LocalDate getFechaInicio() {
 		return fechaInicio;
 	}
 
-	public void setFechaInicio(Date fechaInicio) {
+	public void setFechaInicio(LocalDate fechaInicio) {
 		this.fechaInicio = fechaInicio;
 	}
 
-	public Date getFechaFin() {
+	public LocalDate getFechaFin() {
 		return fechaFin;
 	}
 
-	public void setFechaFin(Date fechaFin) {
+	public void setFechaFin(LocalDate fechaFin) {
 		this.fechaFin = fechaFin;
 	}
 

@@ -1,5 +1,6 @@
 package persistencia;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -42,7 +43,7 @@ public class CursoPropioDAO {
 	 * @param fechaInicio
 	 * @param fechaFin
 	 */
-	public List<CursoPropio> listarCursosPorEstado(EstadoCurso estado, Date fechaInicio, Date fechaFin) {
+	public List<CursoPropio> listarCursosPorEstado(EstadoCurso estado, LocalDate fechaInicio, LocalDate fechaFin) {
 		// TODO - implement CursoPropioDAO.listarCursosPorEstado
 		throw new UnsupportedOperationException();
 	}
@@ -53,7 +54,7 @@ public class CursoPropioDAO {
 	 * @param fechaInicio
 	 * @param fechaFin
 	 */
-	public double listarIngresos(TipoCurso tipo, Date fechaInicio, Date fechaFin) {
+	public double listarIngresos(TipoCurso tipo, LocalDate fechaInicio, LocalDate fechaFin) {
 		// TODO - implement CursoPropioDAO.listarIngresos
 		throw new UnsupportedOperationException();
 	}
@@ -63,7 +64,7 @@ public class CursoPropioDAO {
 	 * @param fechaInicio
 	 * @param fechaFin
 	 */
-	public void listarEdicionesCursos(Date fechaInicio, Date fechaFin) {
+	public void listarEdicionesCursos(LocalDate fechaInicio, LocalDate fechaFin) {
 		// TODO - implement CursoPropioDAO.listarEdicionesCursos
 		throw new UnsupportedOperationException();
 	}
@@ -79,7 +80,7 @@ public class CursoPropioDAO {
 			ProfesorUCLM dir=ProfesorDAO.seleccionarProfesorUCLM(ProfesorDAO.seleccionarProfesor(UsuarioDAO.seleccionarUsuario(v.get(10).toString())));
 			ProfesorUCLM sec=ProfesorDAO.seleccionarProfesorUCLM(ProfesorDAO.seleccionarProfesor(UsuarioDAO.seleccionarUsuario(v.get(11).toString())));
 
-			CursoPropio c = new CursoPropio(v.get(0).toString(), v.get(1).toString(), (Integer) v.get(2),(Date) v.get(3), (Date) v.get(4), (Integer) v.get(5), (Integer) v.get(6),ComparacionTipoCurso(v.get(7).toString()), ComparacionEstadoCurso(v.get(8).toString()),CentroDAO.seleccionarCentro(v.get(9).toString()),dir,sec);
+			CursoPropio c = new CursoPropio(v.get(0).toString(), v.get(1).toString(), (Integer) v.get(2),(LocalDate) v.get(3), (LocalDate) v.get(4), (Integer) v.get(5), (Integer) v.get(6),ComparacionTipoCurso(v.get(7).toString()), ComparacionEstadoCurso(v.get(8).toString()),CentroDAO.seleccionarCentro(v.get(9).toString()),dir,sec);
 
 			listaCursos.add(c);
 
