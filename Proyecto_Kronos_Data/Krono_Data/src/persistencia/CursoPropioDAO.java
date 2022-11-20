@@ -31,9 +31,17 @@ public class CursoPropioDAO {
 	 * 
 	 * @param curso
 	 */
-	public CursoPropio editarCurso(CursoPropio curso) {
-		// TODO - implement CursoPropioDAO.editarCurso
-		throw new UnsupportedOperationException();
+	public static int editarCurso(CursoPropio curso) {
+		int resultado=0;
+		
+		String sql = "UPDATE CursoPropio SET EstadoCurso = \'"+curso.getEstado()+"\' WHERE id = \'"+curso.getId()+"\'";
+		try {
+			resultado= GestorBD.ExecuteUpdate(sql);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return resultado;
 	}
 
 	/**

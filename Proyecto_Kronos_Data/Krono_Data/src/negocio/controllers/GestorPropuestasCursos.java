@@ -1,6 +1,7 @@
 package negocio.controllers;
 
 import negocio.entities.*;
+import persistencia.CursoPropioDAO;
 
 public class GestorPropuestasCursos {
 
@@ -23,9 +24,12 @@ public class GestorPropuestasCursos {
 	 * 
 	 * @param curso
 	 */
-	public EstadoCurso evaluarPropuesta(CursoPropio curso) {
-		// TODO - implement GestorPropuestasCursos.evaluarPropuesta
-		throw new UnsupportedOperationException();
+	public int evaluarPropuesta(CursoPropio curso,EstadoCurso estado) {
+		int resultado=0;
+		curso.setEstado(estado);
+		CursoPropio cursoActualizado=curso;
+		resultado =CursoPropioDAO.editarCurso(cursoActualizado);
+		return resultado;
 	}
 
 	/**

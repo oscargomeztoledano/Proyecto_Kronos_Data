@@ -12,6 +12,7 @@ public class Centro {
 		this.nombre=nombre;
 		this.localizacion=localizacion;
 		}
+
 	public Collection<CursoPropio> getCursoPropios() {
 		return cursoPropios;
 	}
@@ -24,6 +25,7 @@ public class Centro {
 	public void setPlantilla(Collection<ProfesorUCLM> plantilla) {
 		this.plantilla = plantilla;
 	}
+
 	public String getNombre() {
 		return nombre;
 	}
@@ -36,6 +38,6 @@ public class Centro {
 	public void setLocalizacion(String localizacion) {
 		this.localizacion = localizacion;
 	}
-	
+
 }
 
