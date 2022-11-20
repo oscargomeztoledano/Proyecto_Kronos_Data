@@ -5,18 +5,24 @@
 package presentacion;
 
 import negocio.controllers.GestorConsultas;
+import negocio.entities.CursoPropio;
 import negocio.entities.Usuario;
 import java.awt.event.*;
+import java.awt.print.PrinterException;
+import java.text.SimpleDateFormat;
+import java.util.List;
 
 /**
  *
  * @author david
  * 
- * NOTA:
- * Cada vez que se edita la interfaz se sobreescribe todo de initComponets(), y pierdes tu codigo
- * Hay que añadir al final, antes de la llamada a pack(), y llamar a la funcion buttons(), para que los botones funcionen
+ *         NOTA: Cada vez que se edita la interfaz se sobreescribe todo de
+ *         initComponets(), y pierdes tu codigo Hay que añadir al final, antes
+ *         de la llamada a pack(), y llamar a la funcion buttons(), para que los
+ *         botones funcionen
  * 
- * Tambien, en la label lblUser, hay que poner en el setText(), la variable "String u"
+ *         Tambien, en la label lblUser, hay que poner en el setText(), la
+ *         variable "String u"
  */
 public class PantallaJefeGabineteVicerrectorado extends javax.swing.JFrame {
 
@@ -25,6 +31,7 @@ public class PantallaJefeGabineteVicerrectorado extends javax.swing.JFrame {
 	 */
 	Usuario user;
 	String u;
+
 	public PantallaJefeGabineteVicerrectorado(Usuario user) {
 		this.user = user;
 		u = "Usuario: " + user.getDNI();
@@ -41,128 +48,135 @@ public class PantallaJefeGabineteVicerrectorado extends javax.swing.JFrame {
 	// <editor-fold defaultstate="collapsed" desc="Generated
 	// <editor-fold defaultstate="collapsed" desc="Generated
 	// <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+	// <editor-fold defaultstate="collapsed" desc="Generated
+	// Code">//GEN-BEGIN:initComponents
+	private void initComponents() {
 
-        ListarEdiciones = new javax.swing.JFrame();
-        consultarCursos = new javax.swing.JFrame();
-        ConsultarIngresos = new javax.swing.JFrame();
-        lblUserIngresos = new javax.swing.JLabel();
-        lblSinTit = new javax.swing.JLabel();
-        labelConTit = new javax.swing.JLabel();
-        lblEnsProp = new javax.swing.JLabel();
-        lblTotal = new javax.swing.JLabel();
-        lblUser = new javax.swing.JLabel();
-        btnConsultarIngresos = new javax.swing.JButton();
-        btnListarEdiciones = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+		ListarEdiciones = new javax.swing.JFrame();
+		jLabel1 = new javax.swing.JLabel();
+		jLabel2 = new javax.swing.JLabel();
+		jTextField1 = new javax.swing.JTextField();
+		jButton2 = new javax.swing.JButton();
+		scrollPane2 = new java.awt.ScrollPane();
+		jScrollPane1 = new javax.swing.JScrollPane();
 
-        ListarEdiciones.setAutoRequestFocus(false);
-        ListarEdiciones.setSize(new java.awt.Dimension(400, 400));
+		consultarCursos = new javax.swing.JFrame();
+		ConsultarIngresos = new javax.swing.JFrame();
+		lblUserIngresos = new javax.swing.JLabel();
+		lblSinTit = new javax.swing.JLabel();
+		labelConTit = new javax.swing.JLabel();
+		lblEnsProp = new javax.swing.JLabel();
+		lblTotal = new javax.swing.JLabel();
+		lblUser = new javax.swing.JLabel();
+		btnConsultarIngresos = new javax.swing.JButton();
+		btnListarEdiciones = new javax.swing.JButton();
+		jButton1 = new javax.swing.JButton();
 
-        javax.swing.GroupLayout ListarEdicionesLayout = new javax.swing.GroupLayout(ListarEdiciones.getContentPane());
-        ListarEdiciones.getContentPane().setLayout(ListarEdicionesLayout);
-        ListarEdicionesLayout.setHorizontalGroup(
-            ListarEdicionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        ListarEdicionesLayout.setVerticalGroup(
-            ListarEdicionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+		ListarEdiciones.setAutoRequestFocus(false);
+		ListarEdiciones.setSize(new java.awt.Dimension(400, 400));
 
-        consultarCursos.setSize(new java.awt.Dimension(400, 400));
+		jLabel1.setText("Usuario: ");
 
-        javax.swing.GroupLayout consultarCursosLayout = new javax.swing.GroupLayout(consultarCursos.getContentPane());
-        consultarCursos.getContentPane().setLayout(consultarCursosLayout);
-        consultarCursosLayout.setHorizontalGroup(
-            consultarCursosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        consultarCursosLayout.setVerticalGroup(
-            consultarCursosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+		jLabel2.setText("Escriba la edicion a consultar: ");
 
-        ConsultarIngresos.setSize(new java.awt.Dimension(400, 400));
+		jButton2.setText("Mostrar resultados");
 
-        lblUserIngresos.setText("Usuario: ");
+		jScrollPane1.setViewportView(jTable1);
 
-        javax.swing.GroupLayout ConsultarIngresosLayout = new javax.swing.GroupLayout(ConsultarIngresos.getContentPane());
-        ConsultarIngresos.getContentPane().setLayout(ConsultarIngresosLayout);
-        ConsultarIngresosLayout.setHorizontalGroup(
-            ConsultarIngresosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ConsultarIngresosLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(ConsultarIngresosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblUserIngresos)
-                    .addComponent(lblSinTit)
-                    .addComponent(labelConTit)
-                    .addComponent(lblEnsProp)
-                    .addComponent(lblTotal))
-                .addContainerGap(336, Short.MAX_VALUE))
-        );
-        ConsultarIngresosLayout.setVerticalGroup(
-            ConsultarIngresosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ConsultarIngresosLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblUserIngresos)
-                .addGap(30, 30, 30)
-                .addComponent(lblSinTit)
-                .addGap(18, 18, 18)
-                .addComponent(labelConTit)
-                .addGap(18, 18, 18)
-                .addComponent(lblEnsProp)
-                .addGap(18, 18, 18)
-                .addComponent(lblTotal)
-                .addContainerGap(192, Short.MAX_VALUE))
-        );
+		scrollPane2.add(jScrollPane1);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setAutoRequestFocus(false);
-        setSize(new java.awt.Dimension(400, 400));
+		javax.swing.GroupLayout ListarEdicionesLayout = new javax.swing.GroupLayout(ListarEdiciones.getContentPane());
+		ListarEdiciones.getContentPane().setLayout(ListarEdicionesLayout);
+		ListarEdicionesLayout.setHorizontalGroup(ListarEdicionesLayout
+				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+				.addGroup(ListarEdicionesLayout.createSequentialGroup().addContainerGap().addGroup(ListarEdicionesLayout
+						.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+						.addGroup(ListarEdicionesLayout.createSequentialGroup().addGroup(ListarEdicionesLayout
+								.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(jLabel1)
+								.addGroup(ListarEdicionesLayout.createSequentialGroup().addComponent(jLabel2)
+										.addGap(18, 18, 18).addComponent(jTextField1,
+												javax.swing.GroupLayout.PREFERRED_SIZE, 134,
+												javax.swing.GroupLayout.PREFERRED_SIZE))
+								.addComponent(jButton2)).addGap(0, 1080, Short.MAX_VALUE))
+						.addComponent(scrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE,
+								javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+						.addContainerGap()));
+		ListarEdicionesLayout.setVerticalGroup(ListarEdicionesLayout
+				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+				.addGroup(ListarEdicionesLayout.createSequentialGroup().addContainerGap().addComponent(jLabel1)
+						.addGap(18, 18, 18)
+						.addGroup(ListarEdicionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+								.addComponent(jLabel2).addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE,
+										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED).addComponent(jButton2)
+						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(scrollPane2,
+								javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
+						.addContainerGap(99, Short.MAX_VALUE)));
 
-        lblUser.setText(u);
+		consultarCursos.setSize(new java.awt.Dimension(400, 400));
 
-        btnConsultarIngresos.setText("Consultar Ingresos");
+		javax.swing.GroupLayout consultarCursosLayout = new javax.swing.GroupLayout(consultarCursos.getContentPane());
+		consultarCursos.getContentPane().setLayout(consultarCursosLayout);
+		consultarCursosLayout.setHorizontalGroup(consultarCursosLayout
+				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGap(0, 400, Short.MAX_VALUE));
+		consultarCursosLayout.setVerticalGroup(consultarCursosLayout
+				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGap(0, 300, Short.MAX_VALUE));
 
-        btnListarEdiciones.setText("Listar Ediciones");
+		ConsultarIngresos.setSize(new java.awt.Dimension(400, 400));
 
-        jButton1.setText("Consultar cursos");
+		lblUserIngresos.setText("Usuario: ");
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblUser))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(124, 124, 124)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnConsultarIngresos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnListarEdiciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(123, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(lblUser)
-                .addGap(18, 18, 18)
-                .addComponent(btnConsultarIngresos)
-                .addGap(27, 27, 27)
-                .addComponent(btnListarEdiciones)
-                .addGap(27, 27, 27)
-                .addComponent(jButton1)
-                .addContainerGap(123, Short.MAX_VALUE))
-        );
-        buttons();
-        pack();
-    }// </editor-fold>//GEN-END:initComponents
+		javax.swing.GroupLayout ConsultarIngresosLayout = new javax.swing.GroupLayout(
+				ConsultarIngresos.getContentPane());
+		ConsultarIngresos.getContentPane().setLayout(ConsultarIngresosLayout);
+		ConsultarIngresosLayout.setHorizontalGroup(ConsultarIngresosLayout
+				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+				.addGroup(ConsultarIngresosLayout.createSequentialGroup().addContainerGap()
+						.addGroup(ConsultarIngresosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+								.addComponent(lblUserIngresos).addComponent(lblSinTit).addComponent(labelConTit)
+								.addComponent(lblEnsProp).addComponent(lblTotal))
+						.addContainerGap(336, Short.MAX_VALUE)));
+		ConsultarIngresosLayout.setVerticalGroup(ConsultarIngresosLayout
+				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+				.addGroup(ConsultarIngresosLayout.createSequentialGroup().addContainerGap()
+						.addComponent(lblUserIngresos).addGap(30, 30, 30).addComponent(lblSinTit).addGap(18, 18, 18)
+						.addComponent(labelConTit).addGap(18, 18, 18).addComponent(lblEnsProp).addGap(18, 18, 18)
+						.addComponent(lblTotal).addContainerGap(192, Short.MAX_VALUE)));
+
+		setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+		setAutoRequestFocus(false);
+		setSize(new java.awt.Dimension(400, 400));
+
+		lblUser.setText("Usuario: ");
+
+		btnConsultarIngresos.setText("Consultar Ingresos");
+
+		btnListarEdiciones.setText("Listar Ediciones");
+
+		jButton1.setText("Consultar cursos");
+
+		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+		getContentPane().setLayout(layout);
+		layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(layout
+				.createSequentialGroup()
+				.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+						.addGroup(layout.createSequentialGroup().addContainerGap().addComponent(lblUser))
+						.addGroup(layout.createSequentialGroup().addGap(124, 124, 124)
+								.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+										.addComponent(btnConsultarIngresos, javax.swing.GroupLayout.DEFAULT_SIZE,
+												javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+										.addComponent(btnListarEdiciones, javax.swing.GroupLayout.DEFAULT_SIZE,
+												javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+										.addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE,
+												javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+				.addContainerGap(123, Short.MAX_VALUE)));
+		layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+				.addGroup(layout.createSequentialGroup().addGap(15, 15, 15).addComponent(lblUser).addGap(18, 18, 18)
+						.addComponent(btnConsultarIngresos).addGap(27, 27, 27).addComponent(btnListarEdiciones)
+						.addGap(27, 27, 27).addComponent(jButton1).addContainerGap(123, Short.MAX_VALUE)));
+		buttons();
+		pack();
+	}// </editor-fold>//GEN-END:initComponents
 
 	public void buttons() {
 		btnConsultarIngresos.addActionListener(new ActionListener() {
@@ -190,24 +204,102 @@ public class PantallaJefeGabineteVicerrectorado extends javax.swing.JFrame {
 
 			}
 		});
+
+		btnListarEdiciones.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				ListarEdiciones.setVisible(true);
+			}
+		});
+
+		jButton2.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				String ed = jTextField1.getText();
+				List<CursoPropio> cursos;
+
+				try {
+					cursos = GestorConsultas.ediciones(ed);
+					Object[][] a = new Object[12][cursos.size()];
+					SimpleDateFormat fecha = new SimpleDateFormat("yyyy-MM-dd");
+					int i = 0;
+					for (CursoPropio c : cursos) {
+						a[0][i] = c.getId();
+						a[1][i] = c.getNombre();
+						a[2][i] = String.valueOf(c.getECTS());
+						a[3][i] = fecha.format(c.getFechaInicio());
+						a[4][i] = fecha.format(c.getFechaFin());
+						a[5][i] = String.valueOf(c.getTasaMatricula());
+						a[6][i] = String.valueOf(c.getEdicion());
+						a[7][i] = c.getTipo().toString();
+						a[8][i] = c.getEstado().toString();
+						a[9][i] = c.getCentro().getNombre();
+						a[10][i] = c.getDirector().getDNI();
+						a[11][i] = c.getSecretario().getDNI();
+
+						i++;
+					}
+					tabla(a);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			}
+		});
+	}
+
+	public void tabla(Object[][] a) throws PrinterException {
+
+		String[] b = new String[] { "Id", "Nombre", "ECTS", "Fecha inicio", "Fecha fin", "Tasa Matricula", "Edicion",
+				"Tipo", "Estado", "Centro", "Director", "Secretario" };
+		jTable1 = new javax.swing.JTable(a, b);
+		jTable1.print();
+		
+	}
+
+	public void g() {
+		jTable1.setModel(new javax.swing.table.DefaultTableModel(
+				new Object[][] { { null, null, null, null, null, null, null, null, null, null, null, null },
+						{ null, null, null, null, null, null, null, null, null, null, null, null },
+						{ null, null, null, null, null, null, null, null, null, null, null, null },
+						{ null, null, null, null, null, null, null, null, null, null, null, null },
+						{ null, null, null, null, null, null, null, null, null, null, null, null },
+						{ null, null, null, null, null, null, null, null, null, null, null, null },
+						{ null, null, null, null, null, null, null, null, null, null, null, null },
+						{ null, null, null, null, null, null, null, null, null, null, null, null },
+						{ null, null, null, null, null, null, null, null, null, null, null, null },
+						{ null, null, null, null, null, null, null, null, null, null, null, null },
+						{ null, null, null, null, null, null, null, null, null, null, null, null },
+						{ null, null, null, null, null, null, null, null, null, null, null, null },
+						{ null, null, null, null, null, null, null, null, null, null, null, null } },
+				new String[] { "Id", "Nombre", "ECTS", "Fecha inicio", "Fecha fin", "Tasa matricula", "Edicion",
+						"Tipo curso", "Estado curso", "Nombre centro", "Director", "Secretario" }));
 	}
 
 	/**
 	 * @param args the command line arguments
 	 */
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JFrame ConsultarIngresos;
-    private javax.swing.JFrame ListarEdiciones;
-    private javax.swing.JButton btnConsultarIngresos;
-    private javax.swing.JButton btnListarEdiciones;
-    private javax.swing.JFrame consultarCursos;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel labelConTit;
-    private javax.swing.JLabel lblEnsProp;
-    private javax.swing.JLabel lblSinTit;
-    private javax.swing.JLabel lblTotal;
-    private javax.swing.JLabel lblUser;
-    private javax.swing.JLabel lblUserIngresos;
-    // End of variables declaration//GEN-END:variables
+	// Variables declaration - do not modify//GEN-BEGIN:variables
+	private javax.swing.JFrame ConsultarIngresos;
+	private javax.swing.JFrame ListarEdiciones;
+	private javax.swing.JButton btnConsultarIngresos;
+	private javax.swing.JButton btnListarEdiciones;
+	private javax.swing.JFrame consultarCursos;
+	private javax.swing.JButton jButton1;
+	private javax.swing.JButton jButton2;
+	private javax.swing.JLabel jLabel1;
+	private javax.swing.JLabel jLabel2;
+	private javax.swing.JScrollPane jScrollPane1;
+	private javax.swing.JTable jTable1;
+	private javax.swing.JTextField jTextField1;
+	private javax.swing.JLabel labelConTit;
+	private javax.swing.JLabel lblEnsProp;
+	private javax.swing.JLabel lblSinTit;
+	private javax.swing.JLabel lblTotal;
+	private javax.swing.JLabel lblUser;
+	private javax.swing.JLabel lblUserIngresos;
+	private java.awt.ScrollPane scrollPane2;
+	// End of variables declaration//GEN-END:variables
 }
