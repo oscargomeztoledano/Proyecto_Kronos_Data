@@ -116,7 +116,7 @@ public class PantallaLogin extends JFrame implements ActionListener {
 			textPane.setText("EL login ha sido correcto: Bienvenido Jefe de Gabiente del Vicerrectorado con DNI: "
 					+ usuario.getUsuario().getDNI());
 
-			PantallaJefeGabineteVicerrectorado frame2 = new PantallaJefeGabineteVicerrectorado();
+			PantallaJefeGabineteVicerrectorado frame2 = new PantallaJefeGabineteVicerrectorado(usuario.getUsuario());
 			frame2.setVisible(true);
 			break;
 		case 'J':
