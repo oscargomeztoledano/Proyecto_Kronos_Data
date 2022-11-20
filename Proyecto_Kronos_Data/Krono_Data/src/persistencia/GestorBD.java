@@ -14,6 +14,8 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Vector;
 
+import presentacion.PantallaErrores;
+
 public class GestorBD {
 	protected static GestorBD mInstancia = null;
 	// Conexion con la base de datos
@@ -82,7 +84,8 @@ public class GestorBD {
 			desconectarBD();
 			return v;
 		} catch (SQLException e) {
-			System.err.println(e);
+			PantallaErrores err = new PantallaErrores(e.toString());
+			err.setVisible(true);
 			return null;
 		}
 	}
@@ -98,6 +101,8 @@ public class GestorBD {
 			desconectarBD();
 			return v;
 		} catch (SQLException e) {
+			PantallaErrores err = new PantallaErrores(e.toString());
+			err.setVisible(true);
 			return null;
 		}
 	}
@@ -113,6 +118,8 @@ public class GestorBD {
 			desconectarBD();
 			resultado = 1;
 		} catch (SQLException e) {
+			PantallaErrores err = new PantallaErrores(e.toString());
+			err.setVisible(true);
 			resultado = 0;
 		}
 		return resultado;
