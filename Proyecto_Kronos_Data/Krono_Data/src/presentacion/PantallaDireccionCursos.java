@@ -11,12 +11,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextPane;
 import javax.swing.border.EmptyBorder;
 import negocio.entities.Profesor;
-<<<<<<< HEAD
 import net.ucanaccess.util.Logger;
-import presentacion.PantallaVerPropuestas;
-import presentacion.PantallaProponerEditar;
-=======
->>>>>>> refs/remotes/origin/Pre-release
+
 
 public class PantallaDireccionCursos extends JFrame {
 	private JPanel contentPane;
