@@ -2,9 +2,6 @@ package negocio.controllers;
 
 import negocio.entities.*;
 import persistencia.MatriculaDAO;
-import presentacion.PantallaMatriculacion;
-
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class GestorMatriculacion {

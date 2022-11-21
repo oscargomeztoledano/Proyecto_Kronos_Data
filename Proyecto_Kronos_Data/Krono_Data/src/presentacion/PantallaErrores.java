@@ -4,8 +4,6 @@
  */
 package presentacion;
 
-import java.sql.SQLException;
-
 /**
  *
  * @author david

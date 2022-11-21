@@ -15,11 +15,6 @@ import javax.swing.JTextPane;
 import javax.swing.border.EmptyBorder;
 
 import negocio.controllers.*;
-import negocio.entities.Estudiante;
-import negocio.entities.Profesor;
-import persistencia.EstudianteDAO;
-import persistencia.GestorBD;
-import persistencia.ProfesorDAO;
 
 public class PantallaLogin extends JFrame implements ActionListener {
 	public static JTextPane textPane;

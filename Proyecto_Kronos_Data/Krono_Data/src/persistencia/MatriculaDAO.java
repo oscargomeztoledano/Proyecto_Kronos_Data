@@ -4,7 +4,6 @@ import java.text.SimpleDateFormat;
 import java.util.Vector;
 
 import com.mysql.cj.x.protobuf.MysqlxCrud.Collection;
-import java.util.Date;
 import negocio.entities.CursoPropio;
 import negocio.entities.Matricula;
 import presentacion.PantallaMatriculacion;

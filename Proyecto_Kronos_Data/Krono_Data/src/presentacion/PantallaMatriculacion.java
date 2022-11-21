@@ -1,6 +1,5 @@
 package presentacion;
 
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 import negocio.controllers.GestorMatriculacion;
