@@ -14,6 +14,7 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Vector;
 
+import net.ucanaccess.util.Logger;
 import presentacion.PantallaErrores;
 
 public class GestorBD {
@@ -44,9 +45,9 @@ public class GestorBD {
 
 			return con;
 		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			Logger.log("mensaje de error");
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.log("mensaje de error");
 		}
 		return con;
 	}

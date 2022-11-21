@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Vector;
 
 import negocio.entities.*;
+import net.ucanaccess.util.Logger;
 import presentacion.PantallaErrores;
 
 public class CursoPropioDAO {
@@ -40,7 +41,7 @@ public class CursoPropioDAO {
 			resultado= GestorBD.ExecuteUpdate(sql);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Logger.log("mensaje de error");
 		}
 		return resultado;
 	}

@@ -3,6 +3,7 @@ package persistencia;
 import java.util.Vector;
 
 import negocio.entities.Centro;
+import net.ucanaccess.util.Logger;
 
 public class CentroDAO {
 	public static Vector<Object> getOne(String SQL) throws Exception {
@@ -24,7 +25,7 @@ public class CentroDAO {
 
 			return ce;
 		} catch (Exception e) {
-			e.printStackTrace();
+			Logger.log("mensaje de error");
 		}
 		return ce;
 	}

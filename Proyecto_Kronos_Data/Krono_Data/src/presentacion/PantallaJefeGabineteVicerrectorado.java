@@ -7,6 +7,7 @@ package presentacion;
 import negocio.controllers.GestorConsultas;
 import negocio.controllers.GestorPropuestasCursos;
 import negocio.entities.Usuario;
+import net.ucanaccess.util.Logger;
 
 /**
  *
@@ -54,7 +55,7 @@ public class PantallaJefeGabineteVicerrectorado extends javax.swing.JFrame {
 					jButton1ActionPerformed(evt);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					Logger.log("mensaje de error");
 				}
 			}
 		});

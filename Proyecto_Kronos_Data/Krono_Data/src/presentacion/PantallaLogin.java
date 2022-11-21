@@ -17,6 +17,7 @@ import javax.swing.border.EmptyBorder;
 import negocio.controllers.*;
 import negocio.entities.Estudiante;
 import negocio.entities.Profesor;
+import net.ucanaccess.util.Logger;
 import persistencia.EstudianteDAO;
 import persistencia.GestorBD;
 import persistencia.ProfesorDAO;
@@ -36,7 +37,7 @@ public class PantallaLogin extends JFrame implements ActionListener {
 					PantallaLogin frame = new PantallaLogin();
 					frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					Logger.log("mensaje de error");
 				}
 			}
 		});
@@ -89,7 +90,7 @@ public class PantallaLogin extends JFrame implements ActionListener {
 
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					Logger.log("mensaje de error");
 				}
 			}
 		});

@@ -15,6 +15,7 @@ import javax.swing.border.EmptyBorder;
 
 import negocio.controllers.GestorPropuestasCursos;
 import negocio.entities.Profesor;
+import net.ucanaccess.util.Logger;
 import presentacion.PantallaVerPropuestas;
 import presentacion.PantallaProponerEditar;
 
@@ -59,7 +60,7 @@ public class PantallaDireccionCursos extends JFrame {
 					 frame.setVisible(true);
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					Logger.log("mensaje de error");
 				}
 			}
 		});
@@ -76,7 +77,7 @@ public class PantallaDireccionCursos extends JFrame {
 
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					Logger.log("mensaje de error");
 				}
 			}
 		});
