@@ -6,7 +6,6 @@ import negocio.entities.*;
 import persistencia.EstudianteDAO;
 import persistencia.ProfesorDAO;
 import persistencia.UsuarioDAO;
-import presentacion.PantallaLogin;
 
 public class GestorUsuario {
 

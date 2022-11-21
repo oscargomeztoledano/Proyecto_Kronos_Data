@@ -5,7 +5,6 @@
 package presentacion;
 
 import negocio.controllers.GestorConsultas;
-import negocio.controllers.GestorPropuestasCursos;
 import negocio.entities.Usuario;
 import net.ucanaccess.util.Logger;
 

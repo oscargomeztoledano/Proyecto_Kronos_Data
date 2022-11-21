@@ -1,7 +1,5 @@
 package negocio.entities;
 
-import java.util.Collection;
-
 public class ProfesorUCLM extends Profesor {
 
 	

@@ -15,12 +15,15 @@ import javax.swing.JTextPane;
 import javax.swing.border.EmptyBorder;
 
 import negocio.controllers.*;
+<<<<<<< HEAD
 import negocio.entities.Estudiante;
 import negocio.entities.Profesor;
 import net.ucanaccess.util.Logger;
 import persistencia.EstudianteDAO;
 import persistencia.GestorBD;
 import persistencia.ProfesorDAO;
+=======
+>>>>>>> refs/remotes/origin/Pre-release
 
 public class PantallaLogin extends JFrame implements ActionListener {
 	public static JTextPane textPane;
