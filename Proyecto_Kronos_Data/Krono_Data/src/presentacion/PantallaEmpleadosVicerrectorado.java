@@ -87,6 +87,7 @@ public class PantallaEmpleadosVicerrectorado extends JFrame {
 		for (int i = 0; i < cursos.size(); i++) {
 			CursoPropio curso = cursos.get(i);
 			c[0] = curso.getId();
+			System.out.println(c[0].toString());
 			c[1] = curso.getNombre();
 			c[2] = String.valueOf(curso.getECTS());
 			c[3] = fecha.format(curso.getFechaInicio());
