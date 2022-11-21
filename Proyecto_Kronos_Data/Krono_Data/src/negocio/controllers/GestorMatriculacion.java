@@ -13,23 +13,20 @@ public class GestorMatriculacion {
 
 		mat = realizarPagoMatricula(curso, estudiante, tipoPago, mat);
 
-		int i = MatriculaDAO.insert(mat);
 
-		return i;
+		return MatriculaDAO.insert(mat);
 	}
 
 	public static Matricula realizarPagoMatricula(CursoPropio curso, Estudiante estudiante, ModoPago tipoPago,
 			Matricula mat) {
-		switch (tipoPago) {
-		case TARJETA_CREDITO:
+		
+		if (tipoPago==ModoPago.TARJETA_CREDITO) {
 			mat.setTipoPago(ModoPago.TARJETA_CREDITO);
 			mat.setPagado(true);
-			break;
-
-		case TRANSFERENCIA:
+		}
+		else if (tipoPago==ModoPago.TRANSFERENCIA) {
 			mat.setTipoPago(ModoPago.TRANSFERENCIA);
 			mat.setPagado(true);
-			break;
 		}
 		return mat;
 	}

@@ -6,22 +6,21 @@ import negocio.entities.Centro;
 import net.ucanaccess.util.Logger;
 
 public class CentroDAO {
-	public static Vector<Object> getOne(String SQL) throws Exception {
-		Vector<Object> centro = GestorBD.oneExecuteQuery(SQL);
+	public static Vector<Object> getOne(String sql) throws Exception {
 
-		return centro;
+		return GestorBD.oneExecuteQuery(sql);
 	}
 
-	public static Centro seleccionarCentro(String Nombre) {
+	public static Centro seleccionarCentro(String nombre) {
 		Centro ce = null;
 		try {
-			String SQL = "SELECT * FROM Centro WHERE Nombre = \'" + Nombre + "\'";
+			String sql = "SELECT * FROM Centro WHERE Nombre = \'" + nombre + "\'";
 
 			Vector<Object> centro;
 
-			centro = getOne(SQL);
+			centro = getOne(sql);
 
-			ce = new Centro(Nombre, centro.get(1).toString());
+			ce = new Centro(nombre, centro.get(1).toString());
 
 			return ce;
 		} catch (Exception e) {

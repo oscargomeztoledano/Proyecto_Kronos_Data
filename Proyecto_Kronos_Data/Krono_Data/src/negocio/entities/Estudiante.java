@@ -10,9 +10,9 @@ public class Estudiante extends Usuario {
 	private String titulacion;
 	private String cualificacion;
 
-	public Estudiante(String DNI, String contrasena, String tipo, Collection<Matricula> matriculas, String nombre,
+	public Estudiante(String dni, String contrasena, String tipo, Collection<Matricula> matriculas, String nombre,
 			String apellidos, String titulacion, String cualificacion) {
-		super(DNI, contrasena, tipo);
+		super(dni, contrasena, tipo);
 		this.matriculas = matriculas;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
@@ -20,9 +20,9 @@ public class Estudiante extends Usuario {
 		this.cualificacion = cualificacion;
 	}
 	
-	public Estudiante(String DNI, String nombre, String apellidos, String titulacion, String cualificacion) {
-		super(DNI);
-		this.DNI = DNI;
+	public Estudiante(String dni, String nombre, String apellidos, String titulacion, String cualificacion) {
+		super(dni);
+		this.dni = dni;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.titulacion = titulacion;
@@ -70,7 +70,7 @@ public class Estudiante extends Usuario {
 		this.cualificacion = cualificacion;
 	}
 	public String toString() {
-		return "Estudiante con Dni: "+ DNI + " y con nombre: "+ nombre + " y apellidos: "+ apellidos +" con una titulacion de: "+ titulacion+ " y una cualificacion de: "+cualificacion;
+		return "Estudiante con Dni: "+ dni + " y con nombre: "+ nombre + " y apellidos: "+ apellidos +" con una titulacion de: "+ titulacion+ " y una cualificacion de: "+cualificacion;
 	}
 
 }
