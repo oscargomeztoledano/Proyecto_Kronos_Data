@@ -17,14 +17,14 @@ public class CursoPropio {
 	private String id;
 	private String nombre;
 	private int ECTS;
-	private LocalDate fechaInicio;
-	private LocalDate fechaFin;
+	private Date fechaInicio;
+	private Date fechaFin;
 	private double tasaMatricula;
 	private int edicion;
 
 	public CursoPropio(Collection<Matricula> matriculas, Centro centro, ProfesorUCLM director, ProfesorUCLM secretario,
 			Collection<Materia> materias, EstadoCurso estado, TipoCurso tipo, CursoPropioDAO cursoPropioDao, String id,
-			String nombre, int eCTS, LocalDate fechaInicio, LocalDate fechaFin, double tasaMatricula, int edicion) {
+			String nombre, int eCTS, Date fechaInicio, Date fechaFin, double tasaMatricula, int edicion) {
 		super();
 		this.matriculas = matriculas;
 		this.centro = centro;
@@ -43,7 +43,7 @@ public class CursoPropio {
 		this.edicion = edicion;
 	}
 
-	public CursoPropio(String id, String nombre, int eCTS, LocalDate fechaInicio, LocalDate fechaFin, double tasaMatricula,
+	public CursoPropio(String id, String nombre, int eCTS, Date fechaInicio, Date fechaFin, double tasaMatricula,
 			int edicion,TipoCurso TipoCurso,EstadoCurso EstadoCurso,Centro centro,ProfesorUCLM director,ProfesorUCLM secretario) {
 
 		this.id = id;
@@ -60,7 +60,7 @@ public class CursoPropio {
 		this.secretario=secretario;
 		
 	}
-	public CursoPropio(String id, String nombre, int eCTS, LocalDate fechaInicio, LocalDate fechaFin, double tasaMatricula,
+	public CursoPropio(String id, String nombre, int eCTS, Date fechaInicio, Date fechaFin, double tasaMatricula,
 			int edicion,TipoCurso TipoCurso,EstadoCurso EstadoCurso) {
 
 		this.id = id;
@@ -170,20 +170,28 @@ public class CursoPropio {
 		ECTS = eCTS;
 	}
 
-	public LocalDate getFechaInicio() {
+	public Date getFechaInicio() {
 		return fechaInicio;
 	}
 
-	public void setFechaInicio(LocalDate fechaInicio) {
+	public void setFechaInicio(Date fechaInicio) {
 		this.fechaInicio = fechaInicio;
 	}
 
-	public LocalDate getFechaFin() {
+	public Date getFechaFin() {
 		return fechaFin;
 	}
 
-	public void setFechaFin(LocalDate fechaFin) {
+	public void setFechaFin(Date fechaFin) {
 		this.fechaFin = fechaFin;
+	}
+
+	@Override
+	public String toString() {
+		return "CursoPropio [centro=" + centro.getNombre() + ", director=" + director.getDNI()
+				+ ", secretario=" + secretario.getDNI() + ", estado=" + estado + ", tipo=" + tipo + ", id=" + id + ", nombre="
+				+ nombre + ", ECTS=" + ECTS + ", fechaInicio=" + fechaInicio.toString() + ", fechaFin=" + fechaFin.toString()
+				+ ", tasaMatricula=" + tasaMatricula + ", edicion=" + edicion + "]";
 	}
 
 	public double getTasaMatricula() {

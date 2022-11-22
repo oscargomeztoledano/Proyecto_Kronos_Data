@@ -8,6 +8,7 @@ import negocio.entities.CursoPropio;
 import negocio.controllers.GestorPropuestasCursos;
 import negocio.entities.EstadoCurso;
 import negocio.entities.ProfesorUCLM;
+import negocio.entities.TipoCurso;
 
 /**
  *
@@ -20,9 +21,9 @@ public class PantallaDireccionCursosEditarProponer extends javax.swing.JFrame {
      */
     public PantallaDireccionCursosEditarProponer(ProfesorUCLM director) {
     	
-    	String[] c = new String[EstadoCurso.values().length];
+    	String[] c = new String[TipoCurso.values().length];
     	int i=0;
-		for (EstadoCurso e : EstadoCurso.values()) {
+		for (TipoCurso e : TipoCurso.values()) {
 			c[i] = e.toString();
 			i++;
 		}
@@ -83,9 +84,16 @@ public class PantallaDireccionCursosEditarProponer extends javax.swing.JFrame {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 GestorPropuestasCursos gestor = new GestorPropuestasCursos();
                 try {
-					gestor.realizarPropuestaCurso(nombreCurso.getText(), Integer.parseInt(creditos.getText()), fechaInicio.getText(), fechaFin.getText(),
+					int resultado = gestor.realizarPropuestaCurso(nombreCurso.getText(), Integer.parseInt(creditos.getText()), fechaInicio.getText(), fechaFin.getText(),
 							Double.parseDouble(tasaMatr.getText()), Integer.parseInt(edicionCurso.getText()), c[jComboBox1.getSelectedIndex()],
 							centro.getText(), director, dniSecr.getText());
+					
+					if (resultado==1) {
+						jTextArea1.setText("Propuesta enviada");
+					}
+					else
+						jTextArea1.setText("Error en la propuesta");
+					
 				} catch (NumberFormatException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

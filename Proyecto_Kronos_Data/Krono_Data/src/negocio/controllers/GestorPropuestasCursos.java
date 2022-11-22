@@ -14,18 +14,18 @@ import persistencia.CursoPropioDAO;
 
 public class GestorPropuestasCursos {
 
-	public void realizarPropuestaCurso(String nombre, int eCTS, String fechaI, String fechaFin, double tasaMatricula,
+	public int realizarPropuestaCurso(String nombre, int eCTS, String fechaI, String fechaFin, double tasaMatricula,
             int edicion, String TipoCurso, String centro_nombre, ProfesorUCLM director, String secretarioDni) throws Exception {
 		
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		LocalDate fechaInicio = LocalDate.parse(fechaI, formatter);
-		LocalDate fechaFinal = LocalDate.parse(fechaFin, formatter);
+		//DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		//LocalDate fechaInicio = LocalDate.parse(fechaI, formatter);
+		//LocalDate fechaFinal = LocalDate.parse(fechaFin, formatter);
 		
-		//SimpleDateFormat fecha = new SimpleDateFormat("yyyy-MM-dd");
-		//Date fechaInicio = fecha.parse(fechaI);
-		//Date fechaFinal = fecha.parse(fechaFin);
+		SimpleDateFormat fecha = new SimpleDateFormat("yyyy-MM-dd");
+		Date fechaInicio = fecha.parse(fechaI);
+		Date fechaFinal = fecha.parse(fechaFin);
 		
-		Period periodo = Period.between(fechaInicio, fechaFinal);
+		//Period periodo = Period.between(fechaInicio, fechaFinal);
 		
 		Centro centro = CentroDAO.seleccionarCentro(centro_nombre);
 		
@@ -33,7 +33,7 @@ public class GestorPropuestasCursos {
 		
 		TipoCurso tipoCurso = CursoPropioDAO.ComparacionTipoCurso(TipoCurso);
 		
-		switch(tipoCurso) {
+		/*switch(tipoCurso) {
 			case EXPERTO:
 				if (eCTS<15 && eCTS>29) {
 					System.err.println("Error. Los créditos para los cursos de tipo experto tienen que estar entre 15 y 29.");
@@ -99,11 +99,17 @@ public class GestorPropuestasCursos {
 				}
 				
 				break;
-		}
+		}*/
 		
 		
-		CursoPropio curso = new CursoPropio("7", nombre, eCTS, fechaInicio, fechaFinal, tasaMatricula, edicion,
+		CursoPropio curso = new CursoPropio("9", nombre, eCTS, fechaInicio, fechaFinal, tasaMatricula, edicion,
 				tipoCurso, EstadoCurso.PROPUESTO, centro, director, secretario);
+		
+		int resultado=0;
+		resultado= CursoPropioDAO.crearNuevoCurso(curso);
+		
+		
+		return resultado;
 		
 	}
 

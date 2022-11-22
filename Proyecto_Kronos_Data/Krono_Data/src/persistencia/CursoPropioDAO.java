@@ -1,5 +1,6 @@
 package persistencia;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
@@ -7,16 +8,35 @@ import java.util.List;
 import java.util.Vector;
 
 import negocio.entities.*;
+import presentacion.PantallaMatriculacion;
 
 public class CursoPropioDAO {
 
 	/**
 	 * 
 	 * @param curso
+	 * @throws ClassNotFoundException 
 	 */
-	public int crearNuevoCurso(CursoPropio curso) {
-		// TODO - implement CursoPropioDAO.crearNuevoCurso
-		throw new UnsupportedOperationException();
+	public static int crearNuevoCurso(CursoPropio curso) throws ClassNotFoundException {
+		int resultado=0;
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		String fechaIn = formatter.format(curso.getFechaInicio());
+		String fechaFinal = formatter.format(curso.getFechaFin());
+		
+		String sql = "INSERT INTO CursoPropio (Id, nombre, ECTS, FechaInicio, FechaFin, TasaMatricula, Edicion"
+				+ "TipoCurso, EstadoCurso, Nombre_Centro, Director, Secretario) VALUES ( '" + curso.getId()
+				+ "', '" + curso.getNombre() + "', " + curso.getECTS() + ",'" + fechaIn + "','" + fechaFinal
+				+ "'," + curso.getTasaMatricula() + "," + curso.getEdicion() + ",'" + curso.getTipo().toString() + "','" + curso.getEstado().toString()
+				+ "','" + curso.getCentro().getNombre() + "','" + curso.getDirector().getDNI() + "','" + curso.getSecretario().getDNI() +"')";
+		
+		System.out.println(curso.toString());
+		
+		System.out.println(fechaIn);
+		
+		resultado = GestorBD.ExecuteUpdate(sql);
+		
+		return resultado;
 	}
 
 	/**
@@ -80,7 +100,7 @@ public class CursoPropioDAO {
 			ProfesorUCLM dir=ProfesorDAO.seleccionarProfesorUCLM(ProfesorDAO.seleccionarProfesor(UsuarioDAO.seleccionarUsuario(v.get(10).toString())));
 			ProfesorUCLM sec=ProfesorDAO.seleccionarProfesorUCLM(ProfesorDAO.seleccionarProfesor(UsuarioDAO.seleccionarUsuario(v.get(11).toString())));
 
-			CursoPropio c = new CursoPropio(v.get(0).toString(), v.get(1).toString(), (Integer) v.get(2),(LocalDate) v.get(3), (LocalDate) v.get(4), (Integer) v.get(5), (Integer) v.get(6),ComparacionTipoCurso(v.get(7).toString()), ComparacionEstadoCurso(v.get(8).toString()),CentroDAO.seleccionarCentro(v.get(9).toString()),dir,sec);
+			CursoPropio c = new CursoPropio(v.get(0).toString(), v.get(1).toString(), (Integer) v.get(2),(Date) v.get(3), (Date) v.get(4), (Integer) v.get(5), (Integer) v.get(6),ComparacionTipoCurso(v.get(7).toString()), ComparacionEstadoCurso(v.get(8).toString()),CentroDAO.seleccionarCentro(v.get(9).toString()),dir,sec);
 
 			listaCursos.add(c);
 
