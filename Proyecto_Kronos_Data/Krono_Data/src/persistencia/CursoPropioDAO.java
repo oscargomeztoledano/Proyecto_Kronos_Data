@@ -133,22 +133,16 @@ public class CursoPropioDAO {
 			e.printStackTrace();
 		}
 
-		List<CursoPropio> listaCursos = new ArrayList<>();
+		List<CursoPropio> listaCursos = new ArrayList<CursoPropio>();
 		while (!cursos.isEmpty()) {
 			@SuppressWarnings("unchecked")
 			Vector<Object> v = (Vector<Object>) cursos.get(0);
+			ProfesorUCLM dir = ProfesorDAO.seleccionarProfesorUCLM(ProfesorDAO.seleccionarProfesor(UsuarioDAO.seleccionarUsuario(v.get(10).toString())));
+			ProfesorUCLM sec = ProfesorDAO.seleccionarProfesorUCLM(ProfesorDAO.seleccionarProfesor(UsuarioDAO.seleccionarUsuario(v.get(11).toString())));
+			CursoPropio c = new CursoPropio(v.get(0).toString(), v.get(1).toString(), (Integer) v.get(2),(Date) v.get(3), (Date) v.get(4), (Integer) v.get(5), (Integer) v.get(6),comparaciontipocurso(v.get(7).toString()), comparacionestadocurso(v.get(8).toString()),CentroDAO.seleccionarCentro(v.get(9).toString()),dir,sec,(Date) v.get(12),(Date) v.get(13),v.get(14).toString() );
+			
 
-			CursoPropio c = new CursoPropio(v.get(0).toString(), v.get(1).toString(), (Integer) v.get(2),(Date) v.get(3), (Date) v.get(4), (Integer) v.get(5), (Integer) v.get(6),comparaciontipoCurso(v.get(7).toString()), comparacionestadocurso(v.get(8).toString()),CentroDAO.seleccionarCentro(v.get(9).toString()),dir,sec);
-			ProfesorUCLM dir = ProfesorDAO.seleccionarProfesorUCLM(
-					ProfesorDAO.seleccionarProfesor(UsuarioDAO.seleccionarUsuario(v.get(10).toString())));
-			ProfesorUCLM sec = ProfesorDAO.seleccionarProfesorUCLM(
-					ProfesorDAO.seleccionarProfesor(UsuarioDAO.seleccionarUsuario(v.get(11).toString())));
-
-			CursoPropio c = new CursoPropio(v.get(0).toString(), v.get(1).toString(), (Integer) v.get(2),
-					(Date) v.get(3), (Date) v.get(4), (Double) v.get(5), (Integer) v.get(6),
-					ComparacionTipoCurso(v.get(7).toString()), ComparacionEstadoCurso(v.get(8).toString()),
-					CentroDAO.seleccionarCentro(v.get(9).toString()), dir, sec, (Date) v.get(12), (Date) v.get(13),
-					v.get(14).toString());
+			
 
 			listaCursos.add(c);
 
@@ -173,7 +167,7 @@ public class CursoPropioDAO {
 		return listaCursos;
 	}
 
-	public static TipoCurso comparaciontipoCurso(String tipocurso) {
+	public static TipoCurso comparaciontipocurso(String tipocurso) {
 		TipoCurso tipo = null;
 		switch (tipocurso) {
 		case "MASTER":

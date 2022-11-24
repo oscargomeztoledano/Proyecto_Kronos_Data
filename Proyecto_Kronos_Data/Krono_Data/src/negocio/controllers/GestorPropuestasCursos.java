@@ -13,7 +13,7 @@ import persistencia.CursoPropioDAO;
 public class GestorPropuestasCursos {
 
 	public int realizarPropuestaCurso(String nombre, int eCTS, String fechaI, String fechaFin, double tasaMatricula,
-            int edicion, String TipoCurso, String centro_nombre, ProfesorUCLM director, String secretarioDni,String fechaMatriculacion) throws Exception {
+            int edicion, String tipocurso, String centronombre, ProfesorUCLM director, String secretarioDni,String fechaMatriculacion) throws Exception {
 		
 		SimpleDateFormat fecha = new SimpleDateFormat("yyyy-MM-dd");
 		Date fechaInicio = fecha.parse(fechaI);
@@ -23,7 +23,7 @@ public class GestorPropuestasCursos {
 		
 		ProfesorUCLM secretario = ProfesorDAO.seleccionarProfesorUCLM(ProfesorDAO.seleccionarProfesor(UsuarioDAO.seleccionarUsuario(secretarioDni)));
 		
-		TipoCurso tipo = CursoPropioDAO.comparaciontipoCurso(tipoCurso);
+		TipoCurso tipo = CursoPropioDAO.comparaciontipocurso(tipocurso);
 		
 		/*switch(tipoCurso) {
 			case EXPERTO:
@@ -97,7 +97,7 @@ public class GestorPropuestasCursos {
 //		Random r = new Random();   // he cambiado a secure random por un hotspot que me ha salido en una analisis de sonar
 		SecureRandom r = new SecureRandom();
 		CursoPropio curso = new CursoPropio(String.valueOf(r.nextInt(1000)), nombre, eCTS, fechaInicio, fechaFinal, tasaMatricula, edicion,
-				tipoCurso, EstadoCurso.PROPUESTO, centro, director, secretario,new Date(),fechaMatricula," ");
+				tipo, EstadoCurso.PROPUESTO, centro, director, secretario,new Date(),fechaMatricula," ");
 		
 		int resultado=0;
 		resultado= CursoPropioDAO.crearNuevoCurso(curso);
