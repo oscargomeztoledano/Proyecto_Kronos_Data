@@ -9,6 +9,9 @@ import java.util.Vector;
 
 import negocio.entities.*;
 import presentacion.PantallaMatriculacion;
+import net.ucanaccess.util.Logger;
+import presentacion.PantallaErrores;
+
 
 public class CursoPropioDAO {
 
@@ -48,9 +51,17 @@ public class CursoPropioDAO {
 	 * 
 	 * @param curso
 	 */
-	public CursoPropio editarCurso(CursoPropio curso) {
-		// TODO - implement CursoPropioDAO.editarCurso
-		throw new UnsupportedOperationException();
+	public static int editarCurso(CursoPropio curso) {
+		int resultado=0;
+		
+		String sql = "UPDATE CursoPropio SET EstadoCurso = \'"+curso.getEstado()+"\' WHERE id = \'"+curso.getId()+"\'";
+		try {
+			resultado= GestorBD.ExecuteUpdate(sql);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			Logger.log("mensaje de error");
+		}
+		return resultado;
 	}
 
 	/**
@@ -69,10 +80,31 @@ public class CursoPropioDAO {
 	 * @param tipo
 	 * @param fechaInicio
 	 * @param fechaFin
+	 * @throws Exception 
 	 */
-	public double listarIngresos(TipoCurso tipo, LocalDate fechaInicio, LocalDate fechaFin) {
-		// TODO - implement CursoPropioDAO.listarIngresos
-		throw new UnsupportedOperationException();
+
+	public static String[] listarIngresos() throws Exception {
+		try {
+		String[] ingresos = new String[3];
+		String SQL = "SELECT SUM(TasaMatricula) FROM CursoPropio, Matricula WHERE (TipoCurso = \"ESPECIALISTA\" OR TipoCurso = \"MASTER\" OR TipoCurso = \"EXPERTO\") AND (EstadoCurso = \"EN_MATRICULACION\" OR EstadoCurso = \"EN_IMPARTICION\" OR EstadoCurso = \"TERMINADO\") AND Matricula.CursoId = CursoPropio.Id";
+		Vector<Object> v = GestorBD.oneExecuteQuery(SQL);
+		ingresos[0] = v.get(0).toString();
+
+		SQL = "SELECT SUM(TasaMatricula) FROM CursoPropio, Matricula WHERE (TipoCurso = \"FORMACION_AVANZADA\" OR TipoCurso = \"FORMACION_CONTINUA\") AND (EstadoCurso = \"EN_MATRICULACION\" OR EstadoCurso = \"EN_IMPARTICION\" OR EstadoCurso = \"TERMINADO\") AND Matricula.CursoId = CursoPropio.Id";
+		v = GestorBD.oneExecuteQuery(SQL);
+		ingresos[1] = v.get(0).toString();
+
+		SQL = "SELECT SUM(TasaMatricula) FROM CursoPropio, Matricula WHERE (TipoCurso = \"MICROCREDENCIALES\" OR TipoCurso = \"CORTA_DURACION\") AND (EstadoCurso = \"EN_MATRICULACION\" OR EstadoCurso = \"EN_IMPARTICION\" OR EstadoCurso = \"TERMINADO\") AND Matricula.CursoId = CursoPropio.Id";
+		v = GestorBD.oneExecuteQuery(SQL);
+		ingresos[2] = v.get(0).toString();
+
+		return ingresos;
+		
+		} catch (Exception e) {
+			PantallaErrores err = new PantallaErrores(e.toString());
+			err.setVisible(true);
+			return null;
+		}
 	}
 
 	/**

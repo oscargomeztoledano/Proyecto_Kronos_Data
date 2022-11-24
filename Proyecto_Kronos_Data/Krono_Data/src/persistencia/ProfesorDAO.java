@@ -5,7 +5,6 @@ import java.util.Vector;
 import negocio.entities.CategoriaProfesor;
 import negocio.entities.Profesor;
 import negocio.entities.ProfesorUCLM;
-import negocio.entities.TipoCurso;
 import negocio.entities.Usuario;
 
 public class ProfesorDAO {

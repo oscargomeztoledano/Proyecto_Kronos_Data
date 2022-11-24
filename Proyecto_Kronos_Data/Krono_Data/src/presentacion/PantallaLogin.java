@@ -15,11 +15,8 @@ import javax.swing.JTextPane;
 import javax.swing.border.EmptyBorder;
 
 import negocio.controllers.*;
-import negocio.entities.Estudiante;
-import negocio.entities.Profesor;
-import persistencia.EstudianteDAO;
-import persistencia.GestorBD;
-import persistencia.ProfesorDAO;
+import net.ucanaccess.util.Logger;
+
 
 public class PantallaLogin extends JFrame implements ActionListener {
 	public static JTextPane textPane;
@@ -36,7 +33,7 @@ public class PantallaLogin extends JFrame implements ActionListener {
 					PantallaLogin frame = new PantallaLogin();
 					frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					Logger.log("mensaje de error");
 				}
 			}
 		});
@@ -54,17 +51,14 @@ public class PantallaLogin extends JFrame implements ActionListener {
 		JLabel lblDNI = new JLabel("DNI:");
 		lblDNI.setBounds(6, 37, 69, 16);
 		contentPane.add(lblDNI);
-
 		textFieldDNI = new JTextField();
 		textFieldDNI.setColumns(10);
 		textFieldDNI.setBounds(87, 31, 134, 28);
 		contentPane.add(textFieldDNI);
 
 		JLabel lblContrasena = new JLabel("Contrasena:");
-
 		lblContrasena.setBounds(6, 81, 69, 16);
 		contentPane.add(lblContrasena);
-
 		textFieldContrasena = new JTextField();
 		textFieldContrasena.setBounds(87, 75, 134, 28);
 		contentPane.add(textFieldContrasena);
@@ -74,7 +68,6 @@ public class PantallaLogin extends JFrame implements ActionListener {
 		label_1.setForeground(Color.RED);
 		label_1.setBounds(6, 120, 61, 16);
 		contentPane.add(label_1);
-
 		textPane = new JTextPane();
 		textPane.setToolTipText(
 				"Panel para mostrar el restultado de la comprobaci\u00F3n de login o las excepciones lanzadas");
@@ -93,7 +86,7 @@ public class PantallaLogin extends JFrame implements ActionListener {
 
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					Logger.log("mensaje de error");
 				}
 			}
 		});
@@ -120,7 +113,7 @@ public class PantallaLogin extends JFrame implements ActionListener {
 			textPane.setText("EL login ha sido correcto: Bienvenido Jefe de Gabiente del Vicerrectorado con DNI: "
 					+ usuario.getUsuario().getDNI());
 
-			PantallaJefeGabineteVicerrectorado frame2 = new PantallaJefeGabineteVicerrectorado();
+			PantallaJefeGabineteVicerrectorado frame2 = new PantallaJefeGabineteVicerrectorado(usuario.getUsuario());
 			frame2.setVisible(true);
 			break;
 		case 'J':

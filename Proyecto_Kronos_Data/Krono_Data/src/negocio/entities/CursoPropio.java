@@ -16,7 +16,7 @@ public class CursoPropio {
 	
 	private String id;
 	private String nombre;
-	private int ECTS;
+	private int ects;
 	private Date fechaInicio;
 	private Date fechaFin;
 	private double tasaMatricula;
@@ -36,7 +36,7 @@ public class CursoPropio {
 		this.cursoPropioDao = cursoPropioDao;
 		this.id = id;
 		this.nombre = nombre;
-		this.ECTS = eCTS;
+		this.ects = eCTS;
 		this.fechaInicio = fechaInicio;
 		this.fechaFin = fechaFin;
 		this.tasaMatricula = tasaMatricula;
@@ -44,34 +44,34 @@ public class CursoPropio {
 	}
 
 	public CursoPropio(String id, String nombre, int eCTS, Date fechaInicio, Date fechaFin, double tasaMatricula,
-			int edicion,TipoCurso TipoCurso,EstadoCurso EstadoCurso,Centro centro,ProfesorUCLM director,ProfesorUCLM secretario) {
+			int edicion,TipoCurso tipocurso,EstadoCurso estadocurso,Centro centro,ProfesorUCLM director,ProfesorUCLM secretario) {
 
 		this.id = id;
 		this.nombre = nombre;
-		this.ECTS = eCTS;
+		this.ects = eCTS;
 		this.fechaInicio = fechaInicio;
 		this.fechaFin = fechaFin;
 		this.tasaMatricula = tasaMatricula;
 		this.edicion = edicion;
-		this.estado=EstadoCurso;
-		this.tipo=TipoCurso;
+		this.estado=estadocurso;
+		this.tipo=tipocurso;
 		this.centro=centro;
 		this.director=director;
 		this.secretario=secretario;
 		
 	}
 	public CursoPropio(String id, String nombre, int eCTS, Date fechaInicio, Date fechaFin, double tasaMatricula,
-			int edicion,TipoCurso TipoCurso,EstadoCurso EstadoCurso) {
+			int edicion,TipoCurso tipocurso,EstadoCurso estadocurso) {
 
 		this.id = id;
 		this.nombre = nombre;
-		this.ECTS = eCTS;
+		this.ects = eCTS;
 		this.fechaInicio = fechaInicio;
 		this.fechaFin = fechaFin;
 		this.tasaMatricula = tasaMatricula;
 		this.edicion = edicion;
-		this.estado=EstadoCurso;
-		this.tipo=TipoCurso;
+		this.estado=estadocurso;
+		this.tipo=tipocurso;
 		
 		
 	}
@@ -163,11 +163,11 @@ public class CursoPropio {
 	}
 
 	public int getECTS() {
-		return ECTS;
+		return ects;
 	}
 
 	public void setECTS(int eCTS) {
-		ECTS = eCTS;
+		ects = eCTS;
 	}
 
 	public Date getFechaInicio() {

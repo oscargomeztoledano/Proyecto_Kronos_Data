@@ -1,18 +1,14 @@
 package persistencia;
 
-import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLClientInfoException;
 import java.sql.SQLException;
-import java.sql.SQLWarning;
 import java.sql.Statement;
-import java.util.LinkedList;
-import java.util.PriorityQueue;
-import java.util.Queue;
 import java.util.Vector;
+
+import net.ucanaccess.util.Logger;
+import presentacion.PantallaErrores;
 
 public class GestorBD {
 	protected static GestorBD mInstancia = null;
@@ -42,9 +38,9 @@ public class GestorBD {
 
 			return con;
 		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			Logger.log("mensaje de error");
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.log("mensaje de error");
 		}
 		return con;
 	}
@@ -82,7 +78,8 @@ public class GestorBD {
 			desconectarBD();
 			return v;
 		} catch (SQLException e) {
-			System.err.println(e);
+			PantallaErrores err = new PantallaErrores(e.toString());
+			err.setVisible(true);
 			return null;
 		}
 	}
@@ -98,6 +95,8 @@ public class GestorBD {
 			desconectarBD();
 			return v;
 		} catch (SQLException e) {
+			PantallaErrores err = new PantallaErrores(e.toString());
+			err.setVisible(true);
 			return null;
 		}
 	}
@@ -113,6 +112,8 @@ public class GestorBD {
 			desconectarBD();
 			resultado = 1;
 		} catch (SQLException e) {
+			PantallaErrores err = new PantallaErrores(e.toString());
+			err.setVisible(true);
 			resultado = 0;
 			e.printStackTrace();
 		}
