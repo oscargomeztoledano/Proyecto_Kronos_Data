@@ -37,19 +37,19 @@ public class PantallaEmpleadosVicerrectorado extends JFrame {
 	public PantallaEmpleadosVicerrectorado() throws ClassNotFoundException, Exception {
 		setTitle("Evaluar Cursos");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(500, 100, 1300, 700);
+		setBounds(500, 100, 1600, 700);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
 		String cabecera[] = { "Id", "Nombre", "ETCS", "Fecha Inicio", "Fecha Fin", "Tasa Matricula", "Edicion",
-				"Estado", "Tipo", "Centro", "Director", "Secretario" };
+				"Estado", "Tipo", "Centro", "Director", "Secretario" ,"Fecha Matricula","Ultima Modificacion","Motivo de Rechazo"};
 		Tabla = new DefaultTableModel(null, cabecera);
 		tablaCursos = new JTable(Tabla);
 		rollo = new JScrollPane(tablaCursos);
 		add(rollo);
-		rollo.setBounds(6, 200, 1270, 400);
+		rollo.setBounds(6, 200, 1570, 400);
 		DefaultTableModel tabla = (DefaultTableModel) tablaCursos.getModel();
 		JButton BEvaluar = new JButton("Evaluar");
 		BEvaluar.setBounds(1120, 30, 120, 35);
@@ -85,7 +85,7 @@ public class PantallaEmpleadosVicerrectorado extends JFrame {
 			CursoPropio curso = cursos.get(i);
 			c[0] = curso.getId();
 			c[1] = curso.getNombre();
-			c[2] = String.valueOf(curso.getECTS());
+			c[2] = String.valueOf(curso.getEcts());
 			c[3] = fecha.format(curso.getFechaInicio());
 			c[4] = fecha.format(curso.getFechaFin());
 			c[5] = String.valueOf(curso.getTasaMatricula());
@@ -95,6 +95,12 @@ public class PantallaEmpleadosVicerrectorado extends JFrame {
 			c[9] = curso.getCentro().getNombre();
 			c[10] = curso.getDirector().getDNI();
 			c[11] = curso.getSecretario().getDNI();
+			c[12]=fecha.format(curso.getFecha_matriculacion());
+			c[13]=fecha.format(curso.getUltima_modificacion());
+			c[14]=curso.getMotivo_Rechazo();
+
+			
+			
 
 			tabla.addRow(c);
 
@@ -145,7 +151,7 @@ public class PantallaEmpleadosVicerrectorado extends JFrame {
 						public void actionPerformed(ActionEvent arg0) {
 							try {
 
-								if (gestor.evaluarPropuesta(curso, EstadoCurso.PROPUESTA_RECHAZADA) == 1) {
+								if (gestor.evaluarPropuesta(curso, EstadoCurso.PROPUESTA_RECHAZADA,textFieldMotivo.getText()) == 1) {
 									textPane.setText("El curso " + curso.getNombre() + " ha sido rechazada");
 
 								} else {
@@ -172,7 +178,7 @@ public class PantallaEmpleadosVicerrectorado extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 
-					if (gestor.evaluarPropuesta(curso, EstadoCurso.VALIDADO) == 1) {
+					if (gestor.evaluarPropuesta(curso, EstadoCurso.VALIDADO,textFieldMotivo.getText()) == 1) {
 						textPane.setText("El curso " + curso.getNombre() + " ha sido aceptado");
 
 					} else {
