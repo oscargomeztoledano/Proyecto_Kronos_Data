@@ -114,6 +114,7 @@ public class GestorBD {
 			resultado = 1;
 		} catch (SQLException e) {
 			resultado = 0;
+			e.printStackTrace();
 		}
 		return resultado;
 	}

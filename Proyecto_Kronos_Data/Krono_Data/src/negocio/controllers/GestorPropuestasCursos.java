@@ -1,10 +1,8 @@
 package negocio.controllers;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.Period;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.Random;
 
 import negocio.entities.*;
 import persistencia.CentroDAO;
@@ -17,15 +15,9 @@ public class GestorPropuestasCursos {
 	public int realizarPropuestaCurso(String nombre, int eCTS, String fechaI, String fechaFin, double tasaMatricula,
             int edicion, String TipoCurso, String centro_nombre, ProfesorUCLM director, String secretarioDni) throws Exception {
 		
-		//DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		//LocalDate fechaInicio = LocalDate.parse(fechaI, formatter);
-		//LocalDate fechaFinal = LocalDate.parse(fechaFin, formatter);
-		
 		SimpleDateFormat fecha = new SimpleDateFormat("yyyy-MM-dd");
 		Date fechaInicio = fecha.parse(fechaI);
 		Date fechaFinal = fecha.parse(fechaFin);
-		
-		//Period periodo = Period.between(fechaInicio, fechaFinal);
 		
 		Centro centro = CentroDAO.seleccionarCentro(centro_nombre);
 		
@@ -102,7 +94,9 @@ public class GestorPropuestasCursos {
 		}*/
 		
 		
-		CursoPropio curso = new CursoPropio("9", nombre, eCTS, fechaInicio, fechaFinal, tasaMatricula, edicion,
+		Random r = new Random();
+		
+		CursoPropio curso = new CursoPropio(String.valueOf(r.nextInt(1000)), nombre, eCTS, fechaInicio, fechaFinal, tasaMatricula, edicion,
 				tipoCurso, EstadoCurso.PROPUESTO, centro, director, secretario);
 		
 		int resultado=0;

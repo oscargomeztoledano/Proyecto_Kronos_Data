@@ -24,15 +24,11 @@ public class CursoPropioDAO {
 		String fechaIn = formatter.format(curso.getFechaInicio());
 		String fechaFinal = formatter.format(curso.getFechaFin());
 		
-		String sql = "INSERT INTO CursoPropio (Id, nombre, ECTS, FechaInicio, FechaFin, TasaMatricula, Edicion"
+		String sql = "INSERT INTO titulospropiosuclm2022.CursoPropio (Id, nombre, ECTS, FechaInicio, FechaFin, TasaMatricula, Edicion,"
 				+ "TipoCurso, EstadoCurso, Nombre_Centro, Director, Secretario) VALUES ( '" + curso.getId()
 				+ "', '" + curso.getNombre() + "', " + curso.getECTS() + ",'" + fechaIn + "','" + fechaFinal
-				+ "'," + curso.getTasaMatricula() + "," + curso.getEdicion() + ",'" + curso.getTipo().toString() + "','" + curso.getEstado().toString()
+				+ "'," + (int) curso.getTasaMatricula() + "," + curso.getEdicion() + ",'" + curso.getTipo().toString() + "','" + curso.getEstado().toString()
 				+ "','" + curso.getCentro().getNombre() + "','" + curso.getDirector().getDNI() + "','" + curso.getSecretario().getDNI() +"')";
-		
-		System.out.println(curso.toString());
-		
-		System.out.println(fechaIn);
 		
 		resultado = GestorBD.ExecuteUpdate(sql);
 		
