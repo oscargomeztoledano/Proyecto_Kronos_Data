@@ -16,7 +16,11 @@ import javax.swing.table.TableModel;
 import negocio.entities.CursoPropio;
 import negocio.entities.EstadoCurso;
 import persistencia.CursoPropioDAO;
-
+/**
+ * 
+ * @author oscar
+ *
+ */
 public class PantallaVerPropuestas extends javax.swing.JFrame {
 
 	private static TableModel Tabla = null;

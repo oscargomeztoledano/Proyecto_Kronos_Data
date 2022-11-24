@@ -1,6 +1,5 @@
 package negocio.entities;
 
-import java.time.LocalDate;
 import java.util.*;
 import persistencia.*;
 

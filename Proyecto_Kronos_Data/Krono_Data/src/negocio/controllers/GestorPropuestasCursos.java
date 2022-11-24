@@ -1,8 +1,8 @@
 package negocio.controllers;
 
+import java.security.SecureRandom;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Random;
 
 import negocio.entities.*;
 import persistencia.CentroDAO;
@@ -13,17 +13,17 @@ import persistencia.CursoPropioDAO;
 public class GestorPropuestasCursos {
 
 	public int realizarPropuestaCurso(String nombre, int eCTS, String fechaI, String fechaFin, double tasaMatricula,
-            int edicion, String TipoCurso, String centro_nombre, ProfesorUCLM director, String secretarioDni) throws Exception {
+            int edicion, String tipoCurso, String centronombre, ProfesorUCLM director, String secretarioDni) throws Exception {
 		
 		SimpleDateFormat fecha = new SimpleDateFormat("yyyy-MM-dd");
 		Date fechaInicio = fecha.parse(fechaI);
 		Date fechaFinal = fecha.parse(fechaFin);
 		
-		Centro centro = CentroDAO.seleccionarCentro(centro_nombre);
+		Centro centro = CentroDAO.seleccionarCentro(centronombre);
 		
 		ProfesorUCLM secretario = ProfesorDAO.seleccionarProfesorUCLM(ProfesorDAO.seleccionarProfesor(UsuarioDAO.seleccionarUsuario(secretarioDni)));
 		
-		TipoCurso tipoCurso = CursoPropioDAO.ComparacionTipoCurso(TipoCurso);
+		TipoCurso tipo = CursoPropioDAO.comparaciontipoCurso(tipoCurso);
 		
 		/*switch(tipoCurso) {
 			case EXPERTO:
@@ -94,10 +94,10 @@ public class GestorPropuestasCursos {
 		}*/
 		
 		
-		Random r = new Random();
-		
+//		Random r = new Random();   // he cambiado a secure random por un hotspot que me ha salido en una analisis de sonar
+		SecureRandom r = new SecureRandom();
 		CursoPropio curso = new CursoPropio(String.valueOf(r.nextInt(1000)), nombre, eCTS, fechaInicio, fechaFinal, tasaMatricula, edicion,
-				tipoCurso, EstadoCurso.PROPUESTO, centro, director, secretario);
+				tipo, EstadoCurso.PROPUESTO, centro, director, secretario);
 		
 		int resultado=0;
 		resultado= CursoPropioDAO.crearNuevoCurso(curso);

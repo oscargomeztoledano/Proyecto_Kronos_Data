@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Vector;
 
 import negocio.entities.*;
-import presentacion.PantallaMatriculacion;
 import net.ucanaccess.util.Logger;
 import presentacion.PantallaErrores;
 
@@ -121,14 +120,14 @@ public class CursoPropioDAO {
 		String sql = "Select * FROM CursoPropio";
 		Vector<Object> cursos = GestorBD.ExecuteQuery(sql);
 
-		List<CursoPropio> listaCursos = new ArrayList<CursoPropio>();
+		List<CursoPropio> listaCursos = new ArrayList<>();
 		while (!cursos.isEmpty()) {
 			@SuppressWarnings("unchecked")
 			Vector<Object> v = (Vector<Object>) cursos.get(0);
 			ProfesorUCLM dir=ProfesorDAO.seleccionarProfesorUCLM(ProfesorDAO.seleccionarProfesor(UsuarioDAO.seleccionarUsuario(v.get(10).toString())));
 			ProfesorUCLM sec=ProfesorDAO.seleccionarProfesorUCLM(ProfesorDAO.seleccionarProfesor(UsuarioDAO.seleccionarUsuario(v.get(11).toString())));
 
-			CursoPropio c = new CursoPropio(v.get(0).toString(), v.get(1).toString(), (Integer) v.get(2),(Date) v.get(3), (Date) v.get(4), (Integer) v.get(5), (Integer) v.get(6),ComparacionTipoCurso(v.get(7).toString()), ComparacionEstadoCurso(v.get(8).toString()),CentroDAO.seleccionarCentro(v.get(9).toString()),dir,sec);
+			CursoPropio c = new CursoPropio(v.get(0).toString(), v.get(1).toString(), (Integer) v.get(2),(Date) v.get(3), (Date) v.get(4), (Integer) v.get(5), (Integer) v.get(6),comparaciontipoCurso(v.get(7).toString()), comparacionestadocurso(v.get(8).toString()),CentroDAO.seleccionarCentro(v.get(9).toString()),dir,sec);
 
 			listaCursos.add(c);
 
@@ -140,7 +139,7 @@ public class CursoPropioDAO {
 	public static List<CursoPropio> obtenerCursosPorTipo(List<CursoPropio> cursos, EstadoCurso estado)
 			throws ClassNotFoundException {
 
-		List<CursoPropio> listaCursos = new ArrayList<CursoPropio>();
+		List<CursoPropio> listaCursos = new ArrayList<>();
 		while (!cursos.isEmpty()) {
 			CursoPropio curso = cursos.get(0);
 			if (curso.getEstado().equals(estado)) {
@@ -153,7 +152,7 @@ public class CursoPropioDAO {
 		return listaCursos;
 	}
 
-	public static TipoCurso ComparacionTipoCurso(String tipocurso) {
+	public static TipoCurso comparaciontipoCurso(String tipocurso) {
 		TipoCurso tipo = null;
 		switch (tipocurso) {
 		case "MASTER":
@@ -186,7 +185,7 @@ public class CursoPropioDAO {
 
 	}
 
-	public static EstadoCurso ComparacionEstadoCurso(String estadocurso) {
+	public static EstadoCurso comparacionestadocurso(String estadocurso) {
 		EstadoCurso estado = null;
 		switch (estadocurso) {
 		case "PROPUESTO":
