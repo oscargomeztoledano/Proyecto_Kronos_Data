@@ -1,5 +1,6 @@
 package negocio.entities;
 
+import java.time.LocalDate;
 import java.util.*;
 import persistencia.*;
 
@@ -183,6 +184,14 @@ public class CursoPropio {
 
 	public void setFechaFin(Date fechaFin) {
 		this.fechaFin = fechaFin;
+	}
+
+	@Override
+	public String toString() {
+		return "CursoPropio [centro=" + centro.getNombre() + ", director=" + director.getDNI()
+				+ ", secretario=" + secretario.getDNI() + ", estado=" + estado + ", tipo=" + tipo + ", id=" + id + ", nombre="
+				+ nombre + ", ECTS=" + ECTS + ", fechaInicio=" + fechaInicio.toString() + ", fechaFin=" + fechaFin.toString()
+				+ ", tasaMatricula=" + tasaMatricula + ", edicion=" + edicion + "]";
 	}
 
 	public double getTasaMatricula() {

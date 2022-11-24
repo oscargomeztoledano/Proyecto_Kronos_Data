@@ -1,23 +1,41 @@
 package persistencia;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Vector;
 
 import negocio.entities.*;
+import presentacion.PantallaMatriculacion;
 import net.ucanaccess.util.Logger;
 import presentacion.PantallaErrores;
+
 
 public class CursoPropioDAO {
 
 	/**
 	 * 
 	 * @param curso
+	 * @throws ClassNotFoundException 
 	 */
-	public int crearNuevoCurso(CursoPropio curso) {
-		// TODO - implement CursoPropioDAO.crearNuevoCurso
-		throw new UnsupportedOperationException();
+	public static int crearNuevoCurso(CursoPropio curso) throws ClassNotFoundException {
+		int resultado=0;
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		String fechaIn = formatter.format(curso.getFechaInicio());
+		String fechaFinal = formatter.format(curso.getFechaFin());
+		
+		String sql = "INSERT INTO titulospropiosuclm2022.CursoPropio (Id, nombre, ECTS, FechaInicio, FechaFin, TasaMatricula, Edicion,"
+				+ "TipoCurso, EstadoCurso, Nombre_Centro, Director, Secretario) VALUES ( '" + curso.getId()
+				+ "', '" + curso.getNombre() + "', " + curso.getECTS() + ",'" + fechaIn + "','" + fechaFinal
+				+ "'," + (int) curso.getTasaMatricula() + "," + curso.getEdicion() + ",'" + curso.getTipo().toString() + "','" + curso.getEstado().toString()
+				+ "','" + curso.getCentro().getNombre() + "','" + curso.getDirector().getDNI() + "','" + curso.getSecretario().getDNI() +"')";
+		
+		resultado = GestorBD.ExecuteUpdate(sql);
+		
+		return resultado;
 	}
 
 	/**
@@ -52,7 +70,7 @@ public class CursoPropioDAO {
 	 * @param fechaInicio
 	 * @param fechaFin
 	 */
-	public List<CursoPropio> listarCursosPorEstado(EstadoCurso estado, Date fechaInicio, Date fechaFin) {
+	public List<CursoPropio> listarCursosPorEstado(EstadoCurso estado, LocalDate fechaInicio, LocalDate fechaFin) {
 		// TODO - implement CursoPropioDAO.listarCursosPorEstado
 		throw new UnsupportedOperationException();
 	}
@@ -64,6 +82,7 @@ public class CursoPropioDAO {
 	 * @param fechaFin
 	 * @throws Exception 
 	 */
+
 	public static String[] listarIngresos() throws Exception {
 		try {
 		String[] ingresos = new String[3];
@@ -93,7 +112,7 @@ public class CursoPropioDAO {
 	 * @param fechaInicio
 	 * @param fechaFin
 	 */
-	public void listarEdicionesCursos(Date fechaInicio, Date fechaFin) {
+	public void listarEdicionesCursos(LocalDate fechaInicio, LocalDate fechaFin) {
 		// TODO - implement CursoPropioDAO.listarEdicionesCursos
 		throw new UnsupportedOperationException();
 	}

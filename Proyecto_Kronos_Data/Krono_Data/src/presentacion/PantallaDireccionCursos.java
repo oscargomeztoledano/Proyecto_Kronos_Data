@@ -1,3 +1,4 @@
+
 package presentacion;
 
 import java.awt.Color;
@@ -49,9 +50,9 @@ public class PantallaDireccionCursos extends JFrame {
 			
 			
 			public void actionPerformed(ActionEvent e) {
-				PantallaProponerEditar frame;
+				PantallaDireccionCursoEditarProponer frame;
 				try {
-					 frame = new PantallaProponerEditar();
+					 frame = new PantallaDireccionCursoEditarProponer();
 					 frame.setVisible(true);
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
