@@ -7,6 +7,7 @@ package presentacion;
 import negocio.entities.CursoPropio;
 import negocio.controllers.GestorPropuestasCursos;
 import negocio.entities.EstadoCurso;
+import negocio.entities.Profesor;
 import negocio.entities.ProfesorUCLM;
 import negocio.entities.TipoCurso;
 
@@ -19,7 +20,7 @@ public class PantallaDireccionCursosEditarProponer extends javax.swing.JFrame {
     /**
      * Creates new form PantallaDireccionCursosEditarProponer
      */
-    public PantallaDireccionCursosEditarProponer(ProfesorUCLM director) {
+    public PantallaDireccionCursosEditarProponer(ProfesorUCLM profesor) {
     	
     	String[] c = new String[TipoCurso.values().length];
     	int i=0;
@@ -28,7 +29,7 @@ public class PantallaDireccionCursosEditarProponer extends javax.swing.JFrame {
 			i++;
 		}
 		
-        initComponents(c, director);
+        initComponents(c, profesor);
         
     }
 

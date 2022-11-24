@@ -190,7 +190,7 @@ public class CursoPropio {
 	public String toString() {
 		return "CursoPropio [centro=" + centro.getNombre() + ", director=" + director.getDNI()
 				+ ", secretario=" + secretario.getDNI() + ", estado=" + estado + ", tipo=" + tipo + ", id=" + id + ", nombre="
-				+ nombre + ", ECTS=" + ECTS + ", fechaInicio=" + fechaInicio.toString() + ", fechaFin=" + fechaFin.toString()
+				+ nombre + ", ECTS=" + ects + ", fechaInicio=" + fechaInicio.toString() + ", fechaFin=" + fechaFin.toString()
 				+ ", tasaMatricula=" + tasaMatricula + ", edicion=" + edicion + "]";
 	}
 

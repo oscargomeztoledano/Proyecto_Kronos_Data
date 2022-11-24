@@ -11,7 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
 import javax.swing.border.EmptyBorder;
-import negocio.entities.Profesor;
+import negocio.entities.ProfesorUCLM;
 import net.ucanaccess.util.Logger;
 
 
@@ -19,7 +19,7 @@ public class PantallaDireccionCursos extends JFrame {
 	private JPanel contentPane;
 	private JTextPane textPane;
 	
-	public PantallaDireccionCursos(Profesor profesor) {
+	public PantallaDireccionCursos(final ProfesorUCLM profesor) {
 		setTitle("Interfaz profesor");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 485, 285);
@@ -50,9 +50,9 @@ public class PantallaDireccionCursos extends JFrame {
 			
 			
 			public void actionPerformed(ActionEvent e) {
-				PantallaDireccionCursoEditarProponer frame;
+				PantallaDireccionCursosEditarProponer frame;
 				try {
-					 frame = new PantallaDireccionCursoEditarProponer();
+					 frame = new PantallaDireccionCursosEditarProponer(profesor);
 					 frame.setVisible(true);
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block

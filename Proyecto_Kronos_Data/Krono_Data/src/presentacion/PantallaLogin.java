@@ -105,7 +105,7 @@ public class PantallaLogin extends JFrame implements ActionListener {
 		case 'P':
 			textPane.setText("EL login ha sido correcto: Bienvenido " + usuario.getProfesorUCLM().getNombre() + " "
 					+ usuario.getProfesorUCLM().getApellidos());
-			PantallaDireccionCursosEditarProponer frame1 = new PantallaDireccionCursosEditarProponer(usuario.getProfesorUCLM());
+			PantallaDireccionCursos frame1 = new PantallaDireccionCursos(usuario.getProfesorUCLM());
 			frame1.setVisible(true);
 			break;
 
