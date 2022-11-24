@@ -1,13 +1,10 @@
 package presentacion;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.List;
-
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -15,7 +12,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
@@ -24,6 +20,7 @@ import javax.swing.table.TableModel;
 import negocio.controllers.GestorPropuestasCursos;
 import negocio.entities.CursoPropio;
 import negocio.entities.EstadoCurso;
+import net.ucanaccess.util.Logger;
 import persistencia.CursoPropioDAO;
 
 public class PantallaEmpleadosVicerrectorado extends JFrame {
@@ -158,14 +155,14 @@ public class PantallaEmpleadosVicerrectorado extends JFrame {
 
 							} catch (Exception e) {
 								// TODO Auto-generated catch block
-								e.printStackTrace();
+								Logger.log("mensaje de error");
 							}
 						}
 					});
 
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					Logger.log("mensaje de error");
 				}
 			}
 		});
@@ -185,7 +182,7 @@ public class PantallaEmpleadosVicerrectorado extends JFrame {
 
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					Logger.log("mensaje de error");
 				}
 			}
 		});

@@ -15,11 +15,8 @@ import javax.swing.JTextPane;
 import javax.swing.border.EmptyBorder;
 
 import negocio.controllers.*;
-import negocio.entities.Estudiante;
-import negocio.entities.Profesor;
-import persistencia.EstudianteDAO;
-import persistencia.GestorBD;
-import persistencia.ProfesorDAO;
+import net.ucanaccess.util.Logger;
+
 
 public class PantallaLogin extends JFrame implements ActionListener {
 	public static JTextPane textPane;
@@ -36,7 +33,7 @@ public class PantallaLogin extends JFrame implements ActionListener {
 					PantallaLogin frame = new PantallaLogin();
 					frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					Logger.log("mensaje de error");
 				}
 			}
 		});
@@ -89,7 +86,7 @@ public class PantallaLogin extends JFrame implements ActionListener {
 
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					Logger.log("mensaje de error");
 				}
 			}
 		});

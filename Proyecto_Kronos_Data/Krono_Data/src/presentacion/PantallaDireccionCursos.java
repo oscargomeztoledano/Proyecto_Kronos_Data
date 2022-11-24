@@ -1,10 +1,8 @@
 package presentacion;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -12,11 +10,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
 import javax.swing.border.EmptyBorder;
-
-import negocio.controllers.GestorPropuestasCursos;
 import negocio.entities.Profesor;
-import presentacion.PantallaVerPropuestas;
-import presentacion.PantallaProponerEditar;
+import net.ucanaccess.util.Logger;
+
 
 public class PantallaDireccionCursos extends JFrame {
 	private JPanel contentPane;
@@ -59,7 +55,7 @@ public class PantallaDireccionCursos extends JFrame {
 					 frame.setVisible(true);
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					Logger.log("mensaje de error");
 				}
 			}
 		});
@@ -76,7 +72,7 @@ public class PantallaDireccionCursos extends JFrame {
 
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					Logger.log("mensaje de error");
 				}
 			}
 		});

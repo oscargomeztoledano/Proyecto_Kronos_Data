@@ -1,20 +1,18 @@
 package negocio.entities;
 
-import java.util.Collection;
-
 public class Profesor extends Usuario{
 
 
 	private String nombre;
 	private String apellidos;
 	private boolean doctor;
-	private String DNI;
+	private String dni;
 	private String contrasena;
 	private String tipo;
 	
-	public Profesor(String DNI,String contrasena,String tipo, String nombre,String apellidos,boolean doctor) {
-		super(DNI,contrasena,tipo);
-		this.DNI=DNI;
+	public Profesor(String dni,String contrasena,String tipo, String nombre,String apellidos,boolean doctor) {
+		super(dni,contrasena,tipo);
+		this.dni=dni;
 		this.contrasena=contrasena;
 		this.tipo=tipo;
 		this.nombre=nombre;
@@ -54,12 +52,12 @@ public class Profesor extends Usuario{
 
 
 	public String getDNI() {
-		return DNI;
+		return dni;
 	}
 
 
-	public void setDNI(String dNI) {
-		DNI = dNI;
+	public void setDNI(String dni) {
+		this.dni = dni;
 	}
 
 
@@ -84,7 +82,7 @@ public class Profesor extends Usuario{
 
 
 	public String toString() {
-		return "Profesor con: " + nombre + " " + apellidos + ", con DNI: " + DNI ;
+		return "Profesor con: " + nombre + " " + apellidos + ", con DNI: " + dni ;
 	}
 
 }
