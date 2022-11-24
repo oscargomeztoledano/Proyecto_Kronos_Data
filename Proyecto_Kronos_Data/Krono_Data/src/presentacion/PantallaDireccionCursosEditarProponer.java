@@ -87,7 +87,7 @@ public class PantallaDireccionCursosEditarProponer extends javax.swing.JFrame {
                 try {
 					int resultado = gestor.realizarPropuestaCurso(nombreCurso.getText(), Integer.parseInt(creditos.getText()), fechaInicio.getText(), fechaFin.getText(),
 							Double.parseDouble(tasaMatr.getText()), Integer.parseInt(edicionCurso.getText()), c[jComboBox1.getSelectedIndex()],
-							centro.getText(), director, dniSecr.getText());
+							centro.getText(), director, dniSecr.getText(),fechaInicio.getText()/* Aqui va el nuevo campo de fecha de matricula*/);
 					
 					if (resultado==1) {
 						jTextArea1.setText("Propuesta enviada");
