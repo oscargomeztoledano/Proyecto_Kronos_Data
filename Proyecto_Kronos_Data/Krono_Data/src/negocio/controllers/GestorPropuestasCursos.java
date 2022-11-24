@@ -13,12 +13,12 @@ import persistencia.CursoPropioDAO;
 public class GestorPropuestasCursos {
 
 	public int realizarPropuestaCurso(String nombre, int eCTS, String fechaI, String fechaFin, double tasaMatricula,
-            int edicion, String TipoCurso, String centro_nombre, ProfesorUCLM director, String secretarioDni) throws Exception {
+            int edicion, String TipoCurso, String centro_nombre, ProfesorUCLM director, String secretarioDni,String fechaMatriculacion) throws Exception {
 		
 		SimpleDateFormat fecha = new SimpleDateFormat("yyyy-MM-dd");
 		Date fechaInicio = fecha.parse(fechaI);
 		Date fechaFinal = fecha.parse(fechaFin);
-		
+		Date fechaMatricula=fecha.parse(fechaMatriculacion);
 		Centro centro = CentroDAO.seleccionarCentro(centro_nombre);
 		
 		ProfesorUCLM secretario = ProfesorDAO.seleccionarProfesorUCLM(ProfesorDAO.seleccionarProfesor(UsuarioDAO.seleccionarUsuario(secretarioDni)));
@@ -97,7 +97,7 @@ public class GestorPropuestasCursos {
 		Random r = new Random();
 		
 		CursoPropio curso = new CursoPropio(String.valueOf(r.nextInt(1000)), nombre, eCTS, fechaInicio, fechaFinal, tasaMatricula, edicion,
-				tipoCurso, EstadoCurso.PROPUESTO, centro, director, secretario);
+				tipoCurso, EstadoCurso.PROPUESTO, centro, director, secretario,new Date(),fechaMatricula," ");
 		
 		int resultado=0;
 		resultado= CursoPropioDAO.crearNuevoCurso(curso);
@@ -120,11 +120,12 @@ public class GestorPropuestasCursos {
 	 * 
 	 * @param curso
 	 */
-	public int evaluarPropuesta(CursoPropio curso,EstadoCurso estado) {
+	public int evaluarPropuesta(CursoPropio curso,EstadoCurso estado,String motivo) {
 		int resultado=0;
 		curso.setEstado(estado);
-		CursoPropio cursoActualizado=curso;
-		resultado =CursoPropioDAO.editarCurso(cursoActualizado);
+		curso.setMotivo_Rechazo(motivo);
+		curso.setUltima_modificacion(new Date());
+		resultado =CursoPropioDAO.editarCurso(curso);
 		return resultado;
 	}
 
