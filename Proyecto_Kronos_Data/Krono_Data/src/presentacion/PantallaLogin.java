@@ -29,7 +29,7 @@ public class PantallaLogin extends JFrame implements ActionListener {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-
+					
 					PantallaLogin frame = new PantallaLogin();
 					frame.setVisible(true);
 				} catch (Exception e) {

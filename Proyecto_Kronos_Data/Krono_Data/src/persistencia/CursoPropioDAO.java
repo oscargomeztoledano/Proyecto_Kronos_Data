@@ -139,7 +139,7 @@ public class CursoPropioDAO {
 			Vector<Object> v = (Vector<Object>) cursos.get(0);
 			ProfesorUCLM dir = ProfesorDAO.seleccionarProfesorUCLM(ProfesorDAO.seleccionarProfesor(UsuarioDAO.seleccionarUsuario(v.get(10).toString())));
 			ProfesorUCLM sec = ProfesorDAO.seleccionarProfesorUCLM(ProfesorDAO.seleccionarProfesor(UsuarioDAO.seleccionarUsuario(v.get(11).toString())));
-			CursoPropio c = new CursoPropio(v.get(0).toString(), v.get(1).toString(), (Integer) v.get(2),(Date) v.get(3), (Date) v.get(4), (Integer) v.get(5), (Integer) v.get(6),comparaciontipocurso(v.get(7).toString()), comparacionestadocurso(v.get(8).toString()),CentroDAO.seleccionarCentro(v.get(9).toString()),dir,sec,(Date) v.get(12),(Date) v.get(13),v.get(14).toString() );
+			CursoPropio c = new CursoPropio(v.get(0).toString(), v.get(1).toString(), (Integer) v.get(2),(Date) v.get(3), (Date) v.get(4), (Double) v.get(5), (Integer) v.get(6),comparaciontipocurso(v.get(7).toString()), comparacionestadocurso(v.get(8).toString()),CentroDAO.seleccionarCentro(v.get(9).toString()),dir,sec,(Date) v.get(12),(Date) v.get(13),v.get(14).toString() );
 			
 
 			
