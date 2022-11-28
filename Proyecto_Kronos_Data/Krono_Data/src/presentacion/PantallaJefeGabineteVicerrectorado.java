@@ -84,7 +84,6 @@ public class PantallaJefeGabineteVicerrectorado extends javax.swing.JFrame {
 		ListarEdicionesLayout.setVerticalGroup(ListarEdicionesLayout
 				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGap(0, 300, Short.MAX_VALUE));
 
-		
 		ConsultarIngresos.setSize(new java.awt.Dimension(400, 400));
 
 		lblUserIngresos.setText("Usuario: " + user.getDNI());
@@ -173,17 +172,14 @@ public class PantallaJefeGabineteVicerrectorado extends javax.swing.JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				consultarCursos.setSize(new java.awt.Dimension(1500, 500));
 
-				
-			/*	List<CursoPropio> cursos = null;
+				List<CursoPropio> cursos = null;
 				try {
-					cursos = CursoPropioDAO.obtenerCursosPorTipo(CursoPropioDAO.obtenerCursos(),
-							EstadoCurso.PROPUESTA_RECHAZADA);
-					cursos.addAll(
-							CursoPropioDAO.obtenerCursosPorTipo(CursoPropioDAO.obtenerCursos(), EstadoCurso.VALIDADO));
+					cursos = CursoPropioDAO.obtenerCursos();
+
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				}*/
+				}
 				String cabecera[] = { "Id", "Nombre", "ETCS", "Fecha Inicio", "Fecha Fin", "Tasa Matricula", "Edicion",
 						"Estado", "Tipo", "Centro", "Director", "Secretario", "Fecha Matricula", "Ultima Modificacion",
 						"Motivo de Rechazo" };
@@ -192,84 +188,63 @@ public class PantallaJefeGabineteVicerrectorado extends javax.swing.JFrame {
 				JScrollPane rollo = new JScrollPane(tablaCursos);
 				add(rollo);
 				DefaultTableModel tabla = (DefaultTableModel) tablaCursos.getModel();
+				TableRowSorter<TableModel> tablaOrdenada = new TableRowSorter<TableModel>(tabla);
+				tablaCursos.setRowSorter(tablaOrdenada);
 				String[] c = new String[cabecera.length];
-				
-				jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Fechas"," Fechas" }));
 
-		        
+				jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(
+						new String[] { "Fechas descendente", " Fechas ascendentes" }));
+
 				btnOrdenarFechas.setText("Ordenar");
 				SimpleDateFormat fecha = new SimpleDateFormat("yyyy-MM-dd");
-				/*for (int i = 0; i < cursos.size(); i++) {
+				for (int i = 0; i < cursos.size(); i++) {
 					CursoPropio curso = cursos.get(i);
-					c[0] = curso.getId();
-					c[1] = curso.getNombre();
-					c[2] = String.valueOf(curso.getEcts());
-					c[3] = fecha.format(curso.getFechaInicio());
-					c[4] = fecha.format(curso.getFechaFin());
-					c[5] = String.valueOf(curso.getTasaMatricula());
-					c[6] = String.valueOf(curso.getEdicion());
-					c[7] = curso.getTipo().toString();
-					c[8] = curso.getEstado().toString();
-					c[9] = curso.getCentro().getNombre();
-					c[10] = curso.getDirector().getDNI();
-					c[11] = curso.getSecretario().getDNI();
-					c[12] = fecha.format(curso.getFecha_matriculacion());
-					c[13] = fecha.format(curso.getUltima_modificacion());
-					c[14] = curso.getMotivo_Rechazo();
-					tabla.addRow(c);
+					if (curso.getEstado().equals(EstadoCurso.PROPUESTA_RECHAZADA)
+							|| curso.getEstado().equals(EstadoCurso.VALIDADO)) {
 
-				}*/
-				
-				/*javax.swing.GroupLayout consultarCursosLayout = new javax.swing.GroupLayout(consultarCursos.getContentPane());
-		        consultarCursos.getContentPane().setLayout(consultarCursosLayout);
-		        consultarCursosLayout.setHorizontalGroup(
-		            consultarCursosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-		            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, consultarCursosLayout.createSequentialGroup()
-		                .addContainerGap(0, 0)
-		                .addComponent(rollo, 0, 1500,1500)
-		                .addGap(0, 0, 0))
-		        );
-		        consultarCursosLayout.setVerticalGroup(
-		            consultarCursosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-		            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, consultarCursosLayout.createSequentialGroup()
-		                .addContainerGap(27, Short.MAX_VALUE)
-		                .addComponent(rollo, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-		                .addGap(32, 32, 32))
-		        );
-*/
-		        javax.swing.GroupLayout consultarCursosLayout = new javax.swing.GroupLayout(consultarCursos.getContentPane());
-		        consultarCursos.getContentPane().setLayout(consultarCursosLayout);
-		        consultarCursosLayout.setHorizontalGroup(
-		            consultarCursosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-		            .addGroup(consultarCursosLayout.createSequentialGroup()
-		                .addGap(0,0,0)
-		                .addComponent(rollo, 0, 1500,1500)
-		                .addContainerGap(0, 0))
-		            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, consultarCursosLayout.createSequentialGroup()
-		                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-		                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-		                .addGap(0, 18, 18)
-		                .addComponent(btnOrdenarFechas)
-		                .addGap(480, 480, 480))
-		        );
-		        consultarCursosLayout.setVerticalGroup(
-		            consultarCursosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-		            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, consultarCursosLayout.createSequentialGroup()
-		                .addContainerGap(27, Short.MAX_VALUE)
-		                .addGroup(consultarCursosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-		                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-		                    .addComponent(btnOrdenarFechas))
-		                .addGap(0, 0, 0)
-		                .addComponent(rollo, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
-		                .addGap(32,32,32))
-		        );
-		        
+						c[0] = curso.getId();
+						c[1] = curso.getNombre();
+						c[2] = String.valueOf(curso.getEcts());
+						c[3] = fecha.format(curso.getFechaInicio());
+						c[4] = fecha.format(curso.getFechaFin());
+						c[5] = String.valueOf(curso.getTasaMatricula());
+						c[6] = String.valueOf(curso.getEdicion());
+						c[7] = curso.getTipo().toString();
+						c[8] = curso.getEstado().toString();
+						c[9] = curso.getCentro().getNombre();
+						c[10] = curso.getDirector().getDNI();
+						c[11] = curso.getSecretario().getDNI();
+						c[12] = fecha.format(curso.getFecha_matriculacion());
+						c[13] = fecha.format(curso.getUltima_modificacion());
+						c[14] = curso.getMotivo_Rechazo();
+						tabla.addRow(c);
+
+					}
+				}
+				consultarCursos.setTitle("Consultar Cursos Validados o Rechazados");
+				javax.swing.GroupLayout consultarCursosLayout = new javax.swing.GroupLayout(
+						consultarCursos.getContentPane());
+				consultarCursos.getContentPane().setLayout(consultarCursosLayout);
+				consultarCursosLayout.setHorizontalGroup(
+						consultarCursosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+								.addGroup(consultarCursosLayout.createSequentialGroup().addGap(0, 0, 0)
+										.addComponent(rollo, 0, 1500, 1500).addContainerGap(0, 0))
+
+				);
+				consultarCursosLayout
+						.setVerticalGroup(
+								consultarCursosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+										.addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
+												consultarCursosLayout.createSequentialGroup()
+														.addContainerGap(27, Short.MAX_VALUE).addGap(0, 0, 0)
+														.addComponent(rollo, javax.swing.GroupLayout.PREFERRED_SIZE,
+																400, javax.swing.GroupLayout.PREFERRED_SIZE)
+														.addGap(32, 32, 32)));
+
 				consultarCursos.setVisible(true);
-				
-				
-			
 
 			}
+
 		});
 	}
 
