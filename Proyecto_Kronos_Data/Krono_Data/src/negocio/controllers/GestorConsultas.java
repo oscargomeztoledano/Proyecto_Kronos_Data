@@ -9,7 +9,6 @@ import negocio.entities.CursoPropio;
 import persistencia.CursoPropioDAO;
 
 public class GestorConsultas {
-//comit de prueba  sonar
 	public static String[] obtenerIngresos() throws Exception {
 		return CursoPropioDAO.listarIngresos();
 	}
