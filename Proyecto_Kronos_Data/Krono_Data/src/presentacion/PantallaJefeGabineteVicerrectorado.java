@@ -44,7 +44,6 @@ public class PantallaJefeGabineteVicerrectorado extends javax.swing.JFrame {
 	 */
 
 	Usuario user;
-	String u;
 	DefaultTableModel modelo = new DefaultTableModel();
 
 
@@ -66,7 +65,7 @@ public class PantallaJefeGabineteVicerrectorado extends javax.swing.JFrame {
 
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents(Usuario user) {
 
         ListarEdiciones = new javax.swing.JFrame();
         jLabel1 = new javax.swing.JLabel();
@@ -158,7 +157,7 @@ public class PantallaJefeGabineteVicerrectorado extends javax.swing.JFrame {
 
         ConsultarIngresos.setSize(new java.awt.Dimension(400, 400));
 
-        lblUserIngresos.setText("Usuario: ");
+        lblUserIngresos.setText("Usuario: "+user.getDNI());
 
         javax.swing.GroupLayout ConsultarIngresosLayout = new javax.swing.GroupLayout(ConsultarIngresos.getContentPane());
         ConsultarIngresos.getContentPane().setLayout(ConsultarIngresosLayout);
@@ -194,7 +193,7 @@ public class PantallaJefeGabineteVicerrectorado extends javax.swing.JFrame {
         setAutoRequestFocus(false);
         setSize(new java.awt.Dimension(400, 400));
 
-        lblUser.setText("Usuario: ");
+        lblUser.setText("Usuario: "+user.getDNI());
 
         btnConsultarIngresos.setText("Consultar Ingresos");
 
@@ -242,7 +241,7 @@ public class PantallaJefeGabineteVicerrectorado extends javax.swing.JFrame {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				ConsultarIngresos.setVisible(true);
-				lblUser.setText("Usuario :" + user.getDNI());
+				lblUser.setText("Usuario :"+user.getDNI() );
 				String[] ingresos;
 				try {
 					ingresos = GestorConsultas.obtenerIngresos();
@@ -288,13 +287,11 @@ public class PantallaJefeGabineteVicerrectorado extends javax.swing.JFrame {
 				tablaCursos.setRowSorter(tablaOrdenada);
 				String[] c = new String[cabecera.length];
 
-				jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(
-						new String[] { "Fechas descendente", " Fechas ascendentes" }));
+			
 
-				btnOrdenarFechas.setText("Ordenar");
+				
 				SimpleDateFormat fecha = new SimpleDateFormat("yyyy-MM-dd");
-				for (int i = 0; i < cursos.size(); i++) {
-					CursoPropio curso = cursos.get(i);
+				for (CursoPropio curso : cursos) {
 					if (curso.getEstado().equals(EstadoCurso.PROPUESTA_RECHAZADA)
 							|| curso.getEstado().equals(EstadoCurso.VALIDADO)) {
 
@@ -408,7 +405,6 @@ public class PantallaJefeGabineteVicerrectorado extends javax.swing.JFrame {
 	private javax.swing.JFrame consultarCursos;
 	private javax.swing.JButton btnConsultarIngresos;
 	private javax.swing.JButton btnListarEdiciones;
-	private javax.swing.JButton btnOrdenarFechas;
 	private javax.swing.JButton btnConsultarCursos;
 	private javax.swing.JLabel labelConTit;
 	private javax.swing.JLabel lblEnsProp;
@@ -416,8 +412,6 @@ public class PantallaJefeGabineteVicerrectorado extends javax.swing.JFrame {
 	private javax.swing.JLabel lblTotal;
 	private javax.swing.JLabel lblUser;
 	private javax.swing.JLabel lblUserIngresos;
-	private javax.swing.JComboBox<String> jComboBox1;
-  private javax.swing.JButton jButton1;
   private javax.swing.JButton jButton2;
   private javax.swing.JLabel jLabel1;
   private javax.swing.JLabel jLabel2;
