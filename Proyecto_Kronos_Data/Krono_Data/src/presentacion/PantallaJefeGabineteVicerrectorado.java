@@ -6,16 +6,24 @@ package presentacion;
 
 import negocio.controllers.GestorConsultas;
 import negocio.entities.CursoPropio;
+import negocio.entities.EstadoCurso;
 import negocio.entities.Usuario;
 import net.ucanaccess.util.Logger;
+import persistencia.CursoPropioDAO;
 
 import java.awt.event.*;
-import java.awt.print.PrinterException;
+
 import java.text.SimpleDateFormat;
 import java.util.List;
-
+import javax.swing.JLabel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.RowSorter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
+
+import java.awt.print.PrinterException;
 
 /**
  *
@@ -34,14 +42,14 @@ public class PantallaJefeGabineteVicerrectorado extends javax.swing.JFrame {
 	/**
 	 * Creates new form PantallaJefeGabineteVicerrectorado
 	 */
+
 	Usuario user;
 	String u;
 	DefaultTableModel modelo = new DefaultTableModel();
 
+
 	public PantallaJefeGabineteVicerrectorado(Usuario user) {
-		this.user = user;
-		u = "Usuario: " + user.getDNI();
-		initComponents();
+		initComponents(user);
 	}
 
 	/**
@@ -55,6 +63,8 @@ public class PantallaJefeGabineteVicerrectorado extends javax.swing.JFrame {
 	// <editor-fold defaultstate="collapsed" desc="Generated
 	// <editor-fold defaultstate="collapsed" desc="Generated
 	// <editor-fold defaultstate="collapsed" desc="Generated
+
+
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -76,7 +86,7 @@ public class PantallaJefeGabineteVicerrectorado extends javax.swing.JFrame {
         lblUser = new javax.swing.JLabel();
         btnConsultarIngresos = new javax.swing.JButton();
         btnListarEdiciones = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnConsultarCursos = new javax.swing.JButton();
 
         ListarEdiciones.setAutoRequestFocus(false);
         ListarEdiciones.setSize(new java.awt.Dimension(1200, 600));
@@ -146,19 +156,6 @@ public class PantallaJefeGabineteVicerrectorado extends javax.swing.JFrame {
                 .addContainerGap(99, Short.MAX_VALUE))
         );
 
-        consultarCursos.setSize(new java.awt.Dimension(400, 400));
-
-        javax.swing.GroupLayout consultarCursosLayout = new javax.swing.GroupLayout(consultarCursos.getContentPane());
-        consultarCursos.getContentPane().setLayout(consultarCursosLayout);
-        consultarCursosLayout.setHorizontalGroup(
-            consultarCursosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        consultarCursosLayout.setVerticalGroup(
-            consultarCursosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
-
         ConsultarIngresos.setSize(new java.awt.Dimension(400, 400));
 
         lblUserIngresos.setText("Usuario: ");
@@ -203,7 +200,7 @@ public class PantallaJefeGabineteVicerrectorado extends javax.swing.JFrame {
 
         btnListarEdiciones.setText("Listar Ediciones");
 
-        jButton1.setText("Consultar cursos");
+        btnConsultarCursos.setText("Consultar cursos");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -219,7 +216,7 @@ public class PantallaJefeGabineteVicerrectorado extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnConsultarIngresos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnListarEdiciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(btnConsultarCursos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(123, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -232,7 +229,7 @@ public class PantallaJefeGabineteVicerrectorado extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addComponent(btnListarEdiciones)
                 .addGap(27, 27, 27)
-                .addComponent(jButton1)
+                .addComponent(btnConsultarCursos)
                 .addContainerGap(123, Short.MAX_VALUE))
         );
         buttons();
@@ -240,17 +237,17 @@ public class PantallaJefeGabineteVicerrectorado extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
 	public void buttons() {
+
 		btnConsultarIngresos.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				ConsultarIngresos.setVisible(true);
-				lblUser.setText(u);
+				lblUser.setText("Usuario :" + user.getDNI());
 				String[] ingresos;
 				try {
 					ingresos = GestorConsultas.obtenerIngresos();
 					double sum = Double.parseDouble(ingresos[0]) +  Double.parseDouble(ingresos[1])
 							+  Double.parseDouble(ingresos[2]);
-
 					lblSinTit.setText("Enseñanzas sin titulación: " + ingresos[0] + "€");
 
 					labelConTit.setText("Enseñanzas con titulación:" + ingresos[1] + "€");
@@ -261,9 +258,89 @@ public class PantallaJefeGabineteVicerrectorado extends javax.swing.JFrame {
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					Logger.log("mensaje de error");
+
 				}
 
 			}
+		});
+		btnConsultarCursos.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				consultarCursos.setSize(new java.awt.Dimension(1500, 500));
+
+				List<CursoPropio> cursos = null;
+				try {
+					cursos = CursoPropioDAO.obtenerCursos();
+
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				String cabecera[] = { "Id", "Nombre", "ETCS", "Fecha Inicio", "Fecha Fin", "Tasa Matricula", "Edicion",
+						"Estado", "Tipo", "Centro", "Director", "Secretario", "Fecha Matricula", "Ultima Modificacion",
+						"Motivo de Rechazo" };
+				DefaultTableModel Tabla = new DefaultTableModel(null, cabecera);
+				JTable tablaCursos = new JTable(Tabla);
+				JScrollPane rollo = new JScrollPane(tablaCursos);
+				add(rollo);
+				DefaultTableModel tabla = (DefaultTableModel) tablaCursos.getModel();
+				TableRowSorter<TableModel> tablaOrdenada = new TableRowSorter<TableModel>(tabla);
+				tablaCursos.setRowSorter(tablaOrdenada);
+				String[] c = new String[cabecera.length];
+
+				jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(
+						new String[] { "Fechas descendente", " Fechas ascendentes" }));
+
+				btnOrdenarFechas.setText("Ordenar");
+				SimpleDateFormat fecha = new SimpleDateFormat("yyyy-MM-dd");
+				for (int i = 0; i < cursos.size(); i++) {
+					CursoPropio curso = cursos.get(i);
+					if (curso.getEstado().equals(EstadoCurso.PROPUESTA_RECHAZADA)
+							|| curso.getEstado().equals(EstadoCurso.VALIDADO)) {
+
+						c[0] = curso.getId();
+						c[1] = curso.getNombre();
+						c[2] = String.valueOf(curso.getEcts());
+						c[3] = fecha.format(curso.getFechaInicio());
+						c[4] = fecha.format(curso.getFechaFin());
+						c[5] = String.valueOf(curso.getTasaMatricula());
+						c[6] = String.valueOf(curso.getEdicion());
+						c[7] = curso.getTipo().toString();
+						c[8] = curso.getEstado().toString();
+						c[9] = curso.getCentro().getNombre();
+						c[10] = curso.getDirector().getDNI();
+						c[11] = curso.getSecretario().getDNI();
+						c[12] = fecha.format(curso.getFecha_matriculacion());
+						c[13] = fecha.format(curso.getUltima_modificacion());
+						c[14] = curso.getMotivo_Rechazo();
+						tabla.addRow(c);
+
+					}
+				}
+				consultarCursos.setTitle("Consultar Cursos Validados o Rechazados");
+				javax.swing.GroupLayout consultarCursosLayout = new javax.swing.GroupLayout(
+						consultarCursos.getContentPane());
+				consultarCursos.getContentPane().setLayout(consultarCursosLayout);
+				consultarCursosLayout.setHorizontalGroup(
+						consultarCursosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+								.addGroup(consultarCursosLayout.createSequentialGroup().addGap(0, 0, 0)
+										.addComponent(rollo, 0, 1500, 1500).addContainerGap(0, 0))
+
+				);
+				consultarCursosLayout
+						.setVerticalGroup(
+								consultarCursosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+										.addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
+												consultarCursosLayout.createSequentialGroup()
+														.addContainerGap(27, Short.MAX_VALUE).addGap(0, 0, 0)
+														.addComponent(rollo, javax.swing.GroupLayout.PREFERRED_SIZE,
+																400, javax.swing.GroupLayout.PREFERRED_SIZE)
+														.addGap(32, 32, 32)));
+
+				consultarCursos.setVisible(true);
+
+			}
+
 		});
 
 		btnListarEdiciones.addActionListener(new ActionListener() {
@@ -324,25 +401,30 @@ public class PantallaJefeGabineteVicerrectorado extends javax.swing.JFrame {
 	 * @param args the command line arguments
 	 */
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JFrame ConsultarIngresos;
-    private javax.swing.JFrame ListarEdiciones;
-    private javax.swing.JButton btnConsultarIngresos;
-    private javax.swing.JButton btnListarEdiciones;
-    private javax.swing.JFrame consultarCursos;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JLabel labelConTit;
-    private javax.swing.JLabel lblEnsProp;
-    private javax.swing.JLabel lblSinTit;
-    private javax.swing.JLabel lblTotal;
-    private javax.swing.JLabel lblUser;
-    private javax.swing.JLabel lblUserIngresos;
-    private java.awt.ScrollPane scrollPane2;
-    // End of variables declaration//GEN-END:variables
+
+	// Variables declaration - do not modify//GEN-BEGIN:variables
+	private javax.swing.JFrame ConsultarIngresos;
+	private javax.swing.JFrame ListarEdiciones;
+	private javax.swing.JFrame consultarCursos;
+	private javax.swing.JButton btnConsultarIngresos;
+	private javax.swing.JButton btnListarEdiciones;
+	private javax.swing.JButton btnOrdenarFechas;
+	private javax.swing.JButton btnConsultarCursos;
+	private javax.swing.JLabel labelConTit;
+	private javax.swing.JLabel lblEnsProp;
+	private javax.swing.JLabel lblSinTit;
+	private javax.swing.JLabel lblTotal;
+	private javax.swing.JLabel lblUser;
+	private javax.swing.JLabel lblUserIngresos;
+	private javax.swing.JComboBox<String> jComboBox1;
+  private javax.swing.JButton jButton1;
+  private javax.swing.JButton jButton2;
+  private javax.swing.JLabel jLabel1;
+  private javax.swing.JLabel jLabel2;
+  private javax.swing.JScrollPane jScrollPane1;
+  private javax.swing.JTable jTable1;
+  private javax.swing.JTextField jTextField1;
+  private java.awt.ScrollPane scrollPane2;
+  // End of variables declaration//GEN-END:variables
+
 }
