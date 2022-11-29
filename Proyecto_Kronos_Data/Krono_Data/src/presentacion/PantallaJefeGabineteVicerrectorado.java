@@ -5,20 +5,29 @@
 package presentacion;
 
 import negocio.controllers.GestorConsultas;
+import negocio.entities.CursoPropio;
 import negocio.entities.Usuario;
 import net.ucanaccess.util.Logger;
 
 import java.awt.event.*;
+import java.awt.print.PrinterException;
+import java.text.SimpleDateFormat;
+import java.util.List;
+
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author david
  * 
- * NOTA:
- * Cada vez que se edita la interfaz se sobreescribe todo de initComponets(), y pierdes tu codigo
- * Hay que añadir al final, antes de la llamada a pack(), y llamar a la funcion buttons(), para que los botones funcionen
+ *         NOTA: Cada vez que se edita la interfaz se sobreescribe todo de
+ *         initComponets(), y pierdes tu codigo Hay que añadir al final, antes
+ *         de la llamada a pack(), y llamar a la funcion buttons(), para que los
+ *         botones funcionen
  * 
- * Tambien, en la label lblUser, hay que poner en el setText(), la variable "String u"
+ *         Tambien, en la label lblUser, hay que poner en el setText(), la
+ *         variable "String u"
  */
 public class PantallaJefeGabineteVicerrectorado extends javax.swing.JFrame {
 
@@ -27,6 +36,8 @@ public class PantallaJefeGabineteVicerrectorado extends javax.swing.JFrame {
 	 */
 	Usuario user;
 	String u;
+	DefaultTableModel modelo = new DefaultTableModel();
+
 	public PantallaJefeGabineteVicerrectorado(Usuario user) {
 		this.user = user;
 		u = "Usuario: " + user.getDNI();
@@ -43,10 +54,18 @@ public class PantallaJefeGabineteVicerrectorado extends javax.swing.JFrame {
 	// <editor-fold defaultstate="collapsed" desc="Generated
 	// <editor-fold defaultstate="collapsed" desc="Generated
 	// <editor-fold defaultstate="collapsed" desc="Generated
+	// <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         ListarEdiciones = new javax.swing.JFrame();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
+        scrollPane2 = new java.awt.ScrollPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         consultarCursos = new javax.swing.JFrame();
         ConsultarIngresos = new javax.swing.JFrame();
         lblUserIngresos = new javax.swing.JLabel();
@@ -60,17 +79,71 @@ public class PantallaJefeGabineteVicerrectorado extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         ListarEdiciones.setAutoRequestFocus(false);
-        ListarEdiciones.setSize(new java.awt.Dimension(400, 400));
+        ListarEdiciones.setSize(new java.awt.Dimension(1200, 600));
+
+        jLabel1.setText("Usuario: ");
+
+        jLabel2.setText("Escriba la edicion a consultar: ");
+
+        jButton2.setText("Mostrar resultados");
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Id", "Nombre", "ECTS", "Fecha inicio", "Fecha fin", "Tasa matricula", "Edicion", "Tipo curso", "Estado curso", "Nombre centro", "Director", "Secretario"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        scrollPane2.add(jScrollPane1);
 
         javax.swing.GroupLayout ListarEdicionesLayout = new javax.swing.GroupLayout(ListarEdiciones.getContentPane());
         ListarEdiciones.getContentPane().setLayout(ListarEdicionesLayout);
         ListarEdicionesLayout.setHorizontalGroup(
             ListarEdicionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(ListarEdicionesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(ListarEdicionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ListarEdicionesLayout.createSequentialGroup()
+                        .addGroup(ListarEdicionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addGroup(ListarEdicionesLayout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButton2))
+                        .addGap(0, 1080, Short.MAX_VALUE))
+                    .addComponent(scrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         ListarEdicionesLayout.setVerticalGroup(
             ListarEdicionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(ListarEdicionesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addGroup(ListarEdicionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(scrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(99, Short.MAX_VALUE))
         );
 
         consultarCursos.setSize(new java.awt.Dimension(400, 400));
@@ -124,7 +197,7 @@ public class PantallaJefeGabineteVicerrectorado extends javax.swing.JFrame {
         setAutoRequestFocus(false);
         setSize(new java.awt.Dimension(400, 400));
 
-        lblUser.setText(u);
+        lblUser.setText("Usuario: ");
 
         btnConsultarIngresos.setText("Consultar Ingresos");
 
@@ -192,6 +265,56 @@ public class PantallaJefeGabineteVicerrectorado extends javax.swing.JFrame {
 
 			}
 		});
+
+		btnListarEdiciones.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				ListarEdiciones.setVisible(true);
+			}
+		});
+
+		jButton2.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				String ed = jTextField1.getText();
+				List<CursoPropio> cursos;
+
+				try {
+					cursos = GestorConsultas.ediciones(ed);
+					Object[][] a = new Object[cursos.size()][12];
+					SimpleDateFormat fecha = new SimpleDateFormat("yyyy-MM-dd");
+					int i = 0;
+					for (CursoPropio c : cursos) {
+						a[i][0] = c.getId();
+						a[i][1] = c.getNombre();
+						a[i][2] = String.valueOf(c.getECTS());
+						a[i][3] = fecha.format(c.getFechaInicio());
+						a[i][4] = fecha.format(c.getFechaFin());
+						a[i][5] = String.valueOf(c.getTasaMatricula());
+						a[i][6] = String.valueOf(c.getEdicion());
+						a[i][7] = c.getTipo().toString();
+						a[i][8] = c.getEstado().toString();
+						a[i][9] = c.getCentro().getNombre();
+						a[i][10] = c.getDirector().getDNI();
+						a[i][11] = c.getSecretario().getDNI();
+
+						i++;
+					}
+					tabla(a);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			}
+		});
+	}
+
+	public void tabla(Object [][] a) {
+		jTable1.setModel(new javax.swing.table.DefaultTableModel(
+				a,
+				new String[] { "Id", "Nombre", "ECTS", "Fecha inicio", "Fecha fin", "Tasa matricula", "Edicion",
+						"Tipo curso", "Estado curso", "Nombre centro", "Director", "Secretario" }));
 	}
 
 	/**
@@ -205,11 +328,18 @@ public class PantallaJefeGabineteVicerrectorado extends javax.swing.JFrame {
     private javax.swing.JButton btnListarEdiciones;
     private javax.swing.JFrame consultarCursos;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel labelConTit;
     private javax.swing.JLabel lblEnsProp;
     private javax.swing.JLabel lblSinTit;
     private javax.swing.JLabel lblTotal;
     private javax.swing.JLabel lblUser;
     private javax.swing.JLabel lblUserIngresos;
+    private java.awt.ScrollPane scrollPane2;
     // End of variables declaration//GEN-END:variables
 }

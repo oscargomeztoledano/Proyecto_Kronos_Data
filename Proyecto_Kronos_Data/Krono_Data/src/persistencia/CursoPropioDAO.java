@@ -56,11 +56,10 @@ public class CursoPropioDAO {
 	 */
 	public static int editarCurso(CursoPropio curso) {
 		int resultado = 0;
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-		
-		String fechaActual = formatter.format(curso.getUltima_modificacion());
-		String sql = "UPDATE titulospropiosuclm2022.CursoPropio SET EstadoCurso = '" + curso.getEstado().toString() + "',Ultima_Modificacion = '"
-				+ fechaActual + "',Motivo_Rechazo = '"+curso.getMotivo_Rechazo()+"' WHERE id = \'" + curso.getId() + "\'";
+
+		String sql = "UPDATE CursoPropio SET EstadoCurso = \'" + curso.getEstado() + "\' WHERE id = \'" + curso.getId()
+				+ "\'";
+
 		try {
 			resultado = GestorBD.ExecuteUpdate(sql);
 		} catch (ClassNotFoundException e) {
@@ -117,10 +116,18 @@ public class CursoPropioDAO {
 	 * 
 	 * @param fechaInicio
 	 * @param fechaFin
+	 * @return 
+	 * @throws Exception
 	 */
-	public void listarEdicionesCursos(LocalDate fechaInicio, LocalDate fechaFin) {
-		// TODO - implement CursoPropioDAO.listarEdicionesCursos
-		throw new UnsupportedOperationException();
+	public static List<CursoPropio> listarEdicionesCursos(String edicion) throws Exception {
+		String SQL = "SELECT * FROM CursoPropio WHERE Edicion = \"" + edicion + "\"";
+		Vector<Object> v = GestorBD.ExecuteQuery(SQL);
+		List<CursoPropio> listaCursos = new ArrayList<CursoPropio>();
+		listaCursos = recogerCursos(v, listaCursos);
+		
+		return listaCursos;
+		
+
 	}
 
 	public static List<CursoPropio> obtenerCursos() throws Exception {
@@ -134,20 +141,28 @@ public class CursoPropioDAO {
 		}
 
 		List<CursoPropio> listaCursos = new ArrayList<CursoPropio>();
-		while (!cursos.isEmpty()) {
-			@SuppressWarnings("unchecked")
-			Vector<Object> v = (Vector<Object>) cursos.get(0);
-			ProfesorUCLM dir = ProfesorDAO.seleccionarProfesorUCLM(ProfesorDAO.seleccionarProfesor(UsuarioDAO.seleccionarUsuario(v.get(10).toString())));
-			ProfesorUCLM sec = ProfesorDAO.seleccionarProfesorUCLM(ProfesorDAO.seleccionarProfesor(UsuarioDAO.seleccionarUsuario(v.get(11).toString())));
-			CursoPropio c = new CursoPropio(v.get(0).toString(), v.get(1).toString(), (Integer) v.get(2),(Date) v.get(3), (Date) v.get(4), (Integer) v.get(5), (Integer) v.get(6),comparaciontipocurso(v.get(7).toString()), comparacionestadocurso(v.get(8).toString()),CentroDAO.seleccionarCentro(v.get(9).toString()),dir,sec,(Date) v.get(12),(Date) v.get(13),v.get(14).toString() );
+
+listaCursos = recogerCursos(cursos, listaCursos);
+		return listaCursos;
+	}
+	
+	public static List<CursoPropio> recogerCursos(Vector<Object> c, List<CursoPropio> listaCursos) throws Exception {
+		while (!c.isEmpty()) {
+			Vector<Object> v = (Vector<Object>) c.get(0);
+			ProfesorUCLM dir = ProfesorDAO.seleccionarProfesorUCLM(
+					ProfesorDAO.seleccionarProfesor(UsuarioDAO.seleccionarUsuario(v.get(10).toString())));
+			ProfesorUCLM sec = ProfesorDAO.seleccionarProfesorUCLM(
+					ProfesorDAO.seleccionarProfesor(UsuarioDAO.seleccionarUsuario(v.get(11).toString())));
+			CursoPropio curso = new CursoPropio(v.get(0).toString(), v.get(1).toString(), (Integer) v.get(2),
+					(Date) v.get(3), (Date) v.get(4), (Integer) v.get(5), (Integer) v.get(6),
+					ComparacionTipoCurso(v.get(7).toString()), ComparacionEstadoCurso(v.get(8).toString()),
+					CentroDAO.seleccionarCentro(v.get(9).toString()), dir, sec);
 			
+			listaCursos.add(curso);
+			c.remove(0);
 
-			
-
-			listaCursos.add(c);
-
-			cursos.remove(0);
 		}
+		
 		return listaCursos;
 	}
 
