@@ -104,7 +104,7 @@ public class PantallaJefeGabineteVicerrectorado extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Id", "Nombre", "ECTS", "Fecha inicio", "Fecha fin", "Tasa matricula", "Edicion", "Tipo curso", "Estado curso", "Nombre centro", "Director", "Secretario"
+                "Id", "Nombre", "ECTS", "Fecha inicio", "Fecha fin", "Tasa matricula", "Edicion", "Tipo curso", "Estado curso", "Nombre centro", "Director", "Secretario","Fecha Matricula","Ultima Modificacion","Motivo Rechazo"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -248,8 +248,8 @@ public class PantallaJefeGabineteVicerrectorado extends javax.swing.JFrame {
 				String[] ingresos;
 				try {
 					ingresos = GestorConsultas.obtenerIngresos();
-					int sum = Integer.parseInt(ingresos[0]) + Integer.parseInt(ingresos[1])
-							+ Integer.parseInt(ingresos[2]);
+					double sum = Double.parseDouble(ingresos[0]) +  Double.parseDouble(ingresos[1])
+							+  Double.parseDouble(ingresos[2]);
 
 					lblSinTit.setText("Enseñanzas sin titulación: " + ingresos[0] + "€");
 
@@ -281,13 +281,13 @@ public class PantallaJefeGabineteVicerrectorado extends javax.swing.JFrame {
 
 				try {
 					cursos = GestorConsultas.ediciones(ed);
-					Object[][] a = new Object[cursos.size()][12];
+					Object[][] a = new Object[cursos.size()][15];
 					SimpleDateFormat fecha = new SimpleDateFormat("yyyy-MM-dd");
 					int i = 0;
 					for (CursoPropio c : cursos) {
 						a[i][0] = c.getId();
 						a[i][1] = c.getNombre();
-						a[i][2] = String.valueOf(c.getECTS());
+						a[i][2] = String.valueOf(c.getEcts());
 						a[i][3] = fecha.format(c.getFechaInicio());
 						a[i][4] = fecha.format(c.getFechaFin());
 						a[i][5] = String.valueOf(c.getTasaMatricula());
@@ -297,6 +297,9 @@ public class PantallaJefeGabineteVicerrectorado extends javax.swing.JFrame {
 						a[i][9] = c.getCentro().getNombre();
 						a[i][10] = c.getDirector().getDNI();
 						a[i][11] = c.getSecretario().getDNI();
+						a[i][12]=fecha.format(c.getFecha_matriculacion());
+						a[i][13]=fecha.format(c.getUltima_modificacion());
+						a[i][14]=c.getMotivo_Rechazo();
 
 						i++;
 					}
@@ -314,7 +317,7 @@ public class PantallaJefeGabineteVicerrectorado extends javax.swing.JFrame {
 		jTable1.setModel(new javax.swing.table.DefaultTableModel(
 				a,
 				new String[] { "Id", "Nombre", "ECTS", "Fecha inicio", "Fecha fin", "Tasa matricula", "Edicion",
-						"Tipo curso", "Estado curso", "Nombre centro", "Director", "Secretario" }));
+						"Tipo curso", "Estado curso", "Nombre centro", "Director", "Secretario","Fecha Matricula","Ultima Modificacion","Motivo Rechazo" }));
 	}
 
 	/**
