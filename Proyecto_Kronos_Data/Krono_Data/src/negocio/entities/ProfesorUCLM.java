@@ -1,7 +1,5 @@
 package negocio.entities;
 
-import java.util.Collection;
-
 public class ProfesorUCLM extends Profesor {
 
 	
@@ -13,9 +11,9 @@ public class ProfesorUCLM extends Profesor {
 	String apellidos;
 	boolean doctor;
 	
-	public ProfesorUCLM(String DNI, String contrasena, String tipo, String nombre, String apellidos, boolean doctor,CategoriaProfesor categoria,
+	public ProfesorUCLM(String dni, String contrasena, String tipo, String nombre, String apellidos, boolean doctor,CategoriaProfesor categoria,
 			Centro centroAdscripcion) {
-		super(DNI, contrasena, tipo, nombre, apellidos, doctor);
+		super(dni, contrasena, tipo, nombre, apellidos, doctor);
 		this.centroAdscripcion = centroAdscripcion;
 		this.categoria = categoria;
 		this.nombre = nombre;

@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Vector;
 
 import negocio.entities.CursoPropio;
+
 import persistencia.CursoPropioDAO;
-import persistencia.GestorBD;
 
 public class GestorConsultas {
 

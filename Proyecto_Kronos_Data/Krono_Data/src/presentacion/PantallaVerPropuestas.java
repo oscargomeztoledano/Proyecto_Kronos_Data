@@ -1,21 +1,13 @@
 package presentacion;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.List;
-
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
@@ -24,9 +16,11 @@ import javax.swing.table.TableModel;
 import negocio.entities.CursoPropio;
 import negocio.entities.EstadoCurso;
 import persistencia.CursoPropioDAO;
-import negocio.controllers.GestorPropuestasCursos;
-import negocio.entities.*;
-
+/**
+ * 
+ * @author oscar
+ *
+ */
 public class PantallaVerPropuestas extends javax.swing.JFrame {
 
 	private static TableModel Tabla = null;
@@ -49,7 +43,7 @@ public class PantallaVerPropuestas extends javax.swing.JFrame {
 		contentPane.setLayout(null);
 	
 		String cabecera[] = { "Id", "Nombre", "ETCS", "Fecha Inicio", "Fecha Fin", "Tasa Matricula", "Edicion",
-				"Estado", "Tipo", "Centro", "Director", "Secretario" };
+				"Estado", "Tipo", "Centro", "Director", "Secretario","Ultima Modificacion","Fecha Matricula","Motivo de Rechazo" };
 		Tabla = new DefaultTableModel(null, cabecera);
 		tablaCursos = new JTable(Tabla);
 		rollo = new JScrollPane(tablaCursos);
@@ -64,7 +58,7 @@ public class PantallaVerPropuestas extends javax.swing.JFrame {
 			CursoPropio curso = cursos.get(i);
 			c[0] = curso.getId();
 			c[1] = curso.getNombre();
-			c[2] = String.valueOf(curso.getECTS());
+			c[2] = String.valueOf(curso.getEcts());
 			c[3] = fecha.format(curso.getFechaInicio());
 			c[4] = fecha.format(curso.getFechaFin());
 			c[5] = String.valueOf(curso.getTasaMatricula());
@@ -74,6 +68,9 @@ public class PantallaVerPropuestas extends javax.swing.JFrame {
 			c[9] = curso.getCentro().getNombre();
 			c[10] = curso.getDirector().getDNI();
 			c[11] = curso.getSecretario().getDNI();
+			c[12]=fecha.format(curso.getUltima_modificacion());
+			c[13]=fecha.format(curso.getFecha_matriculacion());
+			c[14]=curso.getMotivo_Rechazo();
 
 			tabla.addRow(c);
 

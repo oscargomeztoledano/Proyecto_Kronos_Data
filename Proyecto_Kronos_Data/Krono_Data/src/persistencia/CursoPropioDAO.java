@@ -1,11 +1,15 @@
 package persistencia;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Vector;
 
 import negocio.entities.*;
+import presentacion.PantallaMatriculacion;
+import net.ucanaccess.util.Logger;
 import presentacion.PantallaErrores;
 
 public class CursoPropioDAO {
@@ -13,10 +17,28 @@ public class CursoPropioDAO {
 	/**
 	 * 
 	 * @param curso
+	 * @throws ClassNotFoundException
 	 */
-	public int crearNuevoCurso(CursoPropio curso) {
-		// TODO - implement CursoPropioDAO.crearNuevoCurso
-		throw new UnsupportedOperationException();
+	public static int crearNuevoCurso(CursoPropio curso) throws ClassNotFoundException {
+		int resultado = 0;
+		Date actual = new Date();
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		String fechaIn = formatter.format(curso.getFechaInicio());
+		String fechaFinal = formatter.format(curso.getFechaFin());
+		String fechaMatricula=formatter.format(curso.getFecha_matriculacion());
+		String fechaActual = formatter.format(actual);
+
+		String sql = "INSERT INTO titulospropiosuclm2022.CursoPropio (Id, nombre, ECTS, FechaInicio, FechaFin, TasaMatricula, Edicion,"
+				+ "TipoCurso, EstadoCurso, Nombre_Centro, Director, Secretario,Ultima_Modificacion,FechaMatricula,Motivo_Rechazo) VALUES ( '"
+				+ curso.getId() + "', '" + curso.getNombre() + "', " + curso.getEcts() + ",'" + fechaIn + "','"
+				+ fechaFinal + "'," + curso.getTasaMatricula() + "," + curso.getEdicion() + ",'"
+				+ curso.getTipo().toString() + "','" + curso.getEstado().toString() + "','"
+				+ curso.getCentro().getNombre() + "','" + curso.getDirector().getDNI() + "','"
+				+ curso.getSecretario().getDNI() + "','" + fechaActual + "','" + fechaMatricula + "','Nada')";
+
+		resultado = GestorBD.ExecuteUpdate(sql);
+
+		return resultado;
 	}
 
 	/**
@@ -37,11 +59,12 @@ public class CursoPropioDAO {
 
 		String sql = "UPDATE CursoPropio SET EstadoCurso = \'" + curso.getEstado() + "\' WHERE id = \'" + curso.getId()
 				+ "\'";
+
 		try {
 			resultado = GestorBD.ExecuteUpdate(sql);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Logger.log("mensaje de error");
 		}
 		return resultado;
 	}
@@ -52,7 +75,7 @@ public class CursoPropioDAO {
 	 * @param fechaInicio
 	 * @param fechaFin
 	 */
-	public List<CursoPropio> listarCursosPorEstado(EstadoCurso estado, Date fechaInicio, Date fechaFin) {
+	public List<CursoPropio> listarCursosPorEstado(EstadoCurso estado, LocalDate fechaInicio, LocalDate fechaFin) {
 		// TODO - implement CursoPropioDAO.listarCursosPorEstado
 		throw new UnsupportedOperationException();
 	}
@@ -64,6 +87,7 @@ public class CursoPropioDAO {
 	 * @param fechaFin
 	 * @throws Exception
 	 */
+
 	public static String[] listarIngresos() throws Exception {
 		try {
 			String[] ingresos = new String[3];
@@ -103,14 +127,22 @@ public class CursoPropioDAO {
 		
 		return listaCursos;
 		
+
 	}
 
 	public static List<CursoPropio> obtenerCursos() throws Exception {
-		String sql = "Select * FROM CursoPropio";
-		Vector<Object> cursos = GestorBD.ExecuteQuery(sql);
+		String sql = "SELECT * FROM titulospropiosuclm2022.CursoPropio ";
+		Vector<Object> cursos = null;
+		try {
+			cursos = GestorBD.ExecuteQuery(sql);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		List<CursoPropio> listaCursos = new ArrayList<CursoPropio>();
-		listaCursos = recogerCursos(cursos, listaCursos);
+
+listaCursos = recogerCursos(cursos, listaCursos);
 		return listaCursos;
 	}
 	
@@ -128,6 +160,7 @@ public class CursoPropioDAO {
 			
 			listaCursos.add(curso);
 			c.remove(0);
+
 		}
 		
 		return listaCursos;
@@ -136,7 +169,7 @@ public class CursoPropioDAO {
 	public static List<CursoPropio> obtenerCursosPorTipo(List<CursoPropio> cursos, EstadoCurso estado)
 			throws ClassNotFoundException {
 
-		List<CursoPropio> listaCursos = new ArrayList<CursoPropio>();
+		List<CursoPropio> listaCursos = new ArrayList<>();
 		while (!cursos.isEmpty()) {
 			CursoPropio curso = cursos.get(0);
 			if (curso.getEstado().equals(estado)) {
@@ -149,7 +182,7 @@ public class CursoPropioDAO {
 		return listaCursos;
 	}
 
-	public static TipoCurso ComparacionTipoCurso(String tipocurso) {
+	public static TipoCurso comparaciontipocurso(String tipocurso) {
 		TipoCurso tipo = null;
 		switch (tipocurso) {
 		case "MASTER":
@@ -182,7 +215,7 @@ public class CursoPropioDAO {
 
 	}
 
-	public static EstadoCurso ComparacionEstadoCurso(String estadocurso) {
+	public static EstadoCurso comparacionestadocurso(String estadocurso) {
 		EstadoCurso estado = null;
 		switch (estadocurso) {
 		case "PROPUESTO":

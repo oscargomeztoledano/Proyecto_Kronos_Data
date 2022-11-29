@@ -12,7 +12,6 @@ public class Centro {
 		this.nombre=nombre;
 		this.localizacion=localizacion;
 		}
-
 	public Collection<CursoPropio> getCursoPropios() {
 		return cursoPropios;
 	}

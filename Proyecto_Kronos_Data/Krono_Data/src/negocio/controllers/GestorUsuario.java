@@ -1,12 +1,10 @@
 package negocio.controllers;
 
-import java.util.Vector;
 
 import negocio.entities.*;
 import persistencia.EstudianteDAO;
 import persistencia.ProfesorDAO;
 import persistencia.UsuarioDAO;
-import presentacion.PantallaLogin;
 
 public class GestorUsuario {
 
@@ -14,20 +12,20 @@ public class GestorUsuario {
 	ProfesorUCLM profesor;
 	Usuario usuario;
 
-	public char login(String DNI, String Contrasena) {
+	public char login(String dni, String contrasena) {
 
 		char login = '1';
 		Estudiante estudiante;
 		ProfesorUCLM profesor;
 		Usuario usuario;
 		try {
-			usuario = UsuarioDAO.seleccionarUsuario(DNI);
+			usuario = UsuarioDAO.seleccionarUsuario(dni);
 			setUsuario(usuario);
 
-			if (usuario.getContrasena().equals(Contrasena)) {
+			if (usuario.getContrasena().equals(contrasena)) {
 				switch (usuario.getTipo()) {
 				case "E":
-					estudiante = EstudianteDAO.seleccionarEstudiante(DNI);
+					estudiante = EstudianteDAO.seleccionarEstudiante(dni);
 					setEstudiante(estudiante);
 					login = 'E';
 					break;

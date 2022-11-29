@@ -1,9 +1,6 @@
 package persistencia;
 
-import java.sql.SQLException;
 import java.util.Vector;
-
-import negocio.entities.Estudiante;
 import negocio.entities.Usuario;
 import presentacion.PantallaLogin;
 
