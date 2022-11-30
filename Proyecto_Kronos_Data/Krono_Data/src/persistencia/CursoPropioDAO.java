@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Vector;
 
 import negocio.entities.*;
-import presentacion.PantallaMatriculacion;
 import net.ucanaccess.util.Logger;
 import presentacion.PantallaErrores;
 
@@ -25,7 +24,7 @@ public class CursoPropioDAO {
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		String fechaIn = formatter.format(curso.getFechaInicio());
 		String fechaFinal = formatter.format(curso.getFechaFin());
-		String fechaMatricula=formatter.format(curso.getFecha_matriculacion());
+		String fechaMatricula=formatter.format(curso.getFechaMatriculacion());
 		String fechaActual = formatter.format(actual);
 
 		String sql = "INSERT INTO titulospropiosuclm2022.CursoPropio (Id, nombre, ECTS, FechaInicio, FechaFin, TasaMatricula, Edicion,"
@@ -36,7 +35,7 @@ public class CursoPropioDAO {
 				+ curso.getCentro().getNombre() + "','" + curso.getDirector().getDNI() + "','"
 				+ curso.getSecretario().getDNI() + "','" + fechaActual + "','" + fechaMatricula + "','Nada')";
 
-		resultado = GestorBD.ExecuteUpdate(sql);
+		resultado = GestorBD.executeUpdate(sql);
 
 		return resultado;
 	}
@@ -61,7 +60,7 @@ public class CursoPropioDAO {
 				+ "\'";
 
 		try {
-			resultado = GestorBD.ExecuteUpdate(sql);
+			resultado = GestorBD.executeUpdate(sql);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			Logger.log("mensaje de error");
@@ -120,9 +119,9 @@ public class CursoPropioDAO {
 	 * @throws Exception
 	 */
 	public static List<CursoPropio> listarEdicionesCursos(String edicion) throws Exception {
-		String SQL = "SELECT * FROM CursoPropio WHERE Edicion = \"" + edicion + "\"";
-		Vector<Object> v = GestorBD.ExecuteQuery(SQL);
-		List<CursoPropio> listaCursos = new ArrayList<CursoPropio>();
+		String sql = "SELECT * FROM CursoPropio WHERE Edicion = \"" + edicion + "\"";
+		Vector<Object> v = GestorBD.executeQuery(sql);
+		List<CursoPropio> listaCursos = new ArrayList<>();
 		listaCursos = recogerCursos(v, listaCursos);
 		
 		return listaCursos;
@@ -134,7 +133,7 @@ public class CursoPropioDAO {
 		String sql = "SELECT * FROM titulospropiosuclm2022.CursoPropio ";
 		Vector<Object> cursos = null;
 		try {
-			cursos = GestorBD.ExecuteQuery(sql);
+			cursos = GestorBD.executeQuery(sql);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -166,8 +165,7 @@ listaCursos = recogerCursos(cursos, listaCursos);
 		return listaCursos;
 	}
 
-	public static List<CursoPropio> obtenerCursosPorTipo(List<CursoPropio> cursos, EstadoCurso estado)
-			throws ClassNotFoundException {
+	public static List<CursoPropio> obtenerCursosPorTipo(List<CursoPropio> cursos, EstadoCurso estado) {
 
 		List<CursoPropio> listaCursos = new ArrayList<>();
 		while (!cursos.isEmpty()) {

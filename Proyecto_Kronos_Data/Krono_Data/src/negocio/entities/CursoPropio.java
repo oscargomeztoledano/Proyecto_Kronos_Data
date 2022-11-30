@@ -20,9 +20,9 @@ public class CursoPropio {
 	private Date fechaFin;
 	private double tasaMatricula;
 	private int edicion;
-	private Date ultima_modificacion;
-	private Date fecha_matriculacion;
-	private String Motivo_Rechazo;
+	private Date ultimamodificacion;
+	private Date fechamatriculacion;
+	private String motivorechazo;
 
 	
 
@@ -48,7 +48,7 @@ public class CursoPropio {
 	}
 
 	public CursoPropio(String id, String nombre, int eCTS, Date fechaInicio, Date fechaFin, double tasaMatricula,
-			int edicion,TipoCurso tipocurso,EstadoCurso estadocurso,Centro centro,ProfesorUCLM director,ProfesorUCLM secretario,Date ultima_modificacion,Date fecha_matricula,String motivo_rechazo) {
+			int edicion,TipoCurso tipocurso,EstadoCurso estadocurso,Centro centro,ProfesorUCLM director,ProfesorUCLM secretario,Date ultimamodificacion,Date fechamatriculacion,String motivorechazo) {
 
 		this.id = id;
 		this.nombre = nombre;
@@ -62,9 +62,9 @@ public class CursoPropio {
 		this.centro=centro;
 		this.director=director;
 		this.secretario=secretario;
-		this.Motivo_Rechazo=motivo_rechazo;
-		this.ultima_modificacion=ultima_modificacion;
-		this.fecha_matriculacion=fecha_matricula;
+		this.motivorechazo=motivorechazo;
+		this.ultimamodificacion=ultimamodificacion;
+		this.fechamatriculacion=fechamatriculacion;
 		
 	}
 	
@@ -159,28 +159,28 @@ public class CursoPropio {
 		this.ects = ects;
 	}
 
-	public Date getUltima_modificacion() {
-		return ultima_modificacion;
+	public Date getUltimaModificacion() {
+		return ultimamodificacion;
 	}
 
-	public void setUltima_modificacion(Date ultima_modificacion) {
-		this.ultima_modificacion = ultima_modificacion;
+	public void setUltimaModificacion(Date ultimamodificacion) {
+		this.ultimamodificacion = ultimamodificacion;
 	}
 
-	public Date getFecha_matriculacion() {
-		return fecha_matriculacion;
+	public Date getFechaMatriculacion() {
+		return fechamatriculacion;
 	}
 
-	public void setFecha_matriculacion(Date fecha_matriculacion) {
-		this.fecha_matriculacion = fecha_matriculacion;
+	public void setFechaMatriculacion(Date fechamatriculacion) {
+		this.fechamatriculacion = fechamatriculacion;
 	}
 
-	public String getMotivo_Rechazo() {
-		return Motivo_Rechazo;
+	public String getMotivoRechazo() {
+		return motivorechazo;
 	}
 
-	public void setMotivo_Rechazo(String motivo_Rechazo) {
-		Motivo_Rechazo = motivo_Rechazo;
+	public void setMotivoRechazo(String motivorechazo) {
+		this.motivorechazo = motivorechazo;
 	}
 
 	public Date getFechaInicio() {

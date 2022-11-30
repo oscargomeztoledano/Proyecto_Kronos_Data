@@ -8,37 +8,32 @@ import negocio.entities.ProfesorUCLM;
 import negocio.entities.Usuario;
 
 public class ProfesorDAO {
-	public static Vector<Object> get(String SQL) throws Exception {
-		Vector<Object> profesor = GestorBD.ExecuteQuery(SQL);
+	public static Vector<Object> get(String sql) throws Exception {
 
-		return profesor;
+		return GestorBD.executeQuery(sql);
 	}
-	public static Vector<Object> getOne(String SQL) throws Exception {
-		Vector<Object> profesor = GestorBD.oneExecuteQuery(SQL);
+	public static Vector<Object> getOne(String sql) throws Exception {
 
-		return profesor;
+		return GestorBD.oneExecuteQuery(sql);
 	}
 
 	public static Profesor seleccionarProfesor(Usuario usuario) throws Exception {
-		String SQL = "SELECT * FROM Profesor WHERE Dni = \'"+usuario.getDNI()+"\'";
+		String sql = "SELECT * FROM Profesor WHERE Dni = \'"+usuario.getDNI()+"\'";
 
-		Vector<Object> profesor = getOne(SQL);
-
-		Profesor prof = new Profesor(usuario.getDNI(),usuario.getContrasena(),usuario.getTipo(), profesor.get(1).toString(),profesor.get(2).toString(),Boolean.parseBoolean(profesor.get(3).toString()));
-        
-		return prof;
+		Vector<Object> profesor = getOne(sql);
+     
+		return new Profesor(usuario.getDNI(),usuario.getContrasena(),usuario.getTipo(), profesor.get(1).toString(),profesor.get(2).toString(),Boolean.parseBoolean(profesor.get(3).toString()));
 	}
 	public static ProfesorUCLM seleccionarProfesorUCLM(Profesor profesor) throws Exception {
-		String SQL = "SELECT * FROM ProfesorUCLM WHERE Dni = \'"+profesor.getDNI()+"\'";
+		String sql = "SELECT * FROM ProfesorUCLM WHERE Dni = \'"+profesor.getDNI()+"\'";
 
-		Vector<Object> profesorUCLM = getOne(SQL);
-		
-		ProfesorUCLM prof = new ProfesorUCLM(profesor.getDNI(),profesor.getContrasena(),profesor.getTipo(),profesor.getNombre(),profesor.getApellidos(),profesor.isDoctor(),ComparacionCategoriaProfesor(profesorUCLM.get(1).toString()),CentroDAO.seleccionarCentro(profesorUCLM.get(2).toString()));
-        
-		return prof;
+		Vector<Object> profesorUCLM = getOne(sql);
+		      
+		return new ProfesorUCLM(profesor.getDNI(),profesor.getContrasena(),profesor.getTipo(),profesor.getNombre(),profesor.getApellidos(),profesor.isDoctor(),comparacionCategoriaProfesor(profesorUCLM.get(1).toString()),CentroDAO.seleccionarCentro(profesorUCLM.get(2).toString()));
+
 	}
 	
-	public static CategoriaProfesor ComparacionCategoriaProfesor(String categoriaprofesor) {
+	public static CategoriaProfesor comparacionCategoriaProfesor(String categoriaprofesor) {
 		CategoriaProfesor categoria = null;
 		switch (categoriaprofesor) {
 		case "ASOCIADO":

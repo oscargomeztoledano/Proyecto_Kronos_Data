@@ -67,12 +67,12 @@ public class GestorBD {
 
 	}
 
-	public static Vector<Object> ExecuteQuery(String SQL) throws ClassNotFoundException { // Sacar datos de BD
+	public static Vector<Object> executeQuery(String sql) throws ClassNotFoundException { // Sacar datos de BD
 		try {
 
 			conectarBD();
 			Statement st = mBD.createStatement();
-			ResultSet result = st.executeQuery(SQL);
+			ResultSet result = st.executeQuery(sql);
 			Vector<Object> v = obtenerResulset(result);
 			st.close();
 			desconectarBD();
@@ -84,13 +84,13 @@ public class GestorBD {
 		}
 	}
 
-	public static Vector<Object> oneExecuteQuery(String SQL) throws Exception {
+	public static Vector<Object> oneExecuteQuery(String sql) throws Exception {
 		try {
 
 			conectarBD();
 			Statement st = mBD.createStatement();
-			ResultSet result = st.executeQuery(SQL);
-			Vector<Object> v = OneResulset(result);
+			ResultSet result = st.executeQuery(sql);
+			Vector<Object> v = oneResulset(result);
 			st.close();
 			desconectarBD();
 			return v;
@@ -101,13 +101,13 @@ public class GestorBD {
 		}
 	}
 
-	public static int ExecuteUpdate(String SQL) throws ClassNotFoundException { // Updates a BD
+	public static int executeUpdate(String sql) throws ClassNotFoundException { // Updates a BD
 		int resultado = 0;
 		try {
 
 			conectarBD();
 			Statement st = mBD.createStatement();
-			st.executeUpdate(SQL);
+			st.executeUpdate(sql);
 			st.close();
 			desconectarBD();
 			resultado = 1;
@@ -121,9 +121,9 @@ public class GestorBD {
 	}
 
 	public static Vector<Object> obtenerResulset(ResultSet result) throws SQLException {
-		Vector<Object> vectoradevolver = new Vector<Object>();
+		Vector<Object> vectoradevolver = new Vector<>();
 		while (result.next()) {
-			Vector<Object> v = new Vector<Object>();
+			Vector<Object> v = new Vector<>();
 			int i = 1;
 			while (true) {
 				try {
@@ -138,8 +138,8 @@ public class GestorBD {
 		return vectoradevolver;
 	}
 
-	public static Vector<Object> OneResulset(ResultSet result) throws SQLException {
-		Vector<Object> v = new Vector<Object>();
+	public static Vector<Object> oneResulset(ResultSet result) throws SQLException {
+		Vector<Object> v = new Vector<>();
 
 		while (result.next()) {
 			for (int i = 1; i < 20; i++) {

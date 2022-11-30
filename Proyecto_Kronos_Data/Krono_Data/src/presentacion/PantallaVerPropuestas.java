@@ -68,9 +68,9 @@ public class PantallaVerPropuestas extends javax.swing.JFrame {
 			c[9] = curso.getCentro().getNombre();
 			c[10] = curso.getDirector().getDNI();
 			c[11] = curso.getSecretario().getDNI();
-			c[12]=fecha.format(curso.getUltima_modificacion());
-			c[13]=fecha.format(curso.getFecha_matriculacion());
-			c[14]=curso.getMotivo_Rechazo();
+			c[12]=fecha.format(curso.getUltimaModificacion());
+			c[13]=fecha.format(curso.getFechaMatriculacion());
+			c[14]=curso.getMotivoRechazo();
 
 			tabla.addRow(c);
 

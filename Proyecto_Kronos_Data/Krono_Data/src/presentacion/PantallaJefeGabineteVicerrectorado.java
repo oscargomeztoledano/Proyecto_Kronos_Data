@@ -307,9 +307,9 @@ public class PantallaJefeGabineteVicerrectorado extends javax.swing.JFrame {
 						c[9] = curso.getCentro().getNombre();
 						c[10] = curso.getDirector().getDNI();
 						c[11] = curso.getSecretario().getDNI();
-						c[12] = fecha.format(curso.getFecha_matriculacion());
-						c[13] = fecha.format(curso.getUltima_modificacion());
-						c[14] = curso.getMotivo_Rechazo();
+						c[12] = fecha.format(curso.getFechaMatriculacion());
+						c[13] = fecha.format(curso.getUltimaModificacion());
+						c[14] = curso.getMotivoRechazo();
 						tabla.addRow(c);
 
 					}
@@ -371,9 +371,9 @@ public class PantallaJefeGabineteVicerrectorado extends javax.swing.JFrame {
 						a[i][9] = c.getCentro().getNombre();
 						a[i][10] = c.getDirector().getDNI();
 						a[i][11] = c.getSecretario().getDNI();
-						a[i][12]=fecha.format(c.getFecha_matriculacion());
-						a[i][13]=fecha.format(c.getUltima_modificacion());
-						a[i][14]=c.getMotivo_Rechazo();
+						a[i][12]=fecha.format(c.getFechaMatriculacion());
+						a[i][13]=fecha.format(c.getUltimaModificacion());
+						a[i][14]=c.getMotivoRechazo();
 
 						i++;
 					}

@@ -123,8 +123,8 @@ public class GestorPropuestasCursos {
 	public int evaluarPropuesta(CursoPropio curso,EstadoCurso estado,String motivo) {
 		int resultado=0;
 		curso.setEstado(estado);
-		curso.setMotivo_Rechazo(motivo);
-		curso.setUltima_modificacion(new Date());
+		curso.setMotivoRechazo(motivo);
+		curso.setUltimaModificacion(new Date());
 		resultado =CursoPropioDAO.editarCurso(curso);
 		return resultado;
 	}

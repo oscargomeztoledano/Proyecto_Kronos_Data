@@ -23,7 +23,7 @@ public class MatriculaDAO {
 		String sql = "INSERT INTO Matricula (CursoId, DniAlumno, fecha, pagado) VALUES ( '" + mat.getTitulo().getId()
 				+ "', '" + mat.getEstudiante().getDNI() + "', '" + fechaTexto + "'," + bit + ")";
 		try {
-			resultadoMatricula = GestorBD.ExecuteUpdate(sql);
+			resultadoMatricula = GestorBD.executeUpdate(sql);
 
 		} catch (ClassNotFoundException e) {
 
@@ -35,7 +35,7 @@ public class MatriculaDAO {
 	
 	public static Collection obtenerMatriculasCurso(CursoPropio curso) throws ClassNotFoundException{
 		String sql = "SELECT * FROM Matriculas WHERE CursoId = '" + curso.getId() + "'";
-		Vector<Object> matriculas = GestorBD.ExecuteQuery(sql);
+		Vector<Object> matriculas = GestorBD.executeQuery(sql);
 		Collection mat;
 		
 		while(!matriculas.isEmpty()) {

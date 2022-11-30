@@ -96,9 +96,9 @@ public class PantallaEmpleadosVicerrectorado extends JFrame {
 			c[9] = curso.getCentro().getNombre();
 			c[10] = curso.getDirector().getDNI();
 			c[11] = curso.getSecretario().getDNI();
-			c[12]=fecha.format(curso.getFecha_matriculacion());
-			c[13]=fecha.format(curso.getUltima_modificacion());
-			c[14]=curso.getMotivo_Rechazo();
+			c[12]=fecha.format(curso.getFechaMatriculacion());
+			c[13]=fecha.format(curso.getUltimaModificacion());
+			c[14]=curso.getMotivoRechazo();
 
 			
 			
