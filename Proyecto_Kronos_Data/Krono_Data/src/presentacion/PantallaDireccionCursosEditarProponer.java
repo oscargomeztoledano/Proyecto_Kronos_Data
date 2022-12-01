@@ -95,13 +95,10 @@ public class PantallaDireccionCursosEditarProponer extends javax.swing.JFrame {
 					else
 						jTextArea1.setText("Error en la propuesta");
 					
-				} catch (NumberFormatException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				}
+				} 
             }
         });
 

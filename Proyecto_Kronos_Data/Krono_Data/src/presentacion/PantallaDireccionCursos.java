@@ -29,10 +29,10 @@ public class PantallaDireccionCursos extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel label_1 = new JLabel("Estado");
-		label_1.setForeground(Color.RED);
-		label_1.setBounds(6, 140, 61, 16);
-		contentPane.add(label_1);
+		JLabel label1 = new JLabel("Estado");
+		label1.setForeground(Color.RED);
+		label1.setBounds(6, 140, 61, 16);
+		contentPane.add(label1);
 		textPane = new JTextPane();
 		textPane.setToolTipText("Panel para mostrar el restultado de la comprobaci\u00F3n de login o las excepciones lanzadas");
 		textPane.setEditable(false);
@@ -40,14 +40,14 @@ public class PantallaDireccionCursos extends JFrame {
 		contentPane.add(textPane);
 		textPane.setText(profesor.toString());
 		
-		JLabel label_2 = new JLabel("Como profesor puede: ");
-		label_2.setBounds(10,20,130,30);
-		contentPane.add(label_2);
+		JLabel label2 = new JLabel("Como profesor puede: ");
+		label2.setBounds(10,20,130,30);
+		contentPane.add(label2);
 		
-		JButton Bproponer = new JButton("Proponer/editar títulos o cursos");
-		Bproponer.setBounds(125, 72, 215, 30);
-		contentPane.add(Bproponer);
-		Bproponer.addActionListener(new ActionListener() {
+		JButton bproponer = new JButton("Proponer/editar títulos o cursos");
+		bproponer.setBounds(125, 72, 215, 30);
+		contentPane.add(bproponer);
+		bproponer.addActionListener(new ActionListener() {
 			
 			
 			public void actionPerformed(ActionEvent e) {
@@ -61,10 +61,10 @@ public class PantallaDireccionCursos extends JFrame {
 				}
 			}
 		});
-		JButton Bver = new JButton("Ver las propuestas de cursos");
-		Bver.setBounds(125, 112, 215, 30);
-		contentPane.add(Bver);
-		Bver.addActionListener(new ActionListener() {
+		JButton bver = new JButton("Ver las propuestas de cursos");
+		bver.setBounds(125, 112, 215, 30);
+		contentPane.add(bver);
+		bver.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				PantallaDireccionCursosEditarProponer frame;
