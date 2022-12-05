@@ -2,6 +2,7 @@ package negocio.controllers;
 
 import java.security.SecureRandom;
 import java.text.SimpleDateFormat;
+import java.util.Collection;
 import java.util.Date;
 
 import negocio.entities.*;
@@ -9,11 +10,12 @@ import persistencia.CentroDAO;
 import persistencia.ProfesorDAO;
 import persistencia.UsuarioDAO;
 import persistencia.CursoPropioDAO;
+import persistencia.MateriaDAO;
 
 public class GestorPropuestasCursos {
 
 	public int realizarPropuestaCurso(String nombre, int eCTS, String fechaI, String fechaFin, double tasaMatricula,
-            int edicion, String tipocurso, String centronombre, ProfesorUCLM director, String secretarioDni,String fechaMatriculacion) throws Exception {
+            int edicion, String tipocurso, String centronombre, ProfesorUCLM director, String secretarioDni,String fechaMatriculacion, Collection<Materia> materias) throws Exception {
 		
 		SimpleDateFormat fecha = new SimpleDateFormat("yyyy-MM-dd");
 		Date fechaInicio = fecha.parse(fechaI);
@@ -100,6 +102,11 @@ public class GestorPropuestasCursos {
 				tipo, EstadoCurso.PROPUESTO, centro, director, secretario,new Date(),fechaMatricula," ");
 		
 		int resultado=0;
+		for (Materia m:materias) {
+			m.setResponsable(ProfesorDAO.seleccionarProfesor(UsuarioDAO.seleccionarUsuario(m.getDniProfesor())));
+			resultado= MateriaDAO.insertarMateriaCurso(m, curso);
+		}
+		
 		resultado= CursoPropioDAO.crearNuevoCurso(curso);
 		
 		

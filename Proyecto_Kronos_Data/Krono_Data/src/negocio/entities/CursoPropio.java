@@ -68,6 +68,28 @@ public class CursoPropio {
 		
 	}
 	
+	public CursoPropio(String id, String nombre, int eCTS, Date fechaInicio, Date fechaFin, double tasaMatricula,
+			int edicion,TipoCurso tipocurso,EstadoCurso estadocurso,Centro centro,ProfesorUCLM director,ProfesorUCLM secretario,Date ultimamodificacion,Date fechamatriculacion,String motivorechazo, Collection<Materia> materia) {
+
+		this.id = id;
+		this.nombre = nombre;
+		this.ects = eCTS;
+		this.fechaInicio = fechaInicio;
+		this.fechaFin = fechaFin;
+		this.tasaMatricula = tasaMatricula;
+		this.edicion = edicion;
+		this.estado=estadocurso;
+		this.tipo=tipocurso;
+		this.centro=centro;
+		this.director=director;
+		this.secretario=secretario;
+		this.motivorechazo=motivorechazo;
+		this.ultimamodificacion=ultimamodificacion;
+		this.fechamatriculacion=fechamatriculacion;
+		this.materias=materia;
+		
+	}
+	
 
 	
 
