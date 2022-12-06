@@ -19,9 +19,9 @@ public class MateriaDAO {
 		String fechaIn = formatter.format(materia.getFechaInicio());
 		String fechaFinal = formatter.format(materia.getFechaFin());
 		try {
-			String sql = "INSERT INTO titulospropiosuclm2022.Materia (cursoId, nombre, horas, fechaInicio, fechaFin, dniProfesor) VALUES"
-					+ " ('"+ curso.getId() +"','"+ materia.getNombre() +"', "+ materia.getHoras() +", '"+ fechaIn +"', '"+ fechaFinal +"', '"
-					+ materia.getResponsable().getDNI() +"')";
+			String sql = "INSERT INTO titulospropiosuclm2022.Materia (Nombre, Horas, fechaInicio, fechaFin, cursoId, dniProfesor) VALUES"
+					+ " ('"+ materia.getNombre() +"', "+ materia.getHoras() +", '"+ fechaIn +"', '"+ fechaFinal +"', '"+ curso.getId() +"', "
+							+"'"+ materia.getResponsable().getDNI() +"')";
 
 			resultado = GestorBD.executeUpdate(sql);
 
