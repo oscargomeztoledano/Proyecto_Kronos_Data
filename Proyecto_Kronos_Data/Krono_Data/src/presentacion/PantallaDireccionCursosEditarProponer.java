@@ -5,11 +5,12 @@
 package presentacion;
 
 
-import java.sql.Date;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 
 import negocio.controllers.GestorPropuestasCursos;
 import negocio.entities.Materia;
@@ -215,7 +216,7 @@ public class PantallaDireccionCursosEditarProponer extends javax.swing.JFrame {
         jLabel9.setForeground(java.awt.Color.red);
         jLabel9.setText("Estado");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(c));
 
         jLabel10.setText("Nombre del curso");
 
@@ -230,8 +231,8 @@ public class PantallaDireccionCursosEditarProponer extends javax.swing.JFrame {
 		            		Date fechaIn = null;
 		            		Date fechaFinal = null;
 							try {
-								fechaIn = (Date) formatter.parse(jTextField14.getText());
-								fechaFinal = (Date) formatter.parse(jTextField13.getText());
+								fechaIn =  formatter.parse(jTextField14.getText());
+								fechaFinal = formatter.parse(jTextField13.getText());
 							}
 							catch (ParseException e) {
 								e.printStackTrace();

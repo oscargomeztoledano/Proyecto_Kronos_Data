@@ -122,19 +122,20 @@ public class GestorPropuestasCursos {
 				tipo, EstadoCurso.PROPUESTO, centro, director, secretario,new Date(),fechaMatricula," ");
 		
 		int resultado=0;
+	
+		
+		resultado= CursoPropioDAO.crearNuevoCurso(curso);
+		
 		for (Materia m:materias) {
-			
-			if (m.getFechaInicio().after(fechaInicio) && m.getFechaFin().before(fechaFinal)) {
+			if ((m.getFechaInicio().after(curso.getFechaInicio()) && m.getFechaFin().before(curso.getFechaFin())) ||(m.getFechaInicio().equals(curso.getFechaInicio()) && m.getFechaFin().equals(curso.getFechaFin())) ) {
+				
 				m.setResponsable(ProfesorDAO.seleccionarProfesor(UsuarioDAO.seleccionarUsuario(m.getDniProfesor())));
+				
 				resultado= MateriaDAO.insertarMateriaCurso(m, curso);
 			}
 			else
 				Logger.log("Error. La fecha de la materia debe de estar comprendida entre la fecha incio y fin del curso");
 		}
-		
-		resultado= CursoPropioDAO.crearNuevoCurso(curso);
-		
-		
 		return resultado;
 		
 	}
