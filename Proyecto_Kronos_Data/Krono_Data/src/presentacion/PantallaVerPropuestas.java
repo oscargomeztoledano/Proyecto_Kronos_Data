@@ -23,13 +23,10 @@ import persistencia.CursoPropioDAO;
  */
 public class PantallaVerPropuestas extends javax.swing.JFrame {
 
-	private static TableModel Tabla = null;
+	private static TableModel tabla = null;
 	private JPanel contentPane;
 	private JScrollPane rollo;
 	private JTable tablaCursos;
-	private JTextPane textPane;
-	private JLabel label_2;
-	private JTextArea textFieldMotivo;
 	List<CursoPropio> cursos = CursoPropioDAO.obtenerCursosPorTipo(CursoPropioDAO.obtenerCursos(), EstadoCurso.PROPUESTO);
 	
 	public PantallaVerPropuestas() throws Exception{
@@ -42,10 +39,10 @@ public class PantallaVerPropuestas extends javax.swing.JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 	
-		String cabecera[] = { "Id", "Nombre", "ETCS", "Fecha Inicio", "Fecha Fin", "Tasa Matricula", "Edicion",
+		String[] cabecera = { "Id", "Nombre", "ETCS", "Fecha Inicio", "Fecha Fin", "Tasa Matricula", "Edicion",
 				"Estado", "Tipo", "Centro", "Director", "Secretario","Ultima Modificacion","Fecha Matricula","Motivo de Rechazo" };
-		Tabla = new DefaultTableModel(null, cabecera);
-		tablaCursos = new JTable(Tabla);
+		tabla = new DefaultTableModel(null, cabecera);
+		tablaCursos = new JTable(tabla);
 		rollo = new JScrollPane(tablaCursos);
 		add(rollo);
 		rollo.setBounds(6, 200, 1270, 400);

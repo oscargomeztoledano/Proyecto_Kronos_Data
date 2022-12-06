@@ -147,7 +147,7 @@ public class GestorBD {
 					v.add(result.getObject(i));
 
 				} catch (SQLException ex) {
-					continue;
+					System.out.println(ex);
 				}
 			}
 		}

@@ -15,15 +15,12 @@ import java.awt.event.*;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
-import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.RowSorter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
-import java.awt.print.PrinterException;
 
 /**
  *
@@ -120,17 +117,17 @@ public class PantallaJefeGabineteVicerrectorado extends javax.swing.JFrame {
 
         scrollPane2.add(jScrollPane1);
 
-        javax.swing.GroupLayout ListarEdicionesLayout = new javax.swing.GroupLayout(ListarEdiciones.getContentPane());
-        ListarEdiciones.getContentPane().setLayout(ListarEdicionesLayout);
-        ListarEdicionesLayout.setHorizontalGroup(
-            ListarEdicionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ListarEdicionesLayout.createSequentialGroup()
+        javax.swing.GroupLayout listarEdicionesLayout = new javax.swing.GroupLayout(ListarEdiciones.getContentPane());
+        ListarEdiciones.getContentPane().setLayout(listarEdicionesLayout);
+        listarEdicionesLayout.setHorizontalGroup(
+            listarEdicionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(listarEdicionesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(ListarEdicionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(ListarEdicionesLayout.createSequentialGroup()
-                        .addGroup(ListarEdicionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(listarEdicionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(listarEdicionesLayout.createSequentialGroup()
+                        .addGroup(listarEdicionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
-                            .addGroup(ListarEdicionesLayout.createSequentialGroup()
+                            .addGroup(listarEdicionesLayout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(18, 18, 18)
                                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -139,13 +136,13 @@ public class PantallaJefeGabineteVicerrectorado extends javax.swing.JFrame {
                     .addComponent(scrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
-        ListarEdicionesLayout.setVerticalGroup(
-            ListarEdicionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ListarEdicionesLayout.createSequentialGroup()
+        listarEdicionesLayout.setVerticalGroup(
+            listarEdicionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(listarEdicionesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addGroup(ListarEdicionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(listarEdicionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -159,13 +156,13 @@ public class PantallaJefeGabineteVicerrectorado extends javax.swing.JFrame {
 
         lblUserIngresos.setText("Usuario: "+user.getDNI());
 
-        javax.swing.GroupLayout ConsultarIngresosLayout = new javax.swing.GroupLayout(ConsultarIngresos.getContentPane());
-        ConsultarIngresos.getContentPane().setLayout(ConsultarIngresosLayout);
-        ConsultarIngresosLayout.setHorizontalGroup(
-            ConsultarIngresosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ConsultarIngresosLayout.createSequentialGroup()
+        javax.swing.GroupLayout consultarIngresosLayout = new javax.swing.GroupLayout(ConsultarIngresos.getContentPane());
+        ConsultarIngresos.getContentPane().setLayout(consultarIngresosLayout);
+        consultarIngresosLayout.setHorizontalGroup(
+            consultarIngresosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(consultarIngresosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(ConsultarIngresosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(consultarIngresosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblUserIngresos)
                     .addComponent(lblSinTit)
                     .addComponent(labelConTit)
@@ -173,9 +170,9 @@ public class PantallaJefeGabineteVicerrectorado extends javax.swing.JFrame {
                     .addComponent(lblTotal))
                 .addContainerGap(336, Short.MAX_VALUE))
         );
-        ConsultarIngresosLayout.setVerticalGroup(
-            ConsultarIngresosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ConsultarIngresosLayout.createSequentialGroup()
+        consultarIngresosLayout.setVerticalGroup(
+            consultarIngresosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(consultarIngresosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblUserIngresos)
                 .addGap(30, 30, 30)
@@ -275,15 +272,15 @@ public class PantallaJefeGabineteVicerrectorado extends javax.swing.JFrame {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				String cabecera[] = { "Id", "Nombre", "ETCS", "Fecha Inicio", "Fecha Fin", "Tasa Matricula", "Edicion",
+				String[] cabecera = { "Id", "Nombre", "ETCS", "Fecha Inicio", "Fecha Fin", "Tasa Matricula", "Edicion",
 						"Estado", "Tipo", "Centro", "Director", "Secretario", "Fecha Matricula", "Ultima Modificacion",
 						"Motivo de Rechazo" };
-				DefaultTableModel Tabla = new DefaultTableModel(null, cabecera);
-				JTable tablaCursos = new JTable(Tabla);
+				DefaultTableModel tabla = new DefaultTableModel(null, cabecera);
+				JTable tablaCursos = new JTable(tabla);
 				JScrollPane rollo = new JScrollPane(tablaCursos);
 				add(rollo);
-				DefaultTableModel tabla = (DefaultTableModel) tablaCursos.getModel();
-				TableRowSorter<TableModel> tablaOrdenada = new TableRowSorter<TableModel>(tabla);
+				DefaultTableModel tabla1 = (DefaultTableModel) tablaCursos.getModel();
+				TableRowSorter<TableModel> tablaOrdenada = new TableRowSorter<TableModel>(tabla1);
 				tablaCursos.setRowSorter(tablaOrdenada);
 				String[] c = new String[cabecera.length];
 

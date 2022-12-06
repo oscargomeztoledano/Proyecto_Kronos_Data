@@ -4,10 +4,7 @@
  */
 package presentacion;
 
-import negocio.entities.CursoPropio;
 import negocio.controllers.GestorPropuestasCursos;
-import negocio.entities.EstadoCurso;
-import negocio.entities.Profesor;
 import negocio.entities.ProfesorUCLM;
 import negocio.entities.TipoCurso;
 
