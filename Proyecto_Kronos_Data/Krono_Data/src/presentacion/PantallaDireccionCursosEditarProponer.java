@@ -4,7 +4,6 @@
  */
 package presentacion;
 
-import negocio.entities.CursoPropio;
 
 import java.sql.Date;
 import java.text.ParseException;
@@ -13,9 +12,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import negocio.controllers.GestorPropuestasCursos;
-import negocio.entities.EstadoCurso;
 import negocio.entities.Materia;
-import negocio.entities.Profesor;
 import negocio.entities.ProfesorUCLM;
 import negocio.entities.TipoCurso;
 
@@ -25,7 +22,7 @@ import negocio.entities.TipoCurso;
  */
 public class PantallaDireccionCursosEditarProponer extends javax.swing.JFrame {
 
-    /**
+	/**
      * Creates new form PantallaDireccionCursosEditarProponer
      */
     public PantallaDireccionCursosEditarProponer(ProfesorUCLM profesor) {
@@ -49,7 +46,7 @@ public class PantallaDireccionCursosEditarProponer extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents(final String [] c, final ProfesorUCLM profesor) {
-
+    	
     	final Collection<Materia> materias = new ArrayList<Materia>();
         jFrame1 = new javax.swing.JFrame();
         jButton3 = new javax.swing.JButton();
@@ -89,29 +86,18 @@ public class PantallaDireccionCursosEditarProponer extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jTextField8 = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
+        jTextField15 = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
 
         jButton3.setText("Insertar");
-        
-		        
-            
-
-        jTextField9.setToolTipText("");
 
         jLabel11.setText("Nombre materia");
 
-        jTextField10.setToolTipText("");
-
         jLabel12.setText("DNI Profesor");
-
-        jTextField11.setToolTipText("");
 
         jLabel13.setText("Horas");
 
-        jTextField13.setToolTipText("");
-
         jLabel15.setText("Fecha Fin");
-
-        jTextField14.setToolTipText("");
 
         jLabel16.setText("Fecha Inicio");
 
@@ -171,36 +157,22 @@ public class PantallaDireccionCursosEditarProponer extends javax.swing.JFrame {
                 .addContainerGap(40, Short.MAX_VALUE))
         );
 
-        jTextField12.setToolTipText("");
-
         jLabel14.setText("Nombre materia");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTextField1.setText("jTextField1");
-
         jLabel1.setText("DNI Secretario");
-
-        jTextField2.setText("jTextField2");
 
         jLabel2.setText("Fecha inicio");
 
         jLabel3.setText("Créditos");
 
-        jTextField3.setText("jTextField3");
-
         jLabel4.setText("Centro");
-
-        jTextField4.setText("jTextField4");
 
         jLabel5.setText("Fecha finalización");
 
-        jTextField5.setText("jTextField5");
-
         jLabel6.setText("Tasa matrícula");
 
-        jTextField6.setText("jTextField6");
-       
 
         jButton1.setText("Proponer");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -211,7 +183,7 @@ public class PantallaDireccionCursosEditarProponer extends javax.swing.JFrame {
                     try {
 						resultado = gestor.realizarPropuestaCurso(jTextField8.getText(), Integer.parseInt(jTextField3.getText()), jTextField2.getText(), jTextField5.getText(),
 						       Double.parseDouble(jTextField6.getText()), Integer.parseInt(jTextField7.getText()), c[jComboBox1.getSelectedIndex()],
-						       jTextField4.getText(), profesor, jTextField1.getText(),jTextField2.getText(), materias);
+						       jTextField4.getText(), profesor, jTextField1.getText(),jTextField15.getText(), materias);
 					} catch (NumberFormatException e) {
 						e.printStackTrace();
 					} catch (Exception e) {
@@ -230,13 +202,11 @@ public class PantallaDireccionCursosEditarProponer extends javax.swing.JFrame {
         });
 
         jButton2.setText("Editar");
-        
 
         jLabel7.setText("Edición del curso");
 
         jLabel8.setText("Tipo de curso");
 
-        jTextField7.setText("jTextField7");
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -245,11 +215,9 @@ public class PantallaDireccionCursosEditarProponer extends javax.swing.JFrame {
         jLabel9.setForeground(java.awt.Color.red);
         jLabel9.setText("Estado");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(c));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel10.setText("Nombre del curso");
-
-        jTextField8.setText("jTextField8");
 
         jButton4.setText("Insertar materias");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -280,7 +248,8 @@ public class PantallaDireccionCursosEditarProponer extends javax.swing.JFrame {
 		        }
             }
 		 });
-        
+
+        jLabel17.setText("Fecha de matriculación");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -317,22 +286,28 @@ public class PantallaDireccionCursosEditarProponer extends javax.swing.JFrame {
                                     .addComponent(jTextField5)
                                     .addComponent(jTextField6)
                                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jTextField15)
+                                    .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(129, 129, 129)
                         .addComponent(jButton4)))
-                .addContainerGap(67, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
-                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel17))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -402,6 +377,7 @@ public class PantallaDireccionCursosEditarProponer extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -418,6 +394,7 @@ public class PantallaDireccionCursosEditarProponer extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField12;
     private javax.swing.JTextField jTextField13;
     private javax.swing.JTextField jTextField14;
+    private javax.swing.JTextField jTextField15;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
