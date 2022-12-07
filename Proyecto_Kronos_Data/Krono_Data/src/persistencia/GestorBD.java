@@ -27,9 +27,9 @@ public class GestorBD {
 		try {
 			Class.forName(driver);
 			String dbName = "titulospropiosuclm2022";
-			String userName = "admin";
-			String password = "admin1234";
-			String hostname = "titulospropiosuclm2022.cq9ufzvy2if8.eu-west-3.rds.amazonaws.com";
+			String userName = "root";//admin
+			String password = "victor";//admin1234
+			String hostname = "localhost";//titulospropiosuclm2022.cq9ufzvy2if8.eu-west-3.rds.amazonaws.com
 			String port = "3306";
 			String jdbcUrl = "jdbc:mysql://" + hostname + ":" + port + "/" + dbName + "?user=" + userName + "&password="
 					+ password;
@@ -115,7 +115,6 @@ public class GestorBD {
 			PantallaErrores err = new PantallaErrores(e.toString());
 			err.setVisible(true);
 			resultado = 0;
-			e.printStackTrace();
 		}
 		return resultado;
 	}
@@ -147,7 +146,7 @@ public class GestorBD {
 					v.add(result.getObject(i));
 
 				} catch (SQLException ex) {
-					System.out.println(ex);
+					continue;
 				}
 			}
 		}

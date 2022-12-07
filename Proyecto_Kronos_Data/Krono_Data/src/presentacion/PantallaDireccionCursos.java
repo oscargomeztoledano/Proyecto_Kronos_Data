@@ -67,9 +67,9 @@ public class PantallaDireccionCursos extends JFrame {
 		bver.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				PantallaDireccionCursosEditarProponer frame;
+				PantallaVerPropuestas frame;
 				try {
-					frame = new PantallaDireccionCursosEditarProponer(profesor);
+					frame = new PantallaVerPropuestas();
 					frame.setVisible(true);
 
 				} catch (Exception e1) {

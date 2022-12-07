@@ -4,6 +4,7 @@ import java.util.Vector;
 
 import negocio.entities.Centro;
 import net.ucanaccess.util.Logger;
+import presentacion.PantallaErrores;
 
 public class CentroDAO {
 	public static Vector<Object> getOne(String sql) throws Exception {
@@ -24,7 +25,8 @@ public class CentroDAO {
 
 			return ce;
 		} catch (Exception e) {
-			Logger.log("mensaje de error");
+			PantallaErrores err = new PantallaErrores(e.toString());
+			err.setVisible(true);
 		}
 		return ce;
 	}

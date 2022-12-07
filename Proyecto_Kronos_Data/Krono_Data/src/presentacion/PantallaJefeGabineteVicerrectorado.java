@@ -228,11 +228,11 @@ public class PantallaJefeGabineteVicerrectorado extends javax.swing.JFrame {
                 .addComponent(btnConsultarCursos)
                 .addContainerGap(123, Short.MAX_VALUE))
         );
-        buttons();
+        buttons(user);
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-	public void buttons() {
+	public void buttons(final Usuario user) {
 
 		btnConsultarIngresos.addActionListener(new ActionListener() {
 			@Override
