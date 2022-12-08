@@ -14,6 +14,7 @@ import java.util.List;
 import javax.swing.AbstractButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
 
 import negocio.controllers.GestorPropuestasCursos;
@@ -40,7 +41,7 @@ public class PantallaDireccionCursosEditarProponer extends javax.swing.JFrame {
 		String[] c = new String[TipoCurso.values().length];
 		
 		boolean cursoEditado = false;
-		CursoPropio cursoAEditar = null;
+		CursoPropio cursoAEditar = new CursoPropio("", "", 0, new Date(), new Date(), 0.0, 0, null, null, null, null, null, new Date(), new Date(), "", null);
 		int i = 0;
 		for (TipoCurso e : TipoCurso.values()) {
 			c[i] = e.toString();
@@ -51,9 +52,10 @@ public class PantallaDireccionCursosEditarProponer extends javax.swing.JFrame {
 
 	}
 
-	private void SeleccionCursoAEditar(final CursoPropio curso, boolean cursoEditado) {
+	private boolean SeleccionCursoAEditar(final CursoPropio curso) {
 		SimpleDateFormat fecha = new SimpleDateFormat("yyyy-MM-dd");
-
+		
+		jTextArea1.setText(curso.getMotivoRechazo());
 		txtCentro.setText(curso.getCentro().getNombre());
 		txtCreditos.setText(String.valueOf(curso.getEcts()));
 		txtDniSecretario.setText(curso.getSecretario().getDNI());
@@ -64,7 +66,7 @@ public class PantallaDireccionCursosEditarProponer extends javax.swing.JFrame {
 		txtNombreCurso.setText(curso.getNombre());
 		txtTasaMatr.setText(String.valueOf(curso.getTasaMatricula()));
 
-		cursoEditado = true;
+		return true;
 	}
 
 	/**
@@ -327,7 +329,7 @@ public class PantallaDireccionCursosEditarProponer extends javax.swing.JFrame {
 				jButton5.addActionListener(new java.awt.event.ActionListener() {
 					public void actionPerformed(java.awt.event.ActionEvent evt) {
 						cursoAEditar.setId(cursos.get(jTable1.getSelectedRow()).getId());
-						SeleccionCursoAEditar(cursos.get(jTable1.getSelectedRow()), cursoEditado);
+						cursoEditado = SeleccionCursoAEditar(cursos.get(jTable1.getSelectedRow()));
 						
 					}
 				});

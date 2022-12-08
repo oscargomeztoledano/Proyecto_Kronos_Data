@@ -169,6 +169,7 @@ public class GestorPropuestasCursos {
 		CursoPropio curso = new CursoPropio(id, nombre, eCTS, fechaInicio, fechaFinal, tasaMatricula, edicion,
 				tipo, EstadoCurso.PROPUESTO, centro, director, secretario,new Date(),fechaMatricula,"Nada");
 		
+		
 		resultado = CursoPropioDAO.editarCursos(curso);
 		
 		return resultado;
