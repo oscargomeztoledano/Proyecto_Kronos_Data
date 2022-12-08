@@ -11,11 +11,20 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
+
+import javax.swing.AbstractButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 import negocio.controllers.GestorPropuestasCursos;
+import negocio.entities.CursoPropio;
+import negocio.entities.EstadoCurso;
 import negocio.entities.Materia;
 import negocio.entities.ProfesorUCLM;
 import negocio.entities.TipoCurso;
+import persistencia.CursoPropioDAO;
 
 /**
  *
@@ -50,7 +59,9 @@ public class PantallaDireccionCursosEditarProponer extends javax.swing.JFrame {
     	
     	final Collection<Materia> materias = new ArrayList<Materia>();
         jFrame1 = new javax.swing.JFrame();
+        jFrame2 = new javax.swing.JFrame();
         jButton3 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
         jTextField9 = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jTextField10 = new javax.swing.JTextField();
@@ -81,6 +92,8 @@ public class PantallaDireccionCursosEditarProponer extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jTextField7 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         jTextArea1 = new javax.swing.JTextArea();
         jLabel9 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
@@ -101,6 +114,11 @@ public class PantallaDireccionCursosEditarProponer extends javax.swing.JFrame {
         jLabel15.setText("Fecha Fin");
 
         jLabel16.setText("Fecha Inicio");
+        
+		
+
+        jButton5.setText("Editar");
+            
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
         jFrame1.getContentPane().setLayout(jFrame1Layout);
@@ -203,6 +221,84 @@ public class PantallaDireccionCursosEditarProponer extends javax.swing.JFrame {
         });
 
         jButton2.setText("Editar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            	
+            	List<CursoPropio> cursos = null;
+                try {
+                    cursos = CursoPropioDAO.obtenerCursos();
+
+                } catch (Exception e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                
+            	String[] cabecera = { "Id", "Nombre", "ETCS", "Fecha Inicio", "Fecha Fin", "Tasa Matricula", "Edicion",
+                        "Estado", "Tipo", "Centro", "Director", "Secretario", "Fecha Matricula", "Ultima Modificacion",
+                        "Motivo de Rechazo" };
+            	
+            	DefaultTableModel tabla = new DefaultTableModel(null, cabecera);
+            	
+            	jTable1 = new JTable(tabla);
+            	jScrollPane2 = new JScrollPane(jTable1);
+            	add(jScrollPane2);
+            	
+            	String[] c = new String[cabecera.length];
+            	
+            	
+            	
+            	SimpleDateFormat fecha = new SimpleDateFormat("yyyy-MM-dd");
+                for (CursoPropio curso : cursos) {
+                    if (curso.getEstado().equals(EstadoCurso.PROPUESTA_RECHAZADA)) {
+
+                        c[0] = curso.getId();
+                        c[1] = curso.getNombre();
+                        c[2] = String.valueOf(curso.getEcts());
+                        c[3] = fecha.format(curso.getFechaInicio());
+                        c[4] = fecha.format(curso.getFechaFin());
+                        c[5] = String.valueOf(curso.getTasaMatricula());
+                        c[6] = String.valueOf(curso.getEdicion());
+                        c[7] = curso.getTipo().toString();
+                        c[8] = curso.getEstado().toString();
+                        c[9] = curso.getCentro().getNombre();
+                        c[10] = curso.getDirector().getDNI();
+                        c[11] = curso.getSecretario().getDNI();
+                        c[12] = fecha.format(curso.getFechaMatriculacion());
+                        c[13] = fecha.format(curso.getUltimaModificacion());
+                        c[14] = curso.getMotivoRechazo();
+                        tabla.addRow(c);
+
+                    }
+                }
+            	
+            	javax.swing.GroupLayout jFrame2Layout = new javax.swing.GroupLayout(jFrame2.getContentPane());
+                jFrame2.getContentPane().setLayout(jFrame2Layout);
+                jFrame2Layout.setHorizontalGroup(
+                    jFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jFrame2Layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1313, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jFrame2Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(23, 23, 23))
+                );
+                jFrame2Layout.setVerticalGroup(
+                    jFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jFrame2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(21, 21, 21))
+                );
+
+                jFrame2.setVisible(true);
+            }
+        });
+
+        
 
         jLabel7.setText("Edición del curso");
 
@@ -365,11 +461,14 @@ public class PantallaDireccionCursosEditarProponer extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JFrame jFrame1;
+    private javax.swing.JFrame jFrame2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -388,6 +487,7 @@ public class PantallaDireccionCursosEditarProponer extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
