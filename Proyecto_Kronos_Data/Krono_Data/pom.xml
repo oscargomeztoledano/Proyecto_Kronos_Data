@@ -7,25 +7,21 @@
 	<name>Krono_Data</name>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.source>1.7</maven.compiler.source>
-		<maven.compiler.target>1.7</maven.compiler.target>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
 		<sonar.projectKey>projecto_krono_data</sonar.projectKey>
- 		<sonar.organization>oscargomeztoledano</sonar.organization>
-  		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+		<sonar.organization>oscargomeztoledano</sonar.organization>
+		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 		<sonar.login>06a588c71b46aa2e7477c2ff8e7bb6be6e103b92</sonar.login>
 	</properties>
 	<dependencies>
 		<dependency>
-		<groupId>junit</groupId>
-		<artifactId>junit</artifactId>
-		<version>4.13.2</version>
-		<scope>test</scope>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.13.2</version>
+			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>net.sf.ucanaccess</groupId>
-			<artifactId>ucanaccess</artifactId>
-			<version>5.0.1</version>
-		</dependency>
+	
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
@@ -36,6 +32,14 @@
 			<artifactId>jackcess</artifactId>
 			<version>3.0.1</version>
 		</dependency>
+
+		<dependency>
+			<groupId>com.microsoft.sqlserver</groupId>
+			<artifactId>mssql-jdbc</artifactId>
+			<version>11.2.1.jre17</version>
+		</dependency>
+
+
 		<dependency>
 			<groupId>org.hsqldb</groupId>
 			<artifactId>hsqldb</artifactId>

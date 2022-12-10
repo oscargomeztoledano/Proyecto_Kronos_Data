@@ -1,58 +1,62 @@
 package persistencia;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Properties;
 import java.util.Vector;
-
-import net.ucanaccess.util.Logger;
+ 
 import presentacion.PantallaErrores;
 
 public class GestorBD {
 	protected static GestorBD mInstancia = null;
 	// Conexion con la base de datos
 	protected static Connection mBD;
-	// Identificador ODBC de la base de datos
-	private static String url = "titulospropiosuclm2022.cq9ufzvy2if8.eu-west-3.rds.amazonaws.com";
-	// Driven para conectar con bases de datos MySQL
-	private static String driver2 = "org.postgresql.Driver";
-	private static String driver = "com.mysql.cj.jdbc.Driver";
-	private static String user = "admin";
-	private static String password = "admin1234";
 
-	private static Connection getRemoteConnection() {
+	// Driven para conectar con bases de datos MySQL
+	private static String driver = "com.mysql.cj.jdbc.Driver";
+	private static String driver1 = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+	private static Connection getRemoteConnection()  {
 		Connection con = null;
 		try {
-			Class.forName(driver);
-			String dbName = "titulospropiosuclm2022";
-			String userName = "root";//admin
-			String password = "victor";//admin1234
-			String hostname = "localhost";//titulospropiosuclm2022.cq9ufzvy2if8.eu-west-3.rds.amazonaws.com
-			String port = "3306";
-			String jdbcUrl = "jdbc:mysql://" + hostname + ":" + port + "/" + dbName + "?user=" + userName + "&password="
-					+ password;
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+			 
+	
 
-			con = DriverManager.getConnection(jdbcUrl);
+			String connectionUrl = "jdbc:sqlserver://krono-data.database.windows.net:1433;" + "database=Krono_Data;"
+					+ "user=KronoUCLM@Krono_Data;" + "password=Krono_Data;" + "encrypt=true;"
+					+ "trustServerCertificate=false;" + "loginTimeout=30;";
+
+			con = DriverManager.getConnection(connectionUrl);
 
 			return con;
-		} catch (ClassNotFoundException e) {
-			Logger.log("mensaje de error");
+
 		} catch (SQLException e) {
-			Logger.log("mensaje de error");
+			e.printStackTrace();
+
+			
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return con;
 	}
 
 	public static void conectarBD() throws ClassNotFoundException, SQLException {
 		try {
-			Class.forName(driver);
+			
+			
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+
+
 			mBD = getRemoteConnection();
 			mBD.setAutoCommit(true);
 
 		} catch (Exception e) {
-			System.out.println(e);
+			e.printStackTrace();
 		}
 
 	}

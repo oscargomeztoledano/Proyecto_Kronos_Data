@@ -5,7 +5,6 @@ import java.util.Vector;
 
 import negocio.entities.CursoPropio;
 import negocio.entities.Materia;
-import net.ucanaccess.util.Logger;
 
 public class MateriaDAO {
 	public static Vector<Object> getOne(String sql) throws Exception {
@@ -28,7 +27,7 @@ public class MateriaDAO {
 
 			return resultado;
 		} catch (Exception e) {
-			Logger.log("mensaje de error");
+			//Logger.log("mensaje de error");
 		}
 		return resultado;
 	}

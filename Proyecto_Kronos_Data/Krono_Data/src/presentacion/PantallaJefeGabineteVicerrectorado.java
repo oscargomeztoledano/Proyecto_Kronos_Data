@@ -8,7 +8,6 @@ import negocio.controllers.GestorConsultas;
 import negocio.entities.CursoPropio;
 import negocio.entities.EstadoCurso;
 import negocio.entities.Usuario;
-import net.ucanaccess.util.Logger;
 import persistencia.CursoPropioDAO;
 
 import java.awt.event.*;
@@ -253,7 +252,6 @@ public class PantallaJefeGabineteVicerrectorado extends javax.swing.JFrame {
 					lblTotal.setText("Total: " + sum + "€");
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
-					Logger.log("mensaje de error");
 
 				}
 

@@ -15,7 +15,6 @@ import javax.swing.JTextPane;
 import javax.swing.border.EmptyBorder;
 
 import negocio.controllers.*;
-import net.ucanaccess.util.Logger;
 
 
 public class PantallaLogin extends JFrame implements ActionListener {
@@ -32,7 +31,6 @@ public class PantallaLogin extends JFrame implements ActionListener {
 					PantallaLogin frame = new PantallaLogin();
 					frame.setVisible(true);
 				} catch (Exception e) {
-					Logger.log("mensaje de error");
 				}
 			}
 		});
@@ -85,7 +83,7 @@ public class PantallaLogin extends JFrame implements ActionListener {
 
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
-					Logger.log("mensaje de error");
+					//Logger.log("mensaje de error");
 				}
 			}
 		});

@@ -20,7 +20,6 @@ import javax.swing.table.TableModel;
 import negocio.controllers.GestorPropuestasCursos;
 import negocio.entities.CursoPropio;
 import negocio.entities.EstadoCurso;
-import net.ucanaccess.util.Logger;
 import persistencia.CursoPropioDAO;
 
 public class PantallaEmpleadosVicerrectorado extends JFrame {
@@ -162,14 +161,12 @@ public class PantallaEmpleadosVicerrectorado extends JFrame {
 
 							} catch (Exception e) {
 								// TODO Auto-generated catch block
-								Logger.log("mensaje de error");
 							}
 						}
 					});
 
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
-					Logger.log("mensaje de error");
 				}
 			}
 		});
@@ -189,7 +186,6 @@ public class PantallaEmpleadosVicerrectorado extends JFrame {
 
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
-					Logger.log("mensaje de error");
 				}
 			}
 		});

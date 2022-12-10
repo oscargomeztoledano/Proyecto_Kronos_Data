@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Vector;
 
 import negocio.entities.*;
-import net.ucanaccess.util.Logger;
 import presentacion.PantallaErrores;
 
 public class CursoPropioDAO {

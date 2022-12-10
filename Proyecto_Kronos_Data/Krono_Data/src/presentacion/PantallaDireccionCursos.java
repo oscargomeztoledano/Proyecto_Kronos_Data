@@ -13,7 +13,6 @@ import javax.swing.JTextPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.WindowConstants;
 import negocio.entities.ProfesorUCLM;
-import net.ucanaccess.util.Logger;
 
 
 public class PantallaDireccionCursos extends JFrame {
@@ -57,7 +56,6 @@ public class PantallaDireccionCursos extends JFrame {
 					 frame.setVisible(true);
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
-					Logger.log("mensaje de error");
 				}
 			}
 		});
@@ -74,7 +72,6 @@ public class PantallaDireccionCursos extends JFrame {
 
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
-					Logger.log("mensaje de error");
 				}
 			}
 		});

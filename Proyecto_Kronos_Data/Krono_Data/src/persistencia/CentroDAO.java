@@ -3,7 +3,6 @@ package persistencia;
 import java.util.Vector;
 
 import negocio.entities.Centro;
-import net.ucanaccess.util.Logger;
 import presentacion.PantallaErrores;
 
 public class CentroDAO {
