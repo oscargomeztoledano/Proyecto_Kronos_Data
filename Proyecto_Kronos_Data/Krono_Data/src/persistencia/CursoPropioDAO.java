@@ -18,7 +18,7 @@ public class CursoPropioDAO {
 	 * @param curso
 	 * @throws ClassNotFoundException
 	 */
-	public static int crearNuevoCurso(CursoPropio curso) throws ClassNotFoundException {
+	public static int crearNuevoCurso(CursoPropio curso) {
 		int resultado = 0;
 		Date actual = new Date();
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -35,7 +35,12 @@ public class CursoPropioDAO {
 				+ curso.getCentro().getNombre() + "','" + curso.getDirector().getDNI() + "','"
 				+ curso.getSecretario().getDNI() + "','" + fechaActual + "','" + fechaMatricula + "','Nada')";
 
-		resultado = GestorBD.executeUpdate(sql);
+		try {
+			resultado = GestorBD.executeUpdate(sql);
+		} catch (ClassNotFoundException e) {
+			PantallaErrores err = new PantallaErrores(e.toString());
+			err.setVisible(true);
+		}
 
 		return resultado;
 	}
@@ -72,8 +77,8 @@ public class CursoPropioDAO {
 		try {
 			resultado = GestorBD.executeUpdate(sql);
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			Logger.log("mensaje de error");
+			PantallaErrores err = new PantallaErrores(e.toString());
+			err.setVisible(true);
 		}
 		return resultado;
 	}
@@ -98,24 +103,41 @@ public class CursoPropioDAO {
 	 * @throws Exception
 	 */
 
-	public static String[] listarIngresos() throws Exception {
+	public static String[] listarIngresos()  {
 		try {
 			String[] ingresos = new String[3];
 			String SQL = "SELECT SUM(TasaMatricula) FROM CursoPropio, Matricula WHERE (TipoCurso = \"ESPECIALISTA\" OR TipoCurso = \"MASTER\" OR TipoCurso = \"EXPERTO\") AND (EstadoCurso = \"EN_MATRICULACION\" OR EstadoCurso = \"EN_IMPARTICION\" OR EstadoCurso = \"TERMINADO\") AND Matricula.CursoId = CursoPropio.Id";
+			
 			Vector<Object> v = GestorBD.oneExecuteQuery(SQL);
+			
+			if(v.equals(null)) {
+				v.add("0");
+				ingresos[0] = v.get(0).toString();
+			}else {
 			ingresos[0] = v.get(0).toString();
-
+			}
 			SQL = "SELECT SUM(TasaMatricula) FROM CursoPropio, Matricula WHERE (TipoCurso = \"FORMACION_AVANZADA\" OR TipoCurso = \"FORMACION_CONTINUA\") AND (EstadoCurso = \"EN_MATRICULACION\" OR EstadoCurso = \"EN_IMPARTICION\" OR EstadoCurso = \"TERMINADO\") AND Matricula.CursoId = CursoPropio.Id";
 			v = GestorBD.oneExecuteQuery(SQL);
+			if(v.equals(null)) {
+				v.add("0");
+				ingresos[1] = v.get(0).toString();
+			}else {
 			ingresos[1] = v.get(0).toString();
+			}
 
 			SQL = "SELECT SUM(TasaMatricula) FROM CursoPropio, Matricula WHERE (TipoCurso = \"MICROCREDENCIALES\" OR TipoCurso = \"CORTA_DURACION\") AND (EstadoCurso = \"EN_MATRICULACION\" OR EstadoCurso = \"EN_IMPARTICION\" OR EstadoCurso = \"TERMINADO\") AND Matricula.CursoId = CursoPropio.Id";
 			v = GestorBD.oneExecuteQuery(SQL);
+			if(v.equals(null)) {
+				v.add("0");
+				ingresos[2] = v.get(0).toString();
+			}else {
 			ingresos[2] = v.get(0).toString();
+			}
 
 			return ingresos;
 
 		} catch (Exception e) {
+			
 			PantallaErrores err = new PantallaErrores(e.toString());
 			err.setVisible(true);
 			return null;
@@ -129,13 +151,24 @@ public class CursoPropioDAO {
 	 * @return
 	 * @throws Exception
 	 */
-	public static List<CursoPropio> listarEdicionesCursos(String edicion) throws Exception {
+	public static List<CursoPropio> listarEdicionesCursos(String edicion)  {
 		String sql = "SELECT * FROM CursoPropio WHERE Edicion = \"" + edicion + "\"";
-		Vector<Object> v = GestorBD.executeQuery(sql);
+		Vector<Object> v;
+		try {
+			v = GestorBD.executeQuery(sql);
+		
 		List<CursoPropio> listaCursos = new ArrayList<>();
 		listaCursos = recogerCursos(v, listaCursos);
 
 		return listaCursos;
+
+		} catch (Exception e) {
+			PantallaErrores err = new PantallaErrores(e.toString());
+			err.setVisible(true);
+		}
+		return null;
+		
+
 
 	}
 
@@ -145,8 +178,8 @@ public class CursoPropioDAO {
 		try {
 			cursos = GestorBD.executeQuery(sql);
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			PantallaErrores err = new PantallaErrores(e.toString());
+			err.setVisible(true);
 		}
 
 		List<CursoPropio> listaCursos = new ArrayList<CursoPropio>();

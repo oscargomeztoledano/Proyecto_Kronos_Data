@@ -115,7 +115,6 @@ public class GestorBD {
 			PantallaErrores err = new PantallaErrores(e.toString());
 			err.setVisible(true);
 			resultado = 0;
-			e.printStackTrace();
 		}
 		return resultado;
 	}

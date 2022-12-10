@@ -28,7 +28,7 @@ public class PantallaMatriculacion extends javax.swing.JFrame {
 		List<CursoPropio> cursos = CursoPropioDAO.obtenerCursosPorTipo(CursoPropioDAO.obtenerCursos(), EstadoCurso.EN_MATRICULACION);
 		String[] c = new String[cursos.size()];
 		int i = 0;
-		for (CursoPropio cp : cursos) {
+		for (@SuppressWarnings("unused") CursoPropio cp : cursos) {
 			c[i] = cursos.get(i++).getNombre();
 			
 		}
@@ -77,18 +77,15 @@ public class PantallaMatriculacion extends javax.swing.JFrame {
 				int s = jComboBox1.getSelectedIndex();
 				CursoPropio curso = cursos.get(s);
 
-				String SeleccionTipoPago = (String) jComboBox2.getSelectedItem();
-				ModoPago Pago = null;
-				switch (SeleccionTipoPago) {
-				case "Transferencia":
-					Pago = ModoPago.TRANSFERENCIA;
-					break;
-				case "Tarjeta Credito":
-					Pago = ModoPago.TARJETA_CREDITO;
-					break;
-
+				String seleccionTipoPago = (String) jComboBox2.getSelectedItem();
+				ModoPago pago = null;
+				if (seleccionTipoPago=="Transferencia") {
+					pago = ModoPago.TRANSFERENCIA;
 				}
-				if (GestorMatriculacion.realizarMatriculacion(curso, estudiante, Pago) == 1) {
+				else if(seleccionTipoPago=="Tarjeta Credito") {
+					pago = ModoPago.TARJETA_CREDITO;
+				}
+				if (GestorMatriculacion.realizarMatriculacion(curso, estudiante, pago) == 1) {
 					jTextArea1.setText("La matricula realizada del curso: " + curso.getNombre()
 							+ " por el estudiante con DNI: " + estudiante.getDNI());
 
