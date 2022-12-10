@@ -30,7 +30,7 @@ import persistencia.CursoPropioDAO;
  * @author Daniel
  */
 public class PantallaDireccionCursosEditarProponer extends javax.swing.JFrame {
-
+	boolean cursoEditado = false;
 	/**
 	 * Creates new form PantallaDireccionCursosEditarProponer
 	 * 
@@ -40,7 +40,7 @@ public class PantallaDireccionCursosEditarProponer extends javax.swing.JFrame {
 
 		String[] c = new String[TipoCurso.values().length];
 		
-		boolean cursoEditado = false;
+		
 		CursoPropio cursoAEditar = new CursoPropio("", "", 0, new Date(), new Date(), 0.0, 0, null, null, null, null, null, new Date(), new Date(), "", null);
 		int i = 0;
 		for (TipoCurso e : TipoCurso.values()) {
@@ -48,7 +48,7 @@ public class PantallaDireccionCursosEditarProponer extends javax.swing.JFrame {
 			i++;
 		}
 
-		initComponents(c, profesor, cursoEditado, cursoAEditar);
+		initComponents(c, profesor, cursoAEditar);
 
 	}
 
@@ -79,7 +79,7 @@ public class PantallaDireccionCursosEditarProponer extends javax.swing.JFrame {
 	@SuppressWarnings("unchecked")
 	// <editor-fold defaultstate="collapsed" desc="Generated
 	// Code">//GEN-BEGIN:initComponents
-	private void initComponents(final String[] c, final ProfesorUCLM profesor, final boolean cursoEditado, final CursoPropio cursoAEditar)
+	private void initComponents(final String[] c, final ProfesorUCLM profesor, final CursoPropio cursoAEditar)
 			throws Exception {
 		
 		
@@ -233,13 +233,14 @@ public class PantallaDireccionCursosEditarProponer extends javax.swing.JFrame {
 				int resultado = 0;
 
 				try {
-					if (cursoEditado) {
+					if (cursoEditado==true) {
 						resultado = gestor.editarPropuestaCurso(cursoAEditar.getId(), txtNombreCurso.getText(),
 								Integer.parseInt(txtCreditos.getText()), txtFechaInicio.getText(),
 								txtFechaFin.getText(), Double.parseDouble(txtTasaMatr.getText()),
 								Integer.parseInt(txtEdicionCurso.getText()), c[jComboBox1.getSelectedIndex()],
 								txtCentro.getText(), profesor, txtDniSecretario.getText(), txtFechaMatr.getText(),
 								materias);
+						cursoEditado=false;
 					} else {
 						resultado = gestor.realizarPropuestaCurso(txtNombreCurso.getText(),
 								Integer.parseInt(txtCreditos.getText()), txtFechaInicio.getText(),
@@ -330,6 +331,7 @@ public class PantallaDireccionCursosEditarProponer extends javax.swing.JFrame {
 					public void actionPerformed(java.awt.event.ActionEvent evt) {
 						cursoAEditar.setId(cursos.get(jTable1.getSelectedRow()).getId());
 						cursoEditado = SeleccionCursoAEditar(cursos.get(jTable1.getSelectedRow()));
+						jFrame2.setVisible(false);
 						
 					}
 				});

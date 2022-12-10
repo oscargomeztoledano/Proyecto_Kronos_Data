@@ -55,9 +55,19 @@ public class CursoPropioDAO {
 	 */
 	public static int editarCurso(CursoPropio curso) {
 		int resultado = 0;
+		
+		Date actual = new Date();
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		String fechaIn = formatter.format(curso.getFechaInicio());
+		String fechaFinal = formatter.format(curso.getFechaFin());
+		String fechaMatricula = formatter.format(curso.getFechaMatriculacion());
+		String fechaActual = formatter.format(actual);
 
-		String sql = "UPDATE CursoPropio SET EstadoCurso = \'" + curso.getEstado() + "\' WHERE id = \'" + curso.getId()
-				+ "\'";
+		String sql = "UPDATE CursoPropio SET EstadoCurso = \'" + String.valueOf(curso.getEstado()) + "\' , nombre = \'" + curso.getNombre() + "\', ECTS = " + curso.getEcts() + ", FechaInicio = \'" + fechaIn + "\', FechaFin = \'" + fechaFinal + "\'"
+				+ ", TasaMatricula = " + curso.getTasaMatricula() + ", Edicion = " + curso.getEdicion() + ", TipoCurso = \'" + String.valueOf(curso.getTipo()) + "\', Nombre_Centro = \'" + curso.getCentro().getNombre() + "\'"
+						+ ", Director = \'" + curso.getDirector().getDNI() + "\', Secretario = \'" + curso.getSecretario().getDNI() + "\', Ultima_Modificacion = \'" + fechaActual + "\' , FechaMatricula = \'" + fechaMatricula + "\'"
+								+ ", Motivo_Rechazo = \'"+ curso.getMotivoRechazo() +"\'WHERE id = \'" + curso.getId() + "\'";
+
 
 		try {
 			resultado = GestorBD.executeUpdate(sql);
@@ -67,6 +77,7 @@ public class CursoPropioDAO {
 		}
 		return resultado;
 	}
+	
 
 	/**
 	 * 
@@ -180,30 +191,7 @@ public class CursoPropioDAO {
 		return listaCursos;
 	}
 
-	public static int editarCursos(CursoPropio curso) {
-		int resultado = 0;
-		
-		Date actual = new Date();
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-		String fechaIn = formatter.format(curso.getFechaInicio());
-		String fechaFinal = formatter.format(curso.getFechaFin());
-		String fechaMatricula = formatter.format(curso.getFechaMatriculacion());
-		String fechaActual = formatter.format(actual);
-
-		String sql = "UPDATE CursoPropio SET EstadoCurso = \'" + String.valueOf(curso.getEstado()) + "\' , nombre = \'" + curso.getNombre() + "\', ECTS = " + curso.getEcts() + ", FechaInicio = \'" + fechaIn + "\', FechaFin = \'" + fechaFinal + "\'"
-				+ ", TasaMatricula = " + curso.getTasaMatricula() + ", Edicion = " + curso.getEdicion() + ", TipoCurso = \'" + String.valueOf(curso.getTipo()) + "\', Nombre_Centro = \'" + curso.getCentro().getNombre() + "\'"
-						+ ", Director = \'" + curso.getDirector().getDNI() + "\', Secretario = \'" + curso.getSecretario().getDNI() + "\', Ultima_Modificacion = \'" + fechaActual + "\' , FechaMatricula = \'" + fechaMatricula + "\'"
-								+ ", Motivo_Rechazo = \'"+ curso.getMotivoRechazo() +"\'WHERE id = \'" + curso.getId() + "\'";
-
-
-		try {
-			resultado = GestorBD.executeUpdate(sql);
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			Logger.log("mensaje de error");
-		}
-		return resultado;
-	}
+	
 
 	public static TipoCurso comparaciontipocurso(String tipocurso) {
 		TipoCurso tipo = null;

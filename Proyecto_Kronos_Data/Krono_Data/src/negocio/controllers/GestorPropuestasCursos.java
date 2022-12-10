@@ -170,7 +170,7 @@ public class GestorPropuestasCursos {
 				tipo, EstadoCurso.PROPUESTO, centro, director, secretario,new Date(),fechaMatricula,"Nada");
 		
 		
-		resultado = CursoPropioDAO.editarCursos(curso);
+		resultado = CursoPropioDAO.editarCurso(curso);
 		
 		return resultado;
 	}
@@ -192,9 +192,6 @@ public class GestorPropuestasCursos {
 	 * 
 	 * @param curso
 	 */
-	public void altaCursoAprobado(CursoPropio curso) {
-		// TODO - implement GestorPropuestasCursos.altaCursoAprobado
-		throw new UnsupportedOperationException();
-	}
+	
 
 }
