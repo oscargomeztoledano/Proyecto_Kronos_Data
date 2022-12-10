@@ -92,26 +92,6 @@ public class PantallaJefeGabineteVicerrectorado extends javax.swing.JFrame {
 
         jButton2.setText("Mostrar resultados");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "Id", "Nombre", "ECTS", "Fecha inicio", "Fecha fin", "Tasa matricula", "Edicion", "Tipo curso", "Estado curso", "Nombre centro", "Director", "Secretario","Fecha Matricula","Ultima Modificacion","Motivo Rechazo"
-            }
-        ));
         jScrollPane1.setViewportView(jTable1);
 
         scrollPane2.add(jScrollPane1);

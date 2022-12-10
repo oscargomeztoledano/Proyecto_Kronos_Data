@@ -21,7 +21,7 @@ public class PantallaDireccionCursos extends JFrame {
 	
 	public PantallaDireccionCursos(final ProfesorUCLM profesor) {
 		setTitle("Interfaz profesor");
-		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 485, 285);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

@@ -35,7 +35,7 @@ public class PantallaEmpleadosVicerrectorado extends JFrame {
 
 	public PantallaEmpleadosVicerrectorado() throws Exception {
 		setTitle("Evaluar Cursos");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(500, 100, 1600, 700);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

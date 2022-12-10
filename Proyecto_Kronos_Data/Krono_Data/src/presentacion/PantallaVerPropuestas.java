@@ -32,7 +32,7 @@ public class PantallaVerPropuestas extends javax.swing.JFrame {
 	public PantallaVerPropuestas() throws Exception{
 		
 		setTitle("Cursos propuestos");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(500, 100, 1300, 700);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
