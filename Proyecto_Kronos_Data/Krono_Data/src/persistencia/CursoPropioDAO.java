@@ -24,7 +24,7 @@ public class CursoPropioDAO {
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		String fechaIn = formatter.format(curso.getFechaInicio());
 		String fechaFinal = formatter.format(curso.getFechaFin());
-		String fechaMatricula=formatter.format(curso.getFechaMatriculacion());
+		String fechaMatricula = formatter.format(curso.getFechaMatriculacion());
 		String fechaActual = formatter.format(actual);
 
 		String sql = "INSERT INTO titulospropiosuclm2022.CursoPropio (Id, nombre, ECTS, FechaInicio, FechaFin, TasaMatricula, Edicion,"
@@ -60,9 +60,19 @@ public class CursoPropioDAO {
 	 */
 	public static int editarCurso(CursoPropio curso) {
 		int resultado = 0;
+		
+		Date actual = new Date();
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		String fechaIn = formatter.format(curso.getFechaInicio());
+		String fechaFinal = formatter.format(curso.getFechaFin());
+		String fechaMatricula = formatter.format(curso.getFechaMatriculacion());
+		String fechaActual = formatter.format(actual);
 
-		String sql = "UPDATE CursoPropio SET EstadoCurso = \'" + curso.getEstado() + "\' WHERE id = \'" + curso.getId()
-				+ "\'";
+		String sql = "UPDATE CursoPropio SET EstadoCurso = \'" + String.valueOf(curso.getEstado()) + "\' , nombre = \'" + curso.getNombre() + "\', ECTS = " + curso.getEcts() + ", FechaInicio = \'" + fechaIn + "\', FechaFin = \'" + fechaFinal + "\'"
+				+ ", TasaMatricula = " + curso.getTasaMatricula() + ", Edicion = " + curso.getEdicion() + ", TipoCurso = \'" + String.valueOf(curso.getTipo()) + "\', Nombre_Centro = \'" + curso.getCentro().getNombre() + "\'"
+						+ ", Director = \'" + curso.getDirector().getDNI() + "\', Secretario = \'" + curso.getSecretario().getDNI() + "\', Ultima_Modificacion = \'" + fechaActual + "\' , FechaMatricula = \'" + fechaMatricula + "\'"
+								+ ", Motivo_Rechazo = \'"+ curso.getMotivoRechazo() +"\'WHERE id = \'" + curso.getId() + "\'";
+
 
 		try {
 			resultado = GestorBD.executeUpdate(sql);
@@ -72,6 +82,7 @@ public class CursoPropioDAO {
 		}
 		return resultado;
 	}
+	
 
 	/**
 	 * 
@@ -137,7 +148,7 @@ public class CursoPropioDAO {
 	 * 
 	 * @param fechaInicio
 	 * @param fechaFin
-	 * @return 
+	 * @return
 	 * @throws Exception
 	 */
 	public static List<CursoPropio> listarEdicionesCursos(String edicion)  {
@@ -148,14 +159,16 @@ public class CursoPropioDAO {
 		
 		List<CursoPropio> listaCursos = new ArrayList<>();
 		listaCursos = recogerCursos(v, listaCursos);
-		
+
 		return listaCursos;
+
 		} catch (Exception e) {
 			PantallaErrores err = new PantallaErrores(e.toString());
 			err.setVisible(true);
 		}
 		return null;
 		
+
 
 	}
 
@@ -171,10 +184,10 @@ public class CursoPropioDAO {
 
 		List<CursoPropio> listaCursos = new ArrayList<CursoPropio>();
 
-listaCursos = recogerCursos(cursos, listaCursos);
+		listaCursos = recogerCursos(cursos, listaCursos);
 		return listaCursos;
 	}
-	
+
 	public static List<CursoPropio> recogerCursos(Vector<Object> c, List<CursoPropio> listaCursos) throws Exception {
 		while (!c.isEmpty()) {
 			Vector<Object> v = (Vector<Object>) c.get(0);
@@ -185,13 +198,14 @@ listaCursos = recogerCursos(cursos, listaCursos);
 			CursoPropio curso = new CursoPropio(v.get(0).toString(), v.get(1).toString(), (Integer) v.get(2),
 					(Date) v.get(3), (Date) v.get(4), (Double) v.get(5), (Integer) v.get(6),
 					comparaciontipocurso(v.get(7).toString()), comparacionestadocurso(v.get(8).toString()),
-					CentroDAO.seleccionarCentro(v.get(9).toString()), dir, sec,(Date) v.get(12),(Date) v.get(13),v.get(14).toString());
-			
+					CentroDAO.seleccionarCentro(v.get(9).toString()), dir, sec, (Date) v.get(12), (Date) v.get(13),
+					v.get(14).toString());
+
 			listaCursos.add(curso);
 			c.remove(0);
 
 		}
-		
+
 		return listaCursos;
 	}
 
@@ -209,6 +223,8 @@ listaCursos = recogerCursos(cursos, listaCursos);
 
 		return listaCursos;
 	}
+
+	
 
 	public static TipoCurso comparaciontipocurso(String tipocurso) {
 		TipoCurso tipo = null;

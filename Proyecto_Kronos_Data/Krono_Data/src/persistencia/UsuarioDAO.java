@@ -14,10 +14,10 @@ public class UsuarioDAO<E> {
 	public static Usuario seleccionarUsuario(String dni) {
 		Usuario us = null;
 		try {
-			String sql = "SELECT * FROM Usuarios WHERE Dni = \'" + dni + "\'";
+			String sql = "SELECT * FROM titulospropiosuclm2022.usuarios where DNI='"+dni+"'";
 
 			Vector<Object> usuario;
-
+	
 			usuario = get(sql);
 
 			us = new Usuario(dni, usuario.get(1).toString(), usuario.get(2).toString());
