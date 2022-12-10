@@ -90,7 +90,7 @@ public class PantallaMatriculacion extends javax.swing.JFrame {
 							+ " por el estudiante con DNI: " + estudiante.getDNI());
 
 				} else {
-					jTextArea1.setText("Error, la matricula ya existe");
+					jTextArea1.setText("No se ha podido hacer la matricula");
 
 				}
 

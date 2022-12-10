@@ -2,6 +2,7 @@ package negocio.controllers;
 
 import negocio.entities.*;
 import persistencia.MatriculaDAO;
+import presentacion.PantallaErrores;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -17,15 +18,19 @@ public class GestorMatriculacion {
 		calendar.add(Calendar.DAY_OF_YEAR, -1);
 		Date fechaFinMatriculacion=calendar.getTime();
 		if(fecha.getTime()>=fechaMatriculacion.getTime()&& fecha.getTime()<=fechaFinMatriculacion.getTime()) {
-		}
-		
 			Matricula mat = new Matricula(estudiante, curso, fecha);
-		
+			
 
 			mat = realizarPagoMatricula(curso, estudiante, tipoPago, mat);
 
 
 			resultado= MatriculaDAO.insert(mat);
+		}else {
+			PantallaErrores err = new PantallaErrores("No se puede realizar la matricula ya que el plazo de matriculacion ha expirado");
+			err.setVisible(true);
+		}
+		
+			
 			
 		
 		
