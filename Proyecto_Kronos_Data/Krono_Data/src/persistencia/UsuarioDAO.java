@@ -14,7 +14,7 @@ public class UsuarioDAO<E> {
 	public static Usuario seleccionarUsuario(String dni) {
 		Usuario us = null;
 		try {
-			String sql = "SELECT * FROM titulospropiosuclm2022.usuarios where DNI='"+dni+"'";
+			String sql = "SELECT * FROM Usuarios where DNI='"+dni+"'";
 
 			Vector<Object> usuario;
 	

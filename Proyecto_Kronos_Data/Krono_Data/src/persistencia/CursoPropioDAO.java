@@ -26,7 +26,7 @@ public class CursoPropioDAO {
 		String fechaMatricula = formatter.format(curso.getFechaMatriculacion());
 		String fechaActual = formatter.format(actual);
 
-		String sql = "INSERT INTO titulospropiosuclm2022.CursoPropio (Id, nombre, ECTS, FechaInicio, FechaFin, TasaMatricula, Edicion,"
+		String sql = "INSERT INTO dbo.CursoPropio (Id, nombre, ECTS, FechaInicio, FechaFin, TasaMatricula, Edicion,"
 				+ "TipoCurso, EstadoCurso, Nombre_Centro, Director, Secretario,Ultima_Modificacion,FechaMatricula,Motivo_Rechazo) VALUES ( '"
 				+ curso.getId() + "', '" + curso.getNombre() + "', " + curso.getEcts() + ",'" + fechaIn + "','"
 				+ fechaFinal + "'," + curso.getTasaMatricula() + "," + curso.getEdicion() + ",'"
@@ -106,11 +106,11 @@ public class CursoPropioDAO {
 		try {
 			String[] ingresos = new String[3];
 			String SQL = "SELECT SUM(TasaMatricula) FROM CursoPropio, Matricula WHERE (TipoCurso = \"ESPECIALISTA\" OR TipoCurso = \"MASTER\" OR TipoCurso = \"EXPERTO\") AND (EstadoCurso = \"EN_MATRICULACION\" OR EstadoCurso = \"EN_IMPARTICION\" OR EstadoCurso = \"TERMINADO\") AND Matricula.CursoId = CursoPropio.Id";
-			
-			Vector<Object> v = GestorBD.oneExecuteQuery(SQL);
+	 
+					Vector<Object> v = GestorBD.oneExecuteQuery(SQL);
 			
 			if(v.equals(null)) {
-				v.add("0");
+				v.add(0, "0");
 				ingresos[0] = v.get(0).toString();
 			}else {
 			ingresos[0] = v.get(0).toString();
@@ -118,7 +118,7 @@ public class CursoPropioDAO {
 			SQL = "SELECT SUM(TasaMatricula) FROM CursoPropio, Matricula WHERE (TipoCurso = \"FORMACION_AVANZADA\" OR TipoCurso = \"FORMACION_CONTINUA\") AND (EstadoCurso = \"EN_MATRICULACION\" OR EstadoCurso = \"EN_IMPARTICION\" OR EstadoCurso = \"TERMINADO\") AND Matricula.CursoId = CursoPropio.Id";
 			v = GestorBD.oneExecuteQuery(SQL);
 			if(v.equals(null)) {
-				v.add("0");
+				v.add(0, "0");
 				ingresos[1] = v.get(0).toString();
 			}else {
 			ingresos[1] = v.get(0).toString();
@@ -127,7 +127,7 @@ public class CursoPropioDAO {
 			SQL = "SELECT SUM(TasaMatricula) FROM CursoPropio, Matricula WHERE (TipoCurso = \"MICROCREDENCIALES\" OR TipoCurso = \"CORTA_DURACION\") AND (EstadoCurso = \"EN_MATRICULACION\" OR EstadoCurso = \"EN_IMPARTICION\" OR EstadoCurso = \"TERMINADO\") AND Matricula.CursoId = CursoPropio.Id";
 			v = GestorBD.oneExecuteQuery(SQL);
 			if(v.equals(null)) {
-				v.add("0");
+				v.add(0, "0");
 				ingresos[2] = v.get(0).toString();
 			}else {
 			ingresos[2] = v.get(0).toString();
@@ -172,7 +172,7 @@ public class CursoPropioDAO {
 	}
 
 	public static List<CursoPropio> obtenerCursos() throws Exception {
-		String sql = "SELECT * FROM titulospropiosuclm2022.CursoPropio ";
+		String sql = "SELECT * FROM CursoPropio ";
 		Vector<Object> cursos = null;
 		try {
 			cursos = GestorBD.executeQuery(sql);

@@ -18,7 +18,7 @@ public class MateriaDAO {
 		String fechaIn = formatter.format(materia.getFechaInicio());
 		String fechaFinal = formatter.format(materia.getFechaFin());
 		try {
-			String sql = "INSERT INTO titulospropiosuclm2022.Materia (Nombre, Horas, fechaInicio, fechaFin, CursoId, dniProfesor) VALUES"
+			String sql = "INSERT INTO Materia (Nombre, Horas, fechaInicio, fechaFin, CursoId, dniProfesor) VALUES"
 					+ " ('"+ materia.getNombre() +"', "+ materia.getHoras() +", '"+ fechaIn +"', '"+ fechaFinal +"', '"+ curso.getId() +"', "
 							+"'"+ materia.getResponsable().getDNI() +"')";
 

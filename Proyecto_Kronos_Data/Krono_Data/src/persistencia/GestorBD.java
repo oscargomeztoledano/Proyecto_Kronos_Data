@@ -25,12 +25,13 @@ public class GestorBD {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 			 
 	
-
-			String connectionUrl = "jdbc:sqlserver://krono-data.database.windows.net:1433;" + "database=Krono_Data;"
-					+ "user=KronoUCLM@Krono_Data;" + "password=Krono_Data;" + "encrypt=true;"
+			String user="KronoUCLM";
+			String pass="Krono_data";
+			String connectionUrl = "jdbc:sqlserver://krono-data.database.windows.net:1433;"+"databaseName=Krono_Data;"  
+					 + "encrypt=true;"
 					+ "trustServerCertificate=false;" + "loginTimeout=30;";
 
-			con = DriverManager.getConnection(connectionUrl);
+			con = DriverManager.getConnection(connectionUrl,user,pass);
 
 			return con;
 

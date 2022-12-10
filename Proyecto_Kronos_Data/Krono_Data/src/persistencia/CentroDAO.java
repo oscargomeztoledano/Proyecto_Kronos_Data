@@ -14,7 +14,7 @@ public class CentroDAO {
 	public static Centro seleccionarCentro(String nombre) {
 		Centro ce = null;
 		try {
-			String sql = "SELECT * FROM Centro WHERE Nombre = \'" + nombre + "\'";
+			String sql = "SELECT * FROM dbo.Centro WHERE Nombre = \'" + nombre + "\'";
 
 			Vector<Object> centro;
 
