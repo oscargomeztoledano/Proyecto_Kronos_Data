@@ -102,8 +102,8 @@ public class CursoPropioDAO {
 	 * @throws Exception
 	 */
 
-	public static String[] listarIngresos()  {
-		try {
+	public static String[] listarIngresos() throws Exception  {
+		
 			String[] ingresos = new String[3];
 			String SQL = "SELECT SUM(TasaMatricula) FROM CursoPropio, Matricula WHERE (TipoCurso = \"ESPECIALISTA\" OR TipoCurso = \"MASTER\" OR TipoCurso = \"EXPERTO\") AND (EstadoCurso = \"EN_MATRICULACION\" OR EstadoCurso = \"EN_IMPARTICION\" OR EstadoCurso = \"TERMINADO\") AND Matricula.CursoId = CursoPropio.Id";
 	 
@@ -135,12 +135,7 @@ public class CursoPropioDAO {
 
 			return ingresos;
 
-		} catch (Exception e) {
-			
-			PantallaErrores err = new PantallaErrores(e.toString());
-			err.setVisible(true);
-			return null;
-		}
+		
 	}
 
 	/**

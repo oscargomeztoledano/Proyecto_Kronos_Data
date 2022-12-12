@@ -25,7 +25,7 @@ public class ProfesorDAO {
 		return new Profesor(usuario.getDNI(),usuario.getContrasena(),usuario.getTipo(), profesor.get(1).toString(),profesor.get(2).toString(),Boolean.parseBoolean(profesor.get(3).toString()));
 	}
 	public static ProfesorUCLM seleccionarProfesorUCLM(Profesor profesor) throws Exception {
-		String sql = "SELECT * FROM profesorcuclm WHERE Dni = \'"+profesor.getDNI()+"\'";
+		String sql = "SELECT * FROM profesoruclm WHERE Dni = \'"+profesor.getDNI()+"\'";
 
 		Vector<Object> profesorUCLM = getOne(sql);
 		      
