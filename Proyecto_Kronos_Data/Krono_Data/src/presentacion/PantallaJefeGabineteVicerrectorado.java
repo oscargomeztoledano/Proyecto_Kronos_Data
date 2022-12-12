@@ -231,7 +231,8 @@ public class PantallaJefeGabineteVicerrectorado extends javax.swing.JFrame {
 
 					lblTotal.setText("Total: " + sum + "€");
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
+					PantallaErrores err = new PantallaErrores(e.toString());
+					err.setVisible(true);
 
 				}
 
@@ -248,7 +249,8 @@ public class PantallaJefeGabineteVicerrectorado extends javax.swing.JFrame {
 
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					PantallaErrores err = new PantallaErrores(e.toString());
+					err.setVisible(true);
 				}
 				String[] cabecera = { "Id", "Nombre", "ETCS", "Fecha Inicio", "Fecha Fin", "Tasa Matricula", "Edicion",
 						"Estado", "Tipo", "Centro", "Director", "Secretario", "Fecha Matricula", "Ultima Modificacion",
@@ -355,7 +357,8 @@ public class PantallaJefeGabineteVicerrectorado extends javax.swing.JFrame {
 					tabla(a);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					PantallaErrores err = new PantallaErrores(e.toString());
+					err.setVisible(true);
 				}
 
 			}

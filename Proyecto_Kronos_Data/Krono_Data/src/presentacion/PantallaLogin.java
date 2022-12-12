@@ -83,7 +83,8 @@ public class PantallaLogin extends JFrame implements ActionListener {
 
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
-					//Logger.log("mensaje de error");
+					PantallaErrores err = new PantallaErrores(e.toString());
+					err.setVisible(true);
 				}
 			}
 		});

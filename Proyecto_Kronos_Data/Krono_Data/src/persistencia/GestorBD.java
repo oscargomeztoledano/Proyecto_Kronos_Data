@@ -17,12 +17,12 @@ public class GestorBD {
 	protected static Connection mBD;
 
 	// Driven para conectar con bases de datos MySQL
-	private static String driver = "com.mysql.cj.jdbc.Driver";
+	
 	private static String driver1 = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
 	private static Connection getRemoteConnection()  {
 		Connection con = null;
 		try {
-			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+			Class.forName(driver1);
 			 
 	
 			String user="KronoUCLM";
@@ -36,12 +36,14 @@ public class GestorBD {
 			return con;
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			PantallaErrores err = new PantallaErrores(e.toString());
+			err.setVisible(true);
 
 			
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			PantallaErrores err = new PantallaErrores(e.toString());
+			err.setVisible(true);
 		}
 		return con;
 	}
@@ -50,14 +52,15 @@ public class GestorBD {
 		try {
 			
 			
-			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+			Class.forName(driver1);
 
 
 			mBD = getRemoteConnection();
 			mBD.setAutoCommit(true);
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			PantallaErrores err = new PantallaErrores(e.toString());
+			err.setVisible(true);
 		}
 
 	}
@@ -67,7 +70,8 @@ public class GestorBD {
 			mBD.close();
 
 		} catch (Exception e) {
-			System.out.println(e);
+			PantallaErrores err = new PantallaErrores(e.toString());
+			err.setVisible(true);
 		}
 
 	}
