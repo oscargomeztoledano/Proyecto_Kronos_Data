@@ -249,10 +249,11 @@ public class PantallaDireccionCursosEditarProponer extends javax.swing.JFrame {
 								materias);
 					}
 				} catch (NumberFormatException e) {
-					e.printStackTrace();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+					PantallaErrores err = new PantallaErrores(e.toString());
+					err.setVisible(true);
+					} catch (Exception e) {
+					PantallaErrores err = new PantallaErrores(e.toString());
+					err.setVisible(true);				}
 
 				if (resultado == 1) {
 					jTextArea1.setText("Propuesta enviada");
@@ -376,7 +377,8 @@ public class PantallaDireccionCursosEditarProponer extends javax.swing.JFrame {
 						}
 					});
 				} catch (NumberFormatException e) {
-					e.printStackTrace();
+					PantallaErrores err = new PantallaErrores(e.toString());
+					err.setVisible(true);
 				}
 			}
 		});

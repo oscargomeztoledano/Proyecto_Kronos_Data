@@ -161,12 +161,16 @@ public class PantallaEmpleadosVicerrectorado extends JFrame {
 
 							} catch (Exception e) {
 								// TODO Auto-generated catch block
+								PantallaErrores err = new PantallaErrores(e.toString());
+								err.setVisible(true);
 							}
 						}
 					});
 
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
+					PantallaErrores err = new PantallaErrores(e.toString());
+					err.setVisible(true);
 				}
 			}
 		});
@@ -186,6 +190,8 @@ public class PantallaEmpleadosVicerrectorado extends JFrame {
 
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
+					PantallaErrores err = new PantallaErrores(e.toString());
+					err.setVisible(true);
 				}
 			}
 		});

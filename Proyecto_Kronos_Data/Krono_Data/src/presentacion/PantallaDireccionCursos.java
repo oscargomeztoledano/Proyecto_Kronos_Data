@@ -56,6 +56,8 @@ public class PantallaDireccionCursos extends JFrame {
 					 frame.setVisible(true);
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
+					PantallaErrores err = new PantallaErrores(e1.toString());
+					err.setVisible(true);
 				}
 			}
 		});
@@ -72,6 +74,8 @@ public class PantallaDireccionCursos extends JFrame {
 
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
+					PantallaErrores err = new PantallaErrores(e1.toString());
+					err.setVisible(true);
 				}
 			}
 		});
