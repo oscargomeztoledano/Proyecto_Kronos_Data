@@ -15,11 +15,13 @@ public class CursoPropioDAO {
 	/**
 	 * 
 	 * @param curso
+	 * @throws Exception 
 	 * @throws ClassNotFoundException
 	 */
-	public static int crearNuevoCurso(CursoPropio curso) {
+	public static int crearNuevoCurso(CursoPropio curso) throws Exception {
 		int resultado = 0;
 		Date actual = new Date();
+		List<CursoPropio> cursos=obtenerCursos();
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		String fechaIn = formatter.format(curso.getFechaInicio());
 		String fechaFinal = formatter.format(curso.getFechaFin());
@@ -33,7 +35,20 @@ public class CursoPropioDAO {
 				+ curso.getTipo().toString() + "','" + curso.getEstado().toString() + "','"
 				+ curso.getCentro().getNombre() + "','" + curso.getDirector().getDNI() + "','"
 				+ curso.getSecretario().getDNI() + "','" + fechaActual + "','" + fechaMatricula + "','Nada')";
-
+		for(CursoPropio c:cursos) {
+			if(c.equals(curso)) {
+				PantallaErrores err = new PantallaErrores("No se puede proponer un mismo curso, con la misma edición");
+				err.setVisible(true);
+				break;
+			}else if(c.getNombre()== curso.getNombre()){
+				PantallaErrores err = new PantallaErrores("Ese nombre ya esta en uso");
+				err.setVisible(true);
+				break;
+			}else if(c.getNombre()==curso.getNombre() && c.getEdicion()!=curso.getEdicion() && !(c.getEstado().equals(EstadoCurso.TERMINADO))) {
+				PantallaErrores err = new PantallaErrores("El curso que la edicion pasada necesita estar terminado para poder proponer la siguiente edicion");
+				err.setVisible(true);
+			}
+		}
 		try {
 			resultado = GestorBD.executeUpdate(sql);
 		} catch (ClassNotFoundException e) {
