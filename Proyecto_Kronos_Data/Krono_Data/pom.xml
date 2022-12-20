@@ -73,7 +73,7 @@
 			</resource>
 		</resources>
 		<sourceDirectory>src/</sourceDirectory>
-		<testSourceDirectory>test</testSourceDirectory>
+		<testSourceDirectory>${project.basedir}/test/</testSourceDirectory>
 
 		<plugins>
 			<plugin>

@@ -48,6 +48,7 @@ public class GestorUsuario {
 				}
 			} else {
 				login = '0';
+				
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

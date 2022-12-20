@@ -1,12 +1,12 @@
 package persistencia;
 
-import java.io.IOException;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Properties;
+
 import java.util.Vector;
  
 import presentacion.PantallaErrores;
@@ -19,7 +19,7 @@ public class GestorBD {
 	// Driven para conectar con bases de datos MySQL
 	
 	private static String driver1 = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-	private static Connection getRemoteConnection()  {
+	public static Connection getRemoteConnection()  {
 		Connection con = null;
 		try {
 			Class.forName(driver1);
@@ -48,7 +48,7 @@ public class GestorBD {
 		return con;
 	}
 
-	public static void conectarBD() throws ClassNotFoundException, SQLException {
+	public static void conectarBD()  {
 		try {
 			
 			
@@ -65,7 +65,7 @@ public class GestorBD {
 
 	}
 
-	public static void desconectarBD() throws SQLException {
+	public static void desconectarBD() {
 		try {
 			mBD.close();
 
@@ -94,7 +94,7 @@ public class GestorBD {
 		}
 	}
 
-	public static Vector<Object> oneExecuteQuery(String sql) throws Exception {
+	public static Vector<Object> oneExecuteQuery(String sql)  {
 		try {
 
 			conectarBD();
@@ -104,7 +104,7 @@ public class GestorBD {
 			st.close();
 			desconectarBD();
 			return v;
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			
 			PantallaErrores err = new PantallaErrores(e.toString());
 			err.setVisible(true);
@@ -112,7 +112,7 @@ public class GestorBD {
 		}
 	}
 
-	public static int executeUpdate(String sql) throws ClassNotFoundException { // Updates a BD
+	public static int executeUpdate(String sql)  { // Updates a BD
 		int resultado = 0;
 		try {
 
@@ -122,7 +122,7 @@ public class GestorBD {
 			st.close();
 			desconectarBD();
 			resultado = 1;
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			PantallaErrores err = new PantallaErrores(e.toString());
 			err.setVisible(true);
 			resultado = 0;

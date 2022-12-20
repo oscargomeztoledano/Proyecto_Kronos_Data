@@ -18,10 +18,16 @@ public class CursoPropioDAO {
 	 * @throws Exception 
 	 * @throws ClassNotFoundException
 	 */
-	public static int crearNuevoCurso(CursoPropio curso) throws Exception {
+	public static int crearNuevoCurso(CursoPropio curso)  {
 		int resultado = 0;
 		Date actual = new Date();
-		List<CursoPropio> cursos=obtenerCursos();
+		List<CursoPropio> cursos = null;
+		try{
+			cursos = obtenerCursos();
+		} catch (Exception e) {
+			PantallaErrores err = new PantallaErrores(e.toString());
+			err.setVisible(true);
+		}
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		String fechaIn = formatter.format(curso.getFechaInicio());
 		String fechaFinal = formatter.format(curso.getFechaFin());
@@ -51,10 +57,11 @@ public class CursoPropioDAO {
 		}
 		try {
 			resultado = GestorBD.executeUpdate(sql);
-		} catch (ClassNotFoundException e) {
+		}catch (Exception e) {
 			PantallaErrores err = new PantallaErrores(e.toString());
 			err.setVisible(true);
 		}
+		
 
 		return resultado;
 	}
@@ -90,7 +97,7 @@ public class CursoPropioDAO {
 
 		try {
 			resultado = GestorBD.executeUpdate(sql);
-		} catch (ClassNotFoundException e) {
+		} catch (Exception e) {
 			PantallaErrores err = new PantallaErrores(e.toString());
 			err.setVisible(true);
 		}

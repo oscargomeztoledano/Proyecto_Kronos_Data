@@ -1,32 +1,37 @@
 package presentacion;
 
-import static org.junit.Assert.assertEquals;
 
+
+import org.junit.Assert;
+import org.junit.Test;
+
+import negocio.controllers.GestorUsuario;
 import negocio.entities.Usuario;
 import persistencia.UsuarioDAO;
 
 public class PantallaLoginTest {
+	@Test
+	public void testLogin() {
+		GestorUsuario gestor = new GestorUsuario();
 
-	public void testlogin(String dni, String contrasena) {
-		dni="12345678G";
-		contrasena="123";
-		Usuario u=UsuarioDAO.seleccionarUsuario(dni);
-		char login='0';
-	
-		assertEquals(u.getContrasena(),contrasena);
-		if(login>'0' && login < '9') {
-			assertEquals(login,'0');
-			assertEquals(login,'1');
-		}else {
-			assertEquals(login,'E');
-			assertEquals(login,'G');
-			assertEquals(login,'J');
-			assertEquals(login,'P');
+		String dni = "1234568G";
+		String contrasena = "123";
+		String Tipo = String.valueOf(dni.charAt(dni.length() - 1));
+
+		Usuario u = UsuarioDAO.seleccionarUsuario(dni);
+		Usuario u2= new Usuario(dni,contrasena,Tipo);
+		char login = gestor.login(dni, contrasena);
 		
-		
+		if ((!Tipo.equals("E")) && (!Tipo.equals("G")) && (!Tipo.equals("J"))
+				 &&(!Tipo.equals("P"))) {
+			Tipo = "1";
+
 		}
-		
-		
-		
+		if(!(u.equals(null))) {
+			Tipo="0";
+		}
+		System.out.println(login +" - " +Tipo);
+		Assert.assertEquals(String.valueOf(login), Tipo);
+
 	}
 }

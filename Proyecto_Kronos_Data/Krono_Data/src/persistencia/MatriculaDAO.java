@@ -22,7 +22,7 @@ public class MatriculaDAO {
 		try {
 			resultadoMatricula = GestorBD.executeUpdate(sql);
 
-		} catch (ClassNotFoundException e) {
+		} catch (Exception e) {
 
 			PantallaMatriculacion.jTextArea1.setText("Ha ocurrido un problema al realizar la matricula");
 
