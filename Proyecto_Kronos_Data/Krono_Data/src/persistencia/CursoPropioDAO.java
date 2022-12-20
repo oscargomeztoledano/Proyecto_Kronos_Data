@@ -1,7 +1,6 @@
 package persistencia;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -40,11 +39,11 @@ public class CursoPropioDAO {
 				PantallaErrores err = new PantallaErrores("No se puede proponer un mismo curso, con la misma edición");
 				err.setVisible(true);
 				break;
-			}else if(c.getNombre()== curso.getNombre()){
+			}else if(c.getNombre().equals(curso.getNombre()) ){
 				PantallaErrores err = new PantallaErrores("Ese nombre ya esta en uso");
 				err.setVisible(true);
 				break;
-			}else if(c.getNombre()==curso.getNombre() && c.getEdicion()!=curso.getEdicion() && !(c.getEstado().equals(EstadoCurso.TERMINADO))) {
+			}else if(c.getNombre().equals(curso.getNombre()) && c.getEdicion()!=curso.getEdicion() && !(c.getEstado().equals(EstadoCurso.TERMINADO))) {
 				PantallaErrores err = new PantallaErrores("El curso que la edicion pasada necesita estar terminado para poder proponer la siguiente edicion");
 				err.setVisible(true);
 			}
@@ -59,19 +58,8 @@ public class CursoPropioDAO {
 		return resultado;
 	}
 
-	/**
-	 * 
-	 * @param curso
-	 */
-	public CursoPropio seleccionarCurso(CursoPropio curso) {
-		// TODO - implement CursoPropioDAO.seleccionarCurso
-		throw new UnsupportedOperationException();
-	}
 
-	/**
-	 * 
-	 * @param curso
-	 */
+
 	public static int editarCurso(CursoPropio curso) {
 		int resultado = 0;
 		
@@ -98,24 +86,8 @@ public class CursoPropioDAO {
 	}
 	
 
-	/**
-	 * 
-	 * @param estado
-	 * @param fechaInicio
-	 * @param fechaFin
-	 */
-	public List<CursoPropio> listarCursosPorEstado(EstadoCurso estado, LocalDate fechaInicio, LocalDate fechaFin) {
-		// TODO - implement CursoPropioDAO.listarCursosPorEstado
-		throw new UnsupportedOperationException();
-	}
+	
 
-	/**
-	 * 
-	 * @param tipo
-	 * @param fechaInicio
-	 * @param fechaFin
-	 * @throws Exception
-	 */
 
 	public static String[] listarIngresos() throws Exception  {
 		
@@ -193,8 +165,9 @@ public class CursoPropioDAO {
 		}
 
 		List<CursoPropio> listaCursos = new ArrayList<CursoPropio>();
-
+		if(cursos!=null) {
 		listaCursos = recogerCursos(cursos, listaCursos);
+		}
 		return listaCursos;
 	}
 
