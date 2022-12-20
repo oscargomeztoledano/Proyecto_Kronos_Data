@@ -31,20 +31,21 @@ Como podemos observar en la imagen, el estado actual del analisis no cumple el q
 
 ### Resolución de bugs
 
-Como podemos observar en la imagen del apartado anterior tenemos 12 bugs y un ratio de fiabilidad E, para pasar el corte del quality gate seleccionado debemos obtener un ratio de fiabilidad B. Para obtener el ratio de fiabilidad buscado debemos conseguir que los bugs de severidad "Major" sean eliminados
---- 
+Como podemos observar en la imagen del apartado anterior tenemos 12 bugs y un ratio de fiabilidad E, para pasar el corte del quality gate seleccionado debemos obtener un ratio de fiabilidad B. Para obtener el ratio de fiabilidad buscado debemos conseguir que los bugs de severidad "Major" sean eliminados.
+
 #### Bug "Use try-with-resources or close this "Statement" in a "finally" clause".
 
 Este bug lo encontramos en la clase GestorBD.java, tiene una severidad "Blocker" y se produce 3 veces. Se produce debido a que cerramos la declaración "Statement st = mBD.createStatement();", con "st.close();", dentro del mismo try. Sonar nos sugiere solucionarlo utilizando un "try-with-resource". Hemos cambiado los 3 trys por "try(Statement st = mBD.createStatement())".
----
+
 #### Bug "Strings and Boxed types should be compared using "equals()"".
 
 Este bug lo encontramos en las clases CursoPropioDAO.java y PantallaMatriculacion.java, tiene una severidad "Major" y se produce 4 veces en estas clases. Se produce debido a que comparamos dos string con "==" y debemos hacerlo con equals(). 
----
+
 #### Bug "NullPointerException" will be thrown when invoking method "recogerCursos()".
 
 Este bug lo encontramos en las clases GestorBD.java y CursoPropioDAO.java, tiene una severidad "Major" y se produce una vez en cada clase. En GestorBD.java se produce debido a que en la llamada "mBD.setautoCommit(true)" de la linea 50, mBD puede ser igual a null, lo hemos solucionado introduciendo un condicional para que si mBD es igual a null no se realize la llamada. En CursoPropioDAO.java sucede algo parecido en la llamada "listaCursos = recogerCursos(cursos, listaCursos)", en esta llamada cursos puede ser igual a null, actuamos de la misma manera que en GestorBD.java para que si cursos es igual a null no se realize la llamada. Estos bugs nos los notifica sonar ya que inicializamos variables a null para poder utilizarlas.
----
+
+
 ### Resultados
 
 Tras la realización de este plan de mantenimiento correctivo hemos obtenido un ratio de fiabilidad A y hemos reducido el número de bugs a 0.
