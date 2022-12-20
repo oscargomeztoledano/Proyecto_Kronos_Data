@@ -87,6 +87,7 @@ public class GestorBD {
 			desconectarBD();
 			return v;
 		} catch (SQLException e) {
+			
 			PantallaErrores err = new PantallaErrores(e.toString());
 			err.setVisible(true);
 			return null;
@@ -104,6 +105,7 @@ public class GestorBD {
 			desconectarBD();
 			return v;
 		} catch (SQLException e) {
+			
 			PantallaErrores err = new PantallaErrores(e.toString());
 			err.setVisible(true);
 			return null;

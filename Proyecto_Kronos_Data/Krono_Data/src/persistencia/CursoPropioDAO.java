@@ -119,34 +119,35 @@ public class CursoPropioDAO {
 
 	public static String[] listarIngresos() throws Exception  {
 		
-			String[] ingresos = new String[3];
-			String SQL = "SELECT SUM(TasaMatricula) FROM CursoPropio, Matricula WHERE (TipoCurso = \"ESPECIALISTA\" OR TipoCurso = \"MASTER\" OR TipoCurso = \"EXPERTO\") AND (EstadoCurso = \"EN_MATRICULACION\" OR EstadoCurso = \"EN_IMPARTICION\" OR EstadoCurso = \"TERMINADO\") AND Matricula.CursoId = CursoPropio.Id";
+			String[] ingresos = {"0","0","0"};
+			String SQL = "SELECT SUM(TasaMatricula) FROM CursoPropio, Matricula WHERE (TipoCurso = \'ESPECIALISTA\' OR TipoCurso = \'MASTER\' OR TipoCurso = \'EXPERTO\') AND (EstadoCurso = \'EN_MATRICULACION\' OR EstadoCurso = \'EN_IMPARTICION\' OR EstadoCurso = \'TERMINADO\') AND Matricula.CursoId = \'CursoPropio.Id\'";
 	 
 					Vector<Object> v = GestorBD.oneExecuteQuery(SQL);
 			
-			if(v.equals(null)) {
-				v.add(0, "0");
-				ingresos[0] = v.get(0).toString();
-			}else {
+			try {
 			ingresos[0] = v.get(0).toString();
+			}catch(NullPointerException w) {
+				
 			}
-			SQL = "SELECT SUM(TasaMatricula) FROM CursoPropio, Matricula WHERE (TipoCurso = \"FORMACION_AVANZADA\" OR TipoCurso = \"FORMACION_CONTINUA\") AND (EstadoCurso = \"EN_MATRICULACION\" OR EstadoCurso = \"EN_IMPARTICION\" OR EstadoCurso = \"TERMINADO\") AND Matricula.CursoId = CursoPropio.Id";
+			SQL = "SELECT SUM(TasaMatricula) FROM CursoPropio, Matricula WHERE (TipoCurso = \'FORMACION_AVANZADA\' OR TipoCurso = \'FORMACION_CONTINUA\') AND (EstadoCurso = \'EN_MATRICULACION\' OR EstadoCurso = \'EN_IMPARTICION\' OR EstadoCurso = \'TERMINADO\') AND Matricula.CursoId = \'CursoPropio.Id\'";
 			v = GestorBD.oneExecuteQuery(SQL);
-			if(v.equals(null)) {
-				v.add(0, "0");
+			
+			try {
 				ingresos[1] = v.get(0).toString();
-			}else {
-			ingresos[1] = v.get(0).toString();
-			}
+				}catch(NullPointerException w) {
+					
+				}
+			
 
-			SQL = "SELECT SUM(TasaMatricula) FROM CursoPropio, Matricula WHERE (TipoCurso = \"MICROCREDENCIALES\" OR TipoCurso = \"CORTA_DURACION\") AND (EstadoCurso = \"EN_MATRICULACION\" OR EstadoCurso = \"EN_IMPARTICION\" OR EstadoCurso = \"TERMINADO\") AND Matricula.CursoId = CursoPropio.Id";
+			SQL = "SELECT SUM(TasaMatricula) FROM CursoPropio, Matricula WHERE (TipoCurso = \'MICROCREDENCIALES\' OR TipoCurso = \'CORTA_DURACION\') AND (EstadoCurso = \'EN_MATRICULACION\' OR EstadoCurso = \'EN_IMPARTICION\' OR EstadoCurso = \'TERMINADO\') AND Matricula.CursoId = \'CursoPropio.Id\'";
 			v = GestorBD.oneExecuteQuery(SQL);
-			if(v.equals(null)) {
-				v.add(0, "0");
+			
+			try {
 				ingresos[2] = v.get(0).toString();
-			}else {
-			ingresos[2] = v.get(0).toString();
-			}
+				}catch(NullPointerException w) {
+					
+				}
+			
 
 			return ingresos;
 
@@ -161,7 +162,7 @@ public class CursoPropioDAO {
 	 * @throws Exception
 	 */
 	public static List<CursoPropio> listarEdicionesCursos(String edicion)  {
-		String sql = "SELECT * FROM CursoPropio WHERE Edicion = \"" + edicion + "\"";
+		String sql = "SELECT * FROM dbo.CursoPropio WHERE Edicion =" + edicion ;
 		Vector<Object> v;
 		try {
 			v = GestorBD.executeQuery(sql);

@@ -218,9 +218,14 @@ public class PantallaJefeGabineteVicerrectorado extends javax.swing.JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				ConsultarIngresos.setVisible(true);
 				lblUser.setText("Usuario :"+user.getDNI() );
-				String[] ingresos;
-				try {
-					ingresos = GestorConsultas.obtenerIngresos();
+				String[] ingresos= {"0","0","0"};
+				
+					try {
+						ingresos = GestorConsultas.obtenerIngresos();
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					double sum = Double.parseDouble(ingresos[0]) +  Double.parseDouble(ingresos[1])
 							+  Double.parseDouble(ingresos[2]);
 					lblSinTit.setText("Enseñanzas sin titulación: " + ingresos[0] + "€");
@@ -230,13 +235,9 @@ public class PantallaJefeGabineteVicerrectorado extends javax.swing.JFrame {
 					lblEnsProp.setText("Enseñanzas propias:" + ingresos[2] + "€");
 
 					lblTotal.setText("Total: " + sum + "€");
-				} catch (Exception e) {
-					PantallaErrores err = new PantallaErrores(e.toString());
-					err.setVisible(true);
-
-				}
-
+				
 			}
+			
 		});
 		btnConsultarCursos.addActionListener(new ActionListener() {
 			@Override
