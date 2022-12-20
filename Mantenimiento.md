@@ -17,13 +17,13 @@ En este informe de mantenimiento exponemos el mantenimiento correctivo que hemos
 
 Establecemos un Quality gate que el analasis de calidad tiene que cumplir. Este qualitygate lo hemos llamado "Krono_Data" y lo hemos configurado con las siguientes condiciones:
 
-Imagen qualitygate.
+![qualitygate](https://user-images.githubusercontent.com/99763441/208732938-a3c0ce27-526c-4fad-b093-cc9d36f8258a.PNG)
 
 ---
 
 #### Estado actual de la calidad 
 
-Imagen de sonar.
+![calidad](https://user-images.githubusercontent.com/99763441/208732951-0812948c-2975-44d0-b4ef-cde1ba5c429a.PNG)
 
 Como podemos observar en la imagen, el estado actual del analisis no cumple el qualitygate y es marcado como "Failed". Esto es debido a que no cumplimos los minimos especificados en el Quality gate en las areas de cobertura de los tests (Coverage) y fiabilidad (Reliability). En este informe nos centraremos en aumentar ratio de fiabilidad, ya que el ratio de cobertura lo aumentaremos realizando más tests.
 
