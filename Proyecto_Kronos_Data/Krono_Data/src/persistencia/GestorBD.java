@@ -1,12 +1,10 @@
 package persistencia;
 
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Properties;
 import java.util.Vector;
  
 import presentacion.PantallaErrores;
@@ -19,7 +17,7 @@ public class GestorBD {
 	// Driven para conectar con bases de datos MySQL
 	
 	private static String driver1 = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-	private static Connection getRemoteConnection()  {
+	private static Connection getRemoteConnection() throws ClassNotFoundException, SQLException  {
 		Connection con = null;
 		try {
 			Class.forName(driver1);
@@ -33,17 +31,11 @@ public class GestorBD {
 
 			con = DriverManager.getConnection(connectionUrl,user,pass);
 
-			return con;
-
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			PantallaErrores err = new PantallaErrores(e.toString());
 			err.setVisible(true);
 
 			
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			PantallaErrores err = new PantallaErrores(e.toString());
-			err.setVisible(true);
 		}
 		return con;
 	}
@@ -53,11 +45,10 @@ public class GestorBD {
 			
 			
 			Class.forName(driver1);
-
-
 			mBD = getRemoteConnection();
+			if(mBD != null) {
 			mBD.setAutoCommit(true);
-
+			}
 		} catch (Exception e) {
 			PantallaErrores err = new PantallaErrores(e.toString());
 			err.setVisible(true);
@@ -77,13 +68,11 @@ public class GestorBD {
 	}
 
 	public static Vector<Object> executeQuery(String sql) throws ClassNotFoundException { // Sacar datos de BD
-		try {
+		try(Statement st = mBD.createStatement()) {
 
 			conectarBD();
-			Statement st = mBD.createStatement();
 			ResultSet result = st.executeQuery(sql);
 			Vector<Object> v = obtenerResulset(result);
-			st.close();
 			desconectarBD();
 			return v;
 		} catch (SQLException e) {
@@ -95,10 +84,9 @@ public class GestorBD {
 	}
 
 	public static Vector<Object> oneExecuteQuery(String sql) throws Exception {
-		try {
+		try (Statement st = mBD.createStatement()){
 
 			conectarBD();
-			Statement st = mBD.createStatement();
 			ResultSet result = st.executeQuery(sql);
 			Vector<Object> v = oneResulset(result);
 			st.close();
@@ -114,10 +102,9 @@ public class GestorBD {
 
 	public static int executeUpdate(String sql) throws ClassNotFoundException { // Updates a BD
 		int resultado = 0;
-		try {
+		try (Statement st = mBD.createStatement()){
 
 			conectarBD();
-			Statement st = mBD.createStatement();
 			st.executeUpdate(sql);
 			st.close();
 			desconectarBD();

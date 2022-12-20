@@ -47,9 +47,9 @@ public class GestorPropuestasCursos {
 		int hrFinal = (int) (lFechaFinal / 3600000);
 		int diasFinal = (int) hrFinal / 24;
 
-		double diferenciaAnios = calFin.get(Calendar.YEAR) - calInicio.get(Calendar.YEAR);
-		double diferenciaMeses = diferenciaAnios * 12 + calFin.get(Calendar.MONTH) - calInicio.get(Calendar.MONTH);
-		double diferenciaDias = diasFinal - diasInicio;
+		int diferenciaAnios = calFin.get(Calendar.YEAR) - calInicio.get(Calendar.YEAR);
+		int diferenciaMeses = diferenciaAnios * 12 + calFin.get(Calendar.MONTH) - calInicio.get(Calendar.MONTH);
+		int diferenciaDias = diasFinal - diasInicio;
 
 		switch (tipo) {
 		case EXPERTO:
