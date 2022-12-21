@@ -18,7 +18,8 @@ public void testobtenerListaIngresos() throws Exception {
 public void testediciones() throws Exception {
 	String edicion="1";
 	 List<CursoPropio>cursos = CursoPropioDAO.listarEdicionesCursos(edicion);
-	 if(cursos==null) {
+	 
+	 if(cursos.size()==0) {
 		 Assert.assertNull(cursos);
 	 }else {
 		 Assert.assertNotNull(cursos);

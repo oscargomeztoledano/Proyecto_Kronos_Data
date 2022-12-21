@@ -13,7 +13,7 @@ import presentacion.PantallaErrores;
 public class GestorBD {
 	protected static GestorBD mInstancia = null;
 	// Conexion con la base de datos
-	protected static Connection mBD;
+	protected static Connection mBD=null;
 
 	// Driven para conectar con bases de datos MySQL
 	
@@ -49,9 +49,9 @@ public class GestorBD {
 			
 			Class.forName(driver1);
 			mBD = getRemoteConnection();
-			if(mBD != null) {
+			
 			mBD.setAutoCommit(true);
-			}
+			
 		} catch (Exception e) {
 			PantallaErrores err = new PantallaErrores(e.toString());
 			err.setVisible(true);
@@ -71,9 +71,10 @@ public class GestorBD {
 	}
 
 	public static Vector<Object> executeQuery(String sql) throws ClassNotFoundException { // Sacar datos de BD
-		try(Statement st = mBD.createStatement()) {
+		try {
 
 			conectarBD();
+			Statement st = mBD.createStatement();
 			ResultSet result = st.executeQuery(sql);
 			Vector<Object> v = obtenerResulset(result);
 			desconectarBD();
@@ -89,10 +90,11 @@ public class GestorBD {
 
 	public static Vector<Object> oneExecuteQuery(String sql)  {
 	
-		try (Statement st = mBD.createStatement()){
+		try {
 
 
 			conectarBD();
+			Statement st = mBD.createStatement();
 			ResultSet result = st.executeQuery(sql);
 			Vector<Object> v = oneResulset(result);
 			st.close();

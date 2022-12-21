@@ -45,9 +45,11 @@ public void testcrearNuevoCurso() throws Exception {
 	List<CursoPropio> cursosDespues =CursoPropioDAO.obtenerCursos();
 	if(resultado==0) {
 		Assert.assertEquals(resultado, 0);
+		Assert.assertTrue((cursosAntes.size())== cursosDespues.size());
+
 	}else {
 		Assert.assertEquals(resultado, 1);
-	Assert.assertTrue((cursosAntes.size())== cursosDespues.size());
+	Assert.assertTrue((cursosAntes.size()+1)== cursosDespues.size());
 
 	}
 
@@ -85,7 +87,12 @@ public void testlistarEdicionesCursos() throws Exception {
 
 		List<CursoPropio> listaCursos = new ArrayList<>();
 		listaCursos = CursoPropioDAO.recogerCursos(v, listaCursos);
-		
+		if(listaCursos.size()==0) {
+			Assert.assertEquals(listaCursos.size(),0);
+		}else {
+			Assert.assertNotNull(listaCursos);
+		}
+	
 
 }
 	
@@ -94,12 +101,12 @@ public void testobtenerCursos() throws Exception {
 	String sql = "SELECT * FROM CursoPropio ";
 
 	Vector<Object> c = GestorBD.executeQuery(sql);
-	List<CursoPropio> listaObtenida= new ArrayList<CursoPropio>();
-	List<CursoPropio> listaCursosPorObtener = CursoPropioDAO.recogerCursos(c, listaObtenida);
-	if(listaCursosPorObtener.size()==0) {
-		Assert.assertNull(listaCursosPorObtener);
+	List<CursoPropio> listaCursosPorObtener= new ArrayList<CursoPropio>();
+	List<CursoPropio> listaObtenida = CursoPropioDAO.recogerCursos(c, listaCursosPorObtener);
+	if(listaObtenida.size()==0) {
+		Assert.assertEquals(listaObtenida.size(),0);
 	}else {
-		Assert.assertNotNull(listaCursosPorObtener);
+		Assert.assertNotNull(listaObtenida);
 	}
 }
 @Test
@@ -133,18 +140,17 @@ public void testrecogerCursos() throws Exception {
 
 }
 @Test
-public void testobtenerCursosporTipos() throws Exception {
+public void testobtenerCursosporEstado() throws Exception {
 	String sql = "SELECT * FROM CursoPropio ";
 EstadoCurso estado=EstadoCurso.EN_IMPARTICICION;
-	Vector<Object> c = GestorBD.executeQuery(sql);
-	List<CursoPropio> listaCursosPorTipo = CursoPropioDAO.obtenerCursosPorEstado(CursoPropioDAO.obtenerCursos(),estado);
-	if(listaCursosPorTipo.equals(null)) {
-		Assert.assertNull(listaCursosPorTipo);
+	List<CursoPropio> listaCursosPorEstado = CursoPropioDAO.obtenerCursosPorEstado(CursoPropioDAO.obtenerCursos(),estado);
+	if(listaCursosPorEstado.size()==0) {
+		Assert.assertEquals(listaCursosPorEstado.size(), 0);
+
 	}else {
-	for(CursoPropio curso:listaCursosPorTipo) {
-		Assert.assertEquals(curso.getEstado(), estado);
+		Assert.assertNotNull(listaCursosPorEstado);
 		}
 	}
-}
+
 
 }
