@@ -86,7 +86,7 @@ public class PantallaJefeGabineteVicerrectorado extends javax.swing.JFrame {
         ListarEdiciones.setAutoRequestFocus(false);
         ListarEdiciones.setSize(new java.awt.Dimension(1200, 600));
 
-        jLabel1.setText("Usuario: ");
+        jLabel1.setText("Usuario: "+user.getDNI());
 
         jLabel2.setText("Escriba la edicion a consultar: ");
 

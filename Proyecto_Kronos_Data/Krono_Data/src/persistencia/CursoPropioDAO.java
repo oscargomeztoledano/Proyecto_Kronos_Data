@@ -14,13 +14,19 @@ public class CursoPropioDAO {
 	/**
 	 * 
 	 * @param curso
-	 * @throws Exception 
+	 * @throws Exception
 	 * @throws ClassNotFoundException
 	 */
-	public static int crearNuevoCurso(CursoPropio curso) throws Exception {
+	public static int crearNuevoCurso(CursoPropio curso) {
 		int resultado = 0;
 		Date actual = new Date();
-		List<CursoPropio> cursos=obtenerCursos();
+		List<CursoPropio> cursos = null;
+		try {
+			cursos = obtenerCursos();
+		} catch (Exception e) {
+			PantallaErrores err = new PantallaErrores(e.toString());
+			err.setVisible(true);
+		}
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		String fechaIn = formatter.format(curso.getFechaInicio());
 		String fechaFinal = formatter.format(curso.getFechaFin());
@@ -34,25 +40,31 @@ public class CursoPropioDAO {
 				+ curso.getTipo().toString() + "','" + curso.getEstado().toString() + "','"
 				+ curso.getCentro().getNombre() + "','" + curso.getDirector().getDNI() + "','"
 				+ curso.getSecretario().getDNI() + "','" + fechaActual + "','" + fechaMatricula + "','Nada')";
-		for(CursoPropio c:cursos) {
-			if(c.equals(curso)) {
+		for (CursoPropio c : cursos) {
+			if (c.equals(curso)) {
 				PantallaErrores err = new PantallaErrores("No se puede proponer un mismo curso, con la misma edición");
 				err.setVisible(true);
-				break;
-			}else if(c.getNombre().equals(curso.getNombre()) ){
+
+return resultado;
+			} else if (c.getNombre() == curso.getNombre()) {
 				PantallaErrores err = new PantallaErrores("Ese nombre ya esta en uso");
 				err.setVisible(true);
-				break;
-			}else if(c.getNombre().equals(curso.getNombre()) && c.getEdicion()!=curso.getEdicion() && !(c.getEstado().equals(EstadoCurso.TERMINADO))) {
-				PantallaErrores err = new PantallaErrores("El curso que la edicion pasada necesita estar terminado para poder proponer la siguiente edicion");
+				return resultado;
+			} else if (c.getNombre() == curso.getNombre() && c.getEdicion() != curso.getEdicion()
+					&& !(c.getEstado().equals(EstadoCurso.TERMINADO))) {
+				PantallaErrores err = new PantallaErrores(
+						"El curso que la edicion pasada necesita estar terminado para poder proponer la siguiente edicion");
 				err.setVisible(true);
+				return resultado;
 			}
 		}
 		try {
 			resultado = GestorBD.executeUpdate(sql);
-		} catch (ClassNotFoundException e) {
+		} catch (Exception e) {
 			PantallaErrores err = new PantallaErrores(e.toString());
 			err.setVisible(true);
+			return resultado;
+
 		}
 
 		return resultado;
@@ -60,9 +72,11 @@ public class CursoPropioDAO {
 
 
 
+
+
 	public static int editarCurso(CursoPropio curso) {
 		int resultado = 0;
-		
+
 		Date actual = new Date();
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		String fechaIn = formatter.format(curso.getFechaInicio());
@@ -70,60 +84,61 @@ public class CursoPropioDAO {
 		String fechaMatricula = formatter.format(curso.getFechaMatriculacion());
 		String fechaActual = formatter.format(actual);
 
-		String sql = "UPDATE CursoPropio SET EstadoCurso = \'" + String.valueOf(curso.getEstado()) + "\' , nombre = \'" + curso.getNombre() + "\', ECTS = " + curso.getEcts() + ", FechaInicio = \'" + fechaIn + "\', FechaFin = \'" + fechaFinal + "\'"
-				+ ", TasaMatricula = " + curso.getTasaMatricula() + ", Edicion = " + curso.getEdicion() + ", TipoCurso = \'" + String.valueOf(curso.getTipo()) + "\', Nombre_Centro = \'" + curso.getCentro().getNombre() + "\'"
-						+ ", Director = \'" + curso.getDirector().getDNI() + "\', Secretario = \'" + curso.getSecretario().getDNI() + "\', Ultima_Modificacion = \'" + fechaActual + "\' , FechaMatricula = \'" + fechaMatricula + "\'"
-								+ ", Motivo_Rechazo = \'"+ curso.getMotivoRechazo() +"\'WHERE id = \'" + curso.getId() + "\'";
-
+		String sql = "UPDATE CursoPropio SET EstadoCurso = \'" + String.valueOf(curso.getEstado()) + "\' , nombre = \'"
+				+ curso.getNombre() + "\', ECTS = " + curso.getEcts() + ", FechaInicio = \'" + fechaIn
+				+ "\', FechaFin = \'" + fechaFinal + "\'" + ", TasaMatricula = " + curso.getTasaMatricula()
+				+ ", Edicion = " + curso.getEdicion() + ", TipoCurso = \'" + String.valueOf(curso.getTipo())
+				+ "\', Nombre_Centro = \'" + curso.getCentro().getNombre() + "\'" + ", Director = \'"
+				+ curso.getDirector().getDNI() + "\', Secretario = \'" + curso.getSecretario().getDNI()
+				+ "\', Ultima_Modificacion = \'" + fechaActual + "\' , FechaMatricula = \'" + fechaMatricula + "\'"
+				+ ", Motivo_Rechazo = \'" + curso.getMotivoRechazo() + "\'WHERE id = \'" + curso.getId() + "\'";
 
 		try {
 			resultado = GestorBD.executeUpdate(sql);
-		} catch (ClassNotFoundException e) {
+		} catch (Exception e) {
 			PantallaErrores err = new PantallaErrores(e.toString());
 			err.setVisible(true);
 		}
 		return resultado;
 	}
-	
-
-	
 
 
-	public static String[] listarIngresos() throws Exception  {
-		
-			String[] ingresos = {"0","0","0"};
-			String SQL = "SELECT SUM(TasaMatricula) FROM CursoPropio, Matricula WHERE (TipoCurso = \'ESPECIALISTA\' OR TipoCurso = \'MASTER\' OR TipoCurso = \'EXPERTO\') AND (EstadoCurso = \'EN_MATRICULACION\' OR EstadoCurso = \'EN_IMPARTICION\' OR EstadoCurso = \'TERMINADO\') AND Matricula.CursoId = \'CursoPropio.Id\'";
-	 
-					Vector<Object> v = GestorBD.oneExecuteQuery(SQL);
-			
-			try {
+
+
+	public static String[] listarIngresos() throws Exception {
+
+		String[] ingresos = new String[3];
+		String SQL = "SELECT SUM(TasaMatricula) FROM dbo.CursoPropio, dbo.Matricula WHERE (CursoPropio.TipoCurso = 'ESPECIALISTA' OR CursoPropio.TipoCurso = 'MASTER' OR CursoPropio.TipoCurso = 'EXPERTO') AND (CursoPropio.EstadoCurso = 'EN_MATRICULACION' OR CursoPropio.EstadoCurso = 'EN_IMPARTICION' OR CursoPropio.EstadoCurso = 'TERMINADO') AND dbo.Matricula.CursoId = CursoPropio.Id";
+
+		Vector<Object> v = GestorBD.oneExecuteQuery(SQL);
+
+		try {
 			ingresos[0] = v.get(0).toString();
-			}catch(NullPointerException w) {
-				
-			}
-			SQL = "SELECT SUM(TasaMatricula) FROM CursoPropio, Matricula WHERE (TipoCurso = \'FORMACION_AVANZADA\' OR TipoCurso = \'FORMACION_CONTINUA\') AND (EstadoCurso = \'EN_MATRICULACION\' OR EstadoCurso = \'EN_IMPARTICION\' OR EstadoCurso = \'TERMINADO\') AND Matricula.CursoId = \'CursoPropio.Id\'";
-			v = GestorBD.oneExecuteQuery(SQL);
-			
-			try {
-				ingresos[1] = v.get(0).toString();
-				}catch(NullPointerException w) {
-					
-				}
-			
+		} catch (NullPointerException e) {
+			ingresos[0]="0";
+		}
+		SQL = "SELECT SUM(TasaMatricula) FROM dbo.CursoPropio, dbo.Matricula WHERE (CursoPropio.TipoCurso = 'FORMACION_AVANZADA' OR CursoPropio.TipoCurso = 'FORMACION_CONTINUA') AND (CursoPropio.EstadoCurso = 'EN_MATRICULACION' OR CursoPropio.EstadoCurso = 'EN_IMPARTICION' OR CursoPropio.EstadoCurso ='TERMINADO') AND Matricula.CursoId = CursoPropio.Id";
+		v = GestorBD.oneExecuteQuery(SQL);
 
-			SQL = "SELECT SUM(TasaMatricula) FROM CursoPropio, Matricula WHERE (TipoCurso = \'MICROCREDENCIALES\' OR TipoCurso = \'CORTA_DURACION\') AND (EstadoCurso = \'EN_MATRICULACION\' OR EstadoCurso = \'EN_IMPARTICION\' OR EstadoCurso = \'TERMINADO\') AND Matricula.CursoId = \'CursoPropio.Id\'";
-			v = GestorBD.oneExecuteQuery(SQL);
-			
-			try {
-				ingresos[2] = v.get(0).toString();
-				}catch(NullPointerException w) {
-					
-				}
-			
+		try {
+			ingresos[1] = v.get(0).toString();
 
-			return ingresos;
+		} catch (NullPointerException e) {
+			ingresos[1]="0";
+		}
 
-		
+		SQL = "SELECT SUM(TasaMatricula) FROM dbo.CursoPropio, dbo.Matricula WHERE (CursoPropio.TipoCurso = 'MICROCREDENCIALES\' OR CursoPropio.TipoCurso = 'CORTA_DURACION') AND (CursoPropio.EstadoCurso = 'EN_MATRICULACION' OR CursoPropio.EstadoCurso = 'EN_IMPARTICION' OR CursoPropio.EstadoCurso = 'TERMINADO') AND Matricula.CursoId = CursoPropio.Id";
+		v = GestorBD.oneExecuteQuery(SQL);
+
+		try {
+			ingresos[2] = v.get(0).toString();
+
+		} catch (NullPointerException e) {
+			ingresos[2]="0";
+		}
+
+		return ingresos;
+
 	}
 
 	/**
@@ -133,24 +148,22 @@ public class CursoPropioDAO {
 	 * @return
 	 * @throws Exception
 	 */
-	public static List<CursoPropio> listarEdicionesCursos(String edicion)  {
-		String sql = "SELECT * FROM dbo.CursoPropio WHERE Edicion =" + edicion ;
+	public static List<CursoPropio> listarEdicionesCursos(String edicion) {
+		String sql = "SELECT * FROM dbo.CursoPropio WHERE Edicion =" + edicion;
 		Vector<Object> v;
 		try {
 			v = GestorBD.executeQuery(sql);
-		
-		List<CursoPropio> listaCursos = new ArrayList<>();
-		listaCursos = recogerCursos(v, listaCursos);
 
-		return listaCursos;
+			List<CursoPropio> listaCursos = new ArrayList<>();
+			listaCursos = recogerCursos(v, listaCursos);
+
+			return listaCursos;
 
 		} catch (Exception e) {
 			PantallaErrores err = new PantallaErrores(e.toString());
 			err.setVisible(true);
 		}
 		return null;
-		
-
 
 	}
 
@@ -176,6 +189,7 @@ public class CursoPropioDAO {
 			Vector<Object> v = (Vector<Object>) c.get(0);
 			ProfesorUCLM dir = ProfesorDAO.seleccionarProfesorUCLM(
 					ProfesorDAO.seleccionarProfesor(UsuarioDAO.seleccionarUsuario(v.get(10).toString())));
+			
 			ProfesorUCLM sec = ProfesorDAO.seleccionarProfesorUCLM(
 					ProfesorDAO.seleccionarProfesor(UsuarioDAO.seleccionarUsuario(v.get(11).toString())));
 			CursoPropio curso = new CursoPropio(v.get(0).toString(), v.get(1).toString(), (Integer) v.get(2),
@@ -192,7 +206,7 @@ public class CursoPropioDAO {
 		return listaCursos;
 	}
 
-	public static List<CursoPropio> obtenerCursosPorTipo(List<CursoPropio> cursos, EstadoCurso estado) {
+	public static List<CursoPropio> obtenerCursosPorEstado(List<CursoPropio> cursos, EstadoCurso estado) {
 
 		List<CursoPropio> listaCursos = new ArrayList<>();
 		while (!cursos.isEmpty()) {
@@ -206,8 +220,6 @@ public class CursoPropioDAO {
 
 		return listaCursos;
 	}
-
-	
 
 	public static TipoCurso comparaciontipocurso(String tipocurso) {
 		TipoCurso tipo = null;

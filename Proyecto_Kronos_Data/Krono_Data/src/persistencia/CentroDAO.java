@@ -6,19 +6,16 @@ import negocio.entities.Centro;
 import presentacion.PantallaErrores;
 
 public class CentroDAO {
-	public static Vector<Object> getOne(String sql) throws Exception {
-
-		return GestorBD.oneExecuteQuery(sql);
-	}
+	
 
 	public static Centro seleccionarCentro(String nombre) {
 		Centro ce = null;
 		try {
-			String sql = "SELECT * FROM dbo.Centro WHERE Nombre = \'" + nombre + "\'";
+			String sql = "SELECT * FROM dbo.Centro WHERE Nombre = '" + nombre + "'";
 
 			Vector<Object> centro;
 
-			centro = getOne(sql);
+			centro = GestorBD.oneExecuteQuery(sql);
 
 			ce = new Centro(nombre, centro.get(1).toString());
 

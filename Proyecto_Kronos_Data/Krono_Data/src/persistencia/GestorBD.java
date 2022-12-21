@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
 import java.util.Vector;
  
 import presentacion.PantallaErrores;
@@ -17,7 +18,9 @@ public class GestorBD {
 	// Driven para conectar con bases de datos MySQL
 	
 	private static String driver1 = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-	private static Connection getRemoteConnection() throws ClassNotFoundException, SQLException  {
+
+	public static Connection getRemoteConnection()  {
+
 		Connection con = null;
 		try {
 			Class.forName(driver1);
@@ -40,7 +43,7 @@ public class GestorBD {
 		return con;
 	}
 
-	public static void conectarBD() throws ClassNotFoundException, SQLException {
+	public static void conectarBD()  {
 		try {
 			
 			
@@ -56,7 +59,7 @@ public class GestorBD {
 
 	}
 
-	public static void desconectarBD() throws SQLException {
+	public static void desconectarBD() {
 		try {
 			mBD.close();
 
@@ -83,8 +86,11 @@ public class GestorBD {
 		}
 	}
 
-	public static Vector<Object> oneExecuteQuery(String sql) throws Exception {
+
+	public static Vector<Object> oneExecuteQuery(String sql)  {
+	
 		try (Statement st = mBD.createStatement()){
+
 
 			conectarBD();
 			ResultSet result = st.executeQuery(sql);
@@ -92,7 +98,7 @@ public class GestorBD {
 			st.close();
 			desconectarBD();
 			return v;
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			
 			PantallaErrores err = new PantallaErrores(e.toString());
 			err.setVisible(true);
@@ -100,7 +106,7 @@ public class GestorBD {
 		}
 	}
 
-	public static int executeUpdate(String sql) throws ClassNotFoundException { // Updates a BD
+	public static int executeUpdate(String sql)  { // Updates a BD
 		int resultado = 0;
 		try (Statement st = mBD.createStatement()){
 
@@ -109,7 +115,7 @@ public class GestorBD {
 			st.close();
 			desconectarBD();
 			resultado = 1;
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			PantallaErrores err = new PantallaErrores(e.toString());
 			err.setVisible(true);
 			resultado = 0;
@@ -117,21 +123,25 @@ public class GestorBD {
 		return resultado;
 	}
 
-	public static Vector<Object> obtenerResulset(ResultSet result) throws SQLException {
+	public static Vector<Object> obtenerResulset(ResultSet result) {
 		Vector<Object> vectoradevolver = new Vector<>();
-		while (result.next()) {
-			Vector<Object> v = new Vector<>();
-			int i = 1;
-			while (true) {
-				try {
-					v.add(result.getObject(i));
-					i++;
-				} catch (SQLException ex) {
-					break;
+		try {
+			while (result.next()) {
+				Vector<Object> v = new Vector<>();
+				int i = 1;
+				while (true) {
+					try {
+						v.add(result.getObject(i));
+						i++;
+					} catch (SQLException ex) {
+						break;
+					}
 				}
+				vectoradevolver.add(v);
 			}
-			vectoradevolver.add(v);
-		}
+		} catch (SQLException e) {
+		
+}
 		return vectoradevolver;
 	}
 

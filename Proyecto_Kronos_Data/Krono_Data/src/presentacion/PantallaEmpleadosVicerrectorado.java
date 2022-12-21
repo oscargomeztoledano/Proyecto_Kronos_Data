@@ -30,7 +30,7 @@ public class PantallaEmpleadosVicerrectorado extends JFrame {
 	private JTextPane textPane;
 	private JLabel label2;
 	private JTextArea textFieldMotivo;
-	List<CursoPropio> cursos = CursoPropioDAO.obtenerCursosPorTipo(CursoPropioDAO.obtenerCursos(),
+	List<CursoPropio> cursos = CursoPropioDAO.obtenerCursosPorEstado(CursoPropioDAO.obtenerCursos(),
 			EstadoCurso.PROPUESTO);
 
 	public PantallaEmpleadosVicerrectorado() throws Exception {

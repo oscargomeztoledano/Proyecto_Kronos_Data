@@ -17,7 +17,11 @@ import javax.swing.border.EmptyBorder;
 import negocio.controllers.*;
 
 
-public class PantallaLogin extends JFrame implements ActionListener {
+public class PantallaLogin extends JFrame   {
+	/**
+	 * 
+	 */
+	
 	public static JTextPane textPane;
 	private JPanel contentPane;
 	private JTextField textFieldDNI;
@@ -130,14 +134,8 @@ public class PantallaLogin extends JFrame implements ActionListener {
 		}
 	}
 
-	public void logout() {
-		// TODO - implement PantallaLogin.logout
-		throw new UnsupportedOperationException();
-	}
+	
 
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-
-	}
+	
 
 }

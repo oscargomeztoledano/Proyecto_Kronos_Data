@@ -9,7 +9,7 @@ public class EstudianteDAO<E> {
 	
 
 	public static Estudiante seleccionarEstudiante(String dni) throws Exception {
-		String sql = "SELECT * FROM Estudiante WHERE Dni =\'"+dni+"\'";
+		String sql = "SELECT * FROM Estudiante WHERE Dni ='"+dni+"'";
 
 		Vector<Object> estudiante = GestorBD.oneExecuteQuery(sql);
 		
