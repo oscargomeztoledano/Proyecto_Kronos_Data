@@ -44,7 +44,7 @@ public class PantallaVerPropuestas extends javax.swing.JFrame {
 	}
 
 	public void rellenarTabla() throws Exception {
-		List<CursoPropio> cursos = CursoPropioDAO.obtenerCursosPorTipo(CursoPropioDAO.obtenerCursos(),
+		List<CursoPropio> cursos = CursoPropioDAO.obtenerCursosPorEstado(CursoPropioDAO.obtenerCursos(),
 				EstadoCurso.PROPUESTO);
 
 		String[] cabecera = { "Id", "Nombre", "ETCS", "Fecha Inicio", "Fecha Fin", "Tasa Matricula", "Edicion",

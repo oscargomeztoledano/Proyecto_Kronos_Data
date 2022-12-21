@@ -14,7 +14,7 @@ public class GestorBDTest {
 
 @Test
 
-public void testgetRemoteConnection() throws SQLException {
+public void testgetRemoteConnection(){
 	Connection con;
 	String user="KronoUCLM";
 	String pass="Krono_data";
@@ -22,13 +22,18 @@ public void testgetRemoteConnection() throws SQLException {
 			 + "encrypt=true;"
 			+ "trustServerCertificate=false;" + "loginTimeout=30;";
 
-	con = DriverManager.getConnection(connectionUrl,user,pass);
-	if(con.equals(null)) {
-		Assert.assertEquals(null, con);
+	
+	try {
+		if((con = DriverManager.getConnection(connectionUrl,user,pass)).equals(null)) {
+			Assert.assertNull(con);
 
-	}else {
-		Assert.assertNotNull(con);
+		}else {
+			Assert.assertNotNull(con);
 
+		}
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		con=null;
 	}
 }
 @Test

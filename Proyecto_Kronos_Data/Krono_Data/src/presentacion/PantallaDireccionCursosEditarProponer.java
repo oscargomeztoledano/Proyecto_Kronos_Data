@@ -127,7 +127,7 @@ public class PantallaDireccionCursosEditarProponer extends javax.swing.JFrame {
 		txtFechaMatr = new javax.swing.JTextField();
 		jLabel17 = new javax.swing.JLabel();
 
-		final List<CursoPropio> cursos = CursoPropioDAO.obtenerCursosPorTipo(CursoPropioDAO.obtenerCursos(),
+		final List<CursoPropio> cursos = CursoPropioDAO.obtenerCursosPorEstado(CursoPropioDAO.obtenerCursos(),
 				EstadoCurso.PROPUESTA_RECHAZADA);
 
 		jButton3.setText("Insertar");

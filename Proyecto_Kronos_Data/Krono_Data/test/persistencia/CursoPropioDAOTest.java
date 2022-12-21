@@ -1,136 +1,145 @@
 package persistencia;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Vector;
 
 import org.junit.Assert;
 import org.junit.Test;
 
+import negocio.controllers.GestorUsuario;
 import negocio.entities.CategoriaProfesor;
 import negocio.entities.Centro;
 import negocio.entities.CursoPropio;
 import negocio.entities.EstadoCurso;
 import negocio.entities.ProfesorUCLM;
 import negocio.entities.TipoCurso;
+import negocio.entities.Usuario;
 import presentacion.PantallaErrores;
 public class CursoPropioDAOTest {
 @Test
-public void testcrearNuevoCurso() {
+public void testcrearNuevoCurso() throws Exception {
 	int resultado=0;
-	ProfesorUCLM director= new ProfesorUCLM("Dni", "Contrasena","P", "Nombre", "Apellidos", true,CategoriaProfesor.AYUDANTE,
-			new Centro("nombre","localizacion"));
-	ProfesorUCLM secretario= new ProfesorUCLM("Dni", "Contrasena","P", "Nombre", "Apellidos", true,CategoriaProfesor.AYUDANTE,
-			new Centro("nombre","localizacion"));
+	GestorUsuario gestor=new GestorUsuario();
+	Usuario usuario= new Usuario("12345678P","123","P");
+	Usuario usuario2= new Usuario("23456789P","123","P");
+	ProfesorUCLM director= ProfesorDAO.seleccionarProfesorUCLM(ProfesorDAO.seleccionarProfesor(usuario));
+	ProfesorUCLM secretario= ProfesorDAO.seleccionarProfesorUCLM(ProfesorDAO.seleccionarProfesor(usuario2));;
+	Centro centro=CentroDAO.seleccionarCentro("Informatica");
+	List<CursoPropio> cursosAntes =CursoPropioDAO.obtenerCursos();
+
+		
+	
+	
+	
 	Date fechaInicio=new Date(122,9,9);
 	Date fechaFin=new Date(123,1,1);
 	Date fechamat=new Date(122,9,1);
 	CursoPropio curso = new CursoPropio("0", "Curso4", 16, fechaInicio, fechaFin,
-			160, 1, TipoCurso.ESPECIALISTA, EstadoCurso.PROPUESTO, new Centro("nombre","localizacion"), director, secretario, new Date(),
+			160, 1, TipoCurso.ESPECIALISTA, EstadoCurso.PROPUESTO,centro , director, secretario, new Date(),
 			fechamat, " ");
-	Date actual = new Date();
-	List<CursoPropio> cursos = null;
-	try{
-		cursos = CursoPropioDAO.obtenerCursos();
-	} catch (Exception e) {
-		PantallaErrores err = new PantallaErrores(e.toString());
-		err.setVisible(true);
-	}
-	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-	String fechaIn = formatter.format(curso.getFechaInicio());
-	String fechaFinal = formatter.format(curso.getFechaFin());
-	String fechaMatricula = formatter.format(curso.getFechaMatriculacion());
-	String fechaActual = formatter.format(actual);
+		
+	resultado= CursoPropioDAO.crearNuevoCurso(curso);
+	
+	List<CursoPropio> cursosDespues =CursoPropioDAO.obtenerCursos();
+	
 
-	String sql = "INSERT INTO dbo.CursoPropio (Id, nombre, ECTS, FechaInicio, FechaFin, TasaMatricula, Edicion,"
-			+ "TipoCurso, EstadoCurso, Nombre_Centro, Director, Secretario,Ultima_Modificacion,FechaMatricula,Motivo_Rechazo) VALUES ( '"
-			+ curso.getId() + "', '" + curso.getNombre() + "', " + curso.getEcts() + ",'" + fechaIn + "','"
-			+ fechaFinal + "'," + curso.getTasaMatricula() + "," + curso.getEdicion() + ",'"
-			+ curso.getTipo().toString() + "','" + curso.getEstado().toString() + "','"
-			+ curso.getCentro().getNombre() + "','" + curso.getDirector().getDNI() + "','"
-			+ curso.getSecretario().getDNI() + "','" + fechaActual + "','" + fechaMatricula + "','Nada')";
-	for(CursoPropio c:cursos) {
-		if(c.equals(curso)) {
-			PantallaErrores err = new PantallaErrores("No se puede proponer un mismo curso, con la misma edición");
-			err.setVisible(true);
-			break;
-		}else if(c.getNombre()== curso.getNombre()){
-			PantallaErrores err = new PantallaErrores("Ese nombre ya esta en uso");
-			err.setVisible(true);
-			break;
-		}else if(c.getNombre()==curso.getNombre() && c.getEdicion()!=curso.getEdicion() && !(c.getEstado().equals(EstadoCurso.TERMINADO))) {
-			PantallaErrores err = new PantallaErrores("El curso que la edicion pasada necesita estar terminado para poder proponer la siguiente edicion");
-			err.setVisible(true);
-		}
-	}
-	try {
-		resultado = GestorBD.executeUpdate(sql);
-	}catch (Exception e) {
-		PantallaErrores err = new PantallaErrores(e.toString());
-		err.setVisible(true);
-	}
-if(resultado==0) {
-	Assert.assertEquals(resultado, 0);
-}else {
-	Assert.assertEquals(resultado, 1);
-}
+Assert.assertTrue((cursosAntes.size()+1)== cursosDespues.size());
 
 }
 @Test
 public void testeditarCurso() {
 	int resultado = 0;
-	ProfesorUCLM director= new ProfesorUCLM("Dni", "Contrasena","P", "Nombre", "Apellidos", true,CategoriaProfesor.AYUDANTE,
+	ProfesorUCLM director= new ProfesorUCLM("12345678P","123","P", "Nombre", "Apellidos", true,CategoriaProfesor.AYUDANTE,
 			new Centro("nombre","localizacion"));
-	ProfesorUCLM secretario= new ProfesorUCLM("Dni", "Contrasena","P", "Nombre", "Apellidos", true,CategoriaProfesor.AYUDANTE,
+	ProfesorUCLM secretario= new ProfesorUCLM("23456789P","123","P", "Nombre", "Apellidos", true,CategoriaProfesor.AYUDANTE,
 			new Centro("nombre","localizacion"));
 	Date fechaInicio=new Date(122,9,9);
 	Date fechaFin=new Date(123,1,1);
 	Date fechamat=new Date(122,9,1);
 	CursoPropio curso = new CursoPropio("0", "Curso4", 16, fechaInicio, fechaFin,
-			160, 1, TipoCurso.ESPECIALISTA, EstadoCurso.PROPUESTO, new Centro("nombre","localizacion"), director, secretario, new Date(),
+			160, 1, TipoCurso.ESPECIALISTA, EstadoCurso.PROPUESTO, new Centro("Salud","Talavera"), director, secretario, new Date(),
 			fechamat, " ");
-	Date actual = new Date();
-	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-	String fechaIn = formatter.format(curso.getFechaInicio());
-	String fechaFinal = formatter.format(curso.getFechaFin());
-	String fechaMatricula = formatter.format(curso.getFechaMatriculacion());
-	String fechaActual = formatter.format(actual);
+	
+	
+		resultado = CursoPropioDAO.editarCurso(curso);
+		
+	
+}
+@Test
+public void testlistarIngresos() throws Exception {
+	String[] listaIngresos=CursoPropioDAO.listarIngresos();
+	Assert.assertNotNull(listaIngresos);
+}
+@Test
+public void testlistarEdicionesCursos() throws Exception {
+	String edicion="1";
+	String sql = "SELECT * FROM dbo.CursoPropio WHERE Edicion =" + edicion;
+	Vector<Object> v=GestorBD.executeQuery(sql);
 
-	String sql = "UPDATE CursoPropio SET EstadoCurso = \'" + String.valueOf(curso.getEstado()) + "\' , nombre = \'" + curso.getNombre() + "\', ECTS = " + curso.getEcts() + ", FechaInicio = \'" + fechaIn + "\', FechaFin = \'" + fechaFinal + "\'"
-			+ ", TasaMatricula = " + curso.getTasaMatricula() + ", Edicion = " + curso.getEdicion() + ", TipoCurso = \'" + String.valueOf(curso.getTipo()) + "\', Nombre_Centro = \'" + curso.getCentro().getNombre() + "\'"
-					+ ", Director = \'" + curso.getDirector().getDNI() + "\', Secretario = \'" + curso.getSecretario().getDNI() + "\', Ultima_Modificacion = \'" + fechaActual + "\' , FechaMatricula = \'" + fechaMatricula + "\'"
-							+ ", Motivo_Rechazo = \'"+ curso.getMotivoRechazo() +"\'WHERE id = \'" + curso.getId() + "\'";
+		List<CursoPropio> listaCursos = new ArrayList<>();
+		listaCursos = CursoPropioDAO.recogerCursos(v, listaCursos);
+		
 
+}
+	
+@Test
+public void testobtenerCursos() throws Exception {
+	String sql = "SELECT * FROM CursoPropio ";
 
-	try {
-		resultado = GestorBD.executeUpdate(sql);
-	} catch (Exception e) {
-		PantallaErrores err = new PantallaErrores(e.toString());
-		err.setVisible(true);
-	}
-	if(resultado==0) {
-		Assert.assertEquals(resultado, 0);
+	Vector<Object> c = GestorBD.executeQuery(sql);
+	List<CursoPropio> listaObtenida= new ArrayList<CursoPropio>();
+	List<CursoPropio> listaCursosPorObtener = CursoPropioDAO.recogerCursos(c, listaObtenida);
+	if(listaCursosPorObtener.size()==0) {
+		Assert.assertNull(listaCursosPorObtener);
 	}else {
-		Assert.assertEquals(resultado, 1);
+		Assert.assertNotNull(listaCursosPorObtener);
 	}
 }
 @Test
-public void testlistarIngresos() {
+public void testrecogerCursos() throws Exception {
+	String sql = "SELECT * FROM CursoPropio ";
 	
+	
+	Vector<Object> c = GestorBD.executeQuery(sql);
+	List<CursoPropio> listaCursos = new ArrayList<CursoPropio>();
+	while (!c.isEmpty()) {
+		Vector<Object> v = (Vector<Object>) c.get(0);
+		ProfesorUCLM dir = ProfesorDAO.seleccionarProfesorUCLM(
+				ProfesorDAO.seleccionarProfesor(UsuarioDAO.seleccionarUsuario(v.get(10).toString())));
+		ProfesorUCLM sec = ProfesorDAO.seleccionarProfesorUCLM(
+				ProfesorDAO.seleccionarProfesor(UsuarioDAO.seleccionarUsuario(v.get(11).toString())));
+		CursoPropio curso = new CursoPropio(v.get(0).toString(), v.get(1).toString(), (Integer) v.get(2),
+				(Date) v.get(3), (Date) v.get(4), (Double) v.get(5), (Integer) v.get(6),
+				CursoPropioDAO.comparaciontipocurso(v.get(7).toString()), CursoPropioDAO.comparacionestadocurso(v.get(8).toString()),
+				CentroDAO.seleccionarCentro(v.get(9).toString()), dir, sec, (Date) v.get(12), (Date) v.get(13),
+				v.get(14).toString());
+
+		listaCursos.add(curso);
+		c.remove(0);
+
+	}
+	if(listaCursos.size()==0) {
+		Assert.assertNull(listaCursos);
+	}else {
+		Assert.assertNotNull(listaCursos);
+	}
+
 }
 @Test
-public void testlistarEdicionesCursos() {
-	
+public void testobtenerCursosporTipos() throws Exception {
+	String sql = "SELECT * FROM CursoPropio ";
+EstadoCurso estado=EstadoCurso.EN_IMPARTICICION;
+	Vector<Object> c = GestorBD.executeQuery(sql);
+	List<CursoPropio> listaCursosPorTipo = CursoPropioDAO.obtenerCursosPorEstado(CursoPropioDAO.obtenerCursos(),estado);
+	if(listaCursosPorTipo.equals(null)) {
+		Assert.assertNull(listaCursosPorTipo);
+	}else {
+	for(CursoPropio curso:listaCursosPorTipo) {
+		Assert.assertEquals(curso.getEstado(), estado);
+		}
+	}
 }
-@Test
-public void testobtenerCursos() {
-	
-}
-@Test
-public void testrecogerCursos() {
-	
-}
-@Test
-public void testobtenerCursosporTipos() {
-	
-}
+
 }

@@ -14,23 +14,29 @@ public class PantallaLoginTest {
 	public void testLogin() {
 		GestorUsuario gestor = new GestorUsuario();
 
-		String dni = "1234568G";
-		String contrasena = "123";
+		String dni = "12345678G";
+		String contrasena = "13";
 		String Tipo = String.valueOf(dni.charAt(dni.length() - 1));
 
 		Usuario u = UsuarioDAO.seleccionarUsuario(dni);
-		Usuario u2= new Usuario(dni,contrasena,Tipo);
+		
 		char login = gestor.login(dni, contrasena);
 		
+		
+		if(u==null) {
+			u= new Usuario(" ", " ", " ");
+			Tipo = "1";
+		}
+		
+		if(!(u.getContrasena().equals(contrasena))) {
+			Tipo="0";
+		}
 		if ((!Tipo.equals("E")) && (!Tipo.equals("G")) && (!Tipo.equals("J"))
-				 &&(!Tipo.equals("P"))) {
+				 &&(!Tipo.equals("P")) && (!Tipo.equals("0"))) {
 			Tipo = "1";
 
 		}
-		if(!(u.equals(null))) {
-			Tipo="0";
-		}
-		System.out.println(login +" - " +Tipo);
+		
 		Assert.assertEquals(String.valueOf(login), Tipo);
 
 	}

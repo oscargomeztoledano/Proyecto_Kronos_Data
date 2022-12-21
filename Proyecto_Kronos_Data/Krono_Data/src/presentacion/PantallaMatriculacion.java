@@ -25,11 +25,11 @@ public class PantallaMatriculacion extends javax.swing.JFrame {
 	 */
 	public PantallaMatriculacion(Estudiante estudiante) throws Exception {
 	
-		List<CursoPropio> cursos = CursoPropioDAO.obtenerCursosPorTipo(CursoPropioDAO.obtenerCursos(), EstadoCurso.EN_MATRICULACION);
+		List<CursoPropio> cursos = CursoPropioDAO.obtenerCursosPorEstado(CursoPropioDAO.obtenerCursos(), EstadoCurso.EN_MATRICULACION);
 		String[] c = new String[cursos.size()];
 		int i = 0;
-		for (@SuppressWarnings("unused") CursoPropio cp : cursos) {
-			c[i] = cursos.get(i++).getNombre();
+		for (CursoPropio cp : cursos) {
+			c[i] = cp.getNombre();
 			
 		}
 
@@ -73,7 +73,6 @@ public class PantallaMatriculacion extends javax.swing.JFrame {
 		jButton1.setText("Validar");
 		jButton1.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				jButton1ActionPerformed(evt);
 				int s = jComboBox1.getSelectedIndex();
 				CursoPropio curso = cursos.get(s);
 
@@ -147,9 +146,7 @@ public class PantallaMatriculacion extends javax.swing.JFrame {
 		pack();
 	}// </editor-fold>//GEN-END:initComponents
 
-	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
-		// TODO add your handling code here:
-	}// GEN-LAST:event_jButton1ActionPerformed
+
 
 	/**
 	 * @param args the command line arguments
