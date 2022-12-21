@@ -1,19 +1,26 @@
 package negocio.entities;
 
-import java.util.Collection;
-
 public class ProfesorUCLM extends Profesor {
 
-	public ProfesorUCLM(String DNI, String contrasena, String tipo, String nombre, String apellidos, boolean doctor,CategoriaProfesor categoria,Centro CentroAdscripcion) {
-		super(DNI, contrasena, tipo, nombre, apellidos, doctor);
-		// TODO Auto-generated constructor stub
-	}
+	
 	
 		
 	Centro centroAdscripcion;
 	CategoriaProfesor categoria;
-	private String nombre;
-	private String apellidos;
-	private String dni;
+	String nombre;
+	String apellidos;
+	boolean doctor;
+	
+	public ProfesorUCLM(String dni, String contrasena, String tipo, String nombre, String apellidos, boolean doctor,CategoriaProfesor categoria,
+			Centro centroAdscripcion) {
+		super(dni, contrasena, tipo, nombre, apellidos, doctor);
+		this.centroAdscripcion = centroAdscripcion;
+		this.categoria = categoria;
+		this.nombre = nombre;
+		this.apellidos = apellidos;
+		this.doctor = doctor;
+	}
 
+
+	
 }

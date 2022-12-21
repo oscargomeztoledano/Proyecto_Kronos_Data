@@ -4,7 +4,7 @@ import java.util.*;
 import persistencia.*;
 
 public class CursoPropio {
-
+	CursoPropioDAO cursoPropioDao;
 	Collection<Matricula> matriculas;
 	Centro centro;
 	ProfesorUCLM director;
@@ -12,14 +12,19 @@ public class CursoPropio {
 	Collection<Materia> materias;
 	EstadoCurso estado;
 	TipoCurso tipo;
-	CursoPropioDAO cursoPropioDao;
+	
 	private String id;
 	private String nombre;
-	private int ECTS;
+	private int ects;
 	private Date fechaInicio;
 	private Date fechaFin;
 	private double tasaMatricula;
 	private int edicion;
+	private Date ultimamodificacion;
+	private Date fechamatriculacion;
+	private String motivorechazo;
+
+	
 
 	public CursoPropio(Collection<Matricula> matriculas, Centro centro, ProfesorUCLM director, ProfesorUCLM secretario,
 			Collection<Materia> materias, EstadoCurso estado, TipoCurso tipo, CursoPropioDAO cursoPropioDao, String id,
@@ -35,7 +40,7 @@ public class CursoPropio {
 		this.cursoPropioDao = cursoPropioDao;
 		this.id = id;
 		this.nombre = nombre;
-		ECTS = eCTS;
+		this.ects = eCTS;
 		this.fechaInicio = fechaInicio;
 		this.fechaFin = fechaFin;
 		this.tasaMatricula = tasaMatricula;
@@ -43,35 +48,50 @@ public class CursoPropio {
 	}
 
 	public CursoPropio(String id, String nombre, int eCTS, Date fechaInicio, Date fechaFin, double tasaMatricula,
-			int edicion,TipoCurso TipoCurso,EstadoCurso EstadoCurso) {
+			int edicion,TipoCurso tipocurso,EstadoCurso estadocurso,Centro centro,ProfesorUCLM director,ProfesorUCLM secretario,Date ultimamodificacion,Date fechamatriculacion,String motivorechazo) {
 
 		this.id = id;
 		this.nombre = nombre;
-		ECTS = eCTS;
+		this.ects = eCTS;
 		this.fechaInicio = fechaInicio;
 		this.fechaFin = fechaFin;
 		this.tasaMatricula = tasaMatricula;
 		this.edicion = edicion;
-		this.estado=EstadoCurso;
-		this.tipo=TipoCurso;
+		this.estado=estadocurso;
+		this.tipo=tipocurso;
+		this.centro=centro;
+		this.director=director;
+		this.secretario=secretario;
+		this.motivorechazo=motivorechazo;
+		this.ultimamodificacion=ultimamodificacion;
+		this.fechamatriculacion=fechamatriculacion;
+		
 	}
+	
 	public CursoPropio(String id, String nombre, int eCTS, Date fechaInicio, Date fechaFin, double tasaMatricula,
-			int edicion) {
+			int edicion,TipoCurso tipocurso,EstadoCurso estadocurso,Centro centro,ProfesorUCLM director,ProfesorUCLM secretario,Date ultimamodificacion,Date fechamatriculacion,String motivorechazo, Collection<Materia> materia) {
 
 		this.id = id;
 		this.nombre = nombre;
-		ECTS = eCTS;
+		this.ects = eCTS;
 		this.fechaInicio = fechaInicio;
 		this.fechaFin = fechaFin;
 		this.tasaMatricula = tasaMatricula;
 		this.edicion = edicion;
+		this.estado=estadocurso;
+		this.tipo=tipocurso;
+		this.centro=centro;
+		this.director=director;
+		this.secretario=secretario;
+		this.motivorechazo=motivorechazo;
+		this.ultimamodificacion=ultimamodificacion;
+		this.fechamatriculacion=fechamatriculacion;
+		this.materias=materia;
+		
 	}
+	
 
-	public CursoPropio(String id, String nombre) {
-		this.id = id;
-		this.nombre = nombre;
-
-	}
+	
 
 	public Collection<Matricula> getMatriculas() {
 		return matriculas;
@@ -153,12 +173,36 @@ public class CursoPropio {
 		this.nombre = nombre;
 	}
 
-	public int getECTS() {
-		return ECTS;
+	public int getEcts() {
+		return ects;
 	}
 
-	public void setECTS(int eCTS) {
-		ECTS = eCTS;
+	public void setEcts(int ects) {
+		this.ects = ects;
+	}
+
+	public Date getUltimaModificacion() {
+		return ultimamodificacion;
+	}
+
+	public void setUltimaModificacion(Date ultimamodificacion) {
+		this.ultimamodificacion = ultimamodificacion;
+	}
+
+	public Date getFechaMatriculacion() {
+		return fechamatriculacion;
+	}
+
+	public void setFechaMatriculacion(Date fechamatriculacion) {
+		this.fechamatriculacion = fechamatriculacion;
+	}
+
+	public String getMotivoRechazo() {
+		return motivorechazo;
+	}
+
+	public void setMotivoRechazo(String motivorechazo) {
+		this.motivorechazo = motivorechazo;
 	}
 
 	public Date getFechaInicio() {
@@ -175,6 +219,14 @@ public class CursoPropio {
 
 	public void setFechaFin(Date fechaFin) {
 		this.fechaFin = fechaFin;
+	}
+
+	@Override
+	public String toString() {
+		return "CursoPropio [centro=" + centro.getNombre() + ", director=" + director.getDNI()
+				+ ", secretario=" + secretario.getDNI() + ", estado=" + estado + ", tipo=" + tipo + ", id=" + id + ", nombre="
+				+ nombre + ", ECTS=" + ects + ", fechaInicio=" + fechaInicio.toString() + ", fechaFin=" + fechaFin.toString()
+				+ ", tasaMatricula=" + tasaMatricula + ", edicion=" + edicion + "]";
 	}
 
 	public double getTasaMatricula() {

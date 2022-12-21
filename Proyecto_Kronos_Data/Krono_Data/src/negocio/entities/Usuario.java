@@ -1,34 +1,34 @@
 package negocio.entities;
 
 public class Usuario {
-	String DNI;
-	String Contrasena;
+	String dni;
+	String contrasena;
 	String tipo;
 
-	public Usuario(String DNI, String Contrasena, String tipo) {
-		this.DNI = DNI;
-		this.Contrasena = Contrasena;
+	public Usuario(String dni, String contrasena, String tipo) {
+		this.dni = dni;
+		this.contrasena = contrasena;
 		this.tipo = tipo;
 	}
 	
-	public Usuario(String DNI) {
-		this.DNI = DNI;
+	public Usuario(String dni) {
+		this.dni = dni;
 	}
 
 	public String getDNI() {
-		return DNI;
+		return dni;
 	}
 
-	public void setDNI(String dNI) {
-		DNI = dNI;
+	public void setDNI(String dni) {
+		this.dni = dni;
 	}
 
 	public String getContrasena() {
-		return Contrasena;
+		return contrasena;
 	}
 
 	public void setContrasena(String contrasena) {
-		Contrasena = contrasena;
+		this.contrasena = contrasena;
 	}
 
 	public String getTipo() {
@@ -39,7 +39,7 @@ public class Usuario {
 		this.tipo = tipo;
 	}
 	public String toString() {
-		return "Usuario con Dni: "+ DNI + " y con contrasena: "+ Contrasena + " y es un usuario de tipo: "+ tipo;
+		return "Usuario con Dni: "+ dni + " y con contrasena: "+ contrasena + " y es un usuario de tipo: "+ tipo;
 	}
 
 }

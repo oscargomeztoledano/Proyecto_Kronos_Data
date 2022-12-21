@@ -1,37 +1,29 @@
 package persistencia;
 
-import java.sql.SQLException;
 import java.util.Vector;
-
-import negocio.entities.Estudiante;
 import negocio.entities.Usuario;
+import presentacion.PantallaErrores;
 import presentacion.PantallaLogin;
 
 public class UsuarioDAO<E> {
 
-	public static Vector<Object> get(String SQL) throws Exception {
-		Vector<Object> usuario = GestorBD.oneExecuteQuery(SQL);
 
-		return usuario;
-	}
 
-	public static Usuario seleccionarUsuario(String DNI) {
+	public static Usuario seleccionarUsuario(String dni) {
 		Usuario us = null;
-		try {
-			String SQL = "SELECT * FROM Usuarios WHERE Dni = \'" + DNI + "\'";
+			String sql = "SELECT * FROM Usuarios where DNI='"+dni+"'";
 
 			Vector<Object> usuario;
-
-			usuario = get(SQL);
-
-			us = new Usuario(DNI, usuario.get(1).toString(), usuario.get(2).toString());
+	
+			usuario = GestorBD.oneExecuteQuery(sql);
+			if(usuario.size()!=0) {
+				us=new Usuario(dni, usuario.get(1).toString(), usuario.get(2).toString());
+			}
+			 
 
 			return us;
-		} catch (Exception e) {
-
-			PantallaLogin.textPane.setText("Ha ocurrido un problema al introducir el usuario");
-		}
-		return us;
+		
+		
 	}
 
 }

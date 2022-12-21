@@ -8,14 +8,13 @@ public class EstudianteDAO<E> {
 
 	
 
-	public static Estudiante seleccionarEstudiante(String DNI) throws Exception {
-		String SQL = "SELECT * FROM Estudiante WHERE Dni =\'"+DNI+"\'";
+	public static Estudiante seleccionarEstudiante(String dni) throws Exception {
+		String sql = "SELECT * FROM Estudiante WHERE Dni ='"+dni+"'";
 
-		Vector<Object> estudiante = GestorBD.oneExecuteQuery(SQL);
-		Estudiante est = new Estudiante(estudiante.get(0).toString(), estudiante.get(1).toString(),
-				estudiante.get(2).toString(), estudiante.get(3).toString(), estudiante.get(4).toString());
+		Vector<Object> estudiante = GestorBD.oneExecuteQuery(sql);
+		
 
-		return est;
+		return new Estudiante(estudiante.get(0).toString(), estudiante.get(1).toString(),estudiante.get(2).toString(), estudiante.get(3).toString(), estudiante.get(4).toString());
 	}
 
 }

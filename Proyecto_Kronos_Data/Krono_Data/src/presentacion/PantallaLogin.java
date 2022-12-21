@@ -15,28 +15,26 @@ import javax.swing.JTextPane;
 import javax.swing.border.EmptyBorder;
 
 import negocio.controllers.*;
-import negocio.entities.Estudiante;
-import negocio.entities.Profesor;
-import persistencia.EstudianteDAO;
-import persistencia.GestorBD;
-import persistencia.ProfesorDAO;
 
-public class PantallaLogin extends JFrame implements ActionListener {
+
+public class PantallaLogin extends JFrame   {
+	/**
+	 * 
+	 */
+	
 	public static JTextPane textPane;
 	private JPanel contentPane;
 	private JTextField textFieldDNI;
 	private JTextField textFieldContrasena;
-	private JTextPane textPaneEstado;
 
-	public static void main(String[] args) throws SQLException {
+	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-
+					
 					PantallaLogin frame = new PantallaLogin();
 					frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
 				}
 			}
 		});
@@ -54,27 +52,23 @@ public class PantallaLogin extends JFrame implements ActionListener {
 		JLabel lblDNI = new JLabel("DNI:");
 		lblDNI.setBounds(6, 37, 69, 16);
 		contentPane.add(lblDNI);
-
 		textFieldDNI = new JTextField();
 		textFieldDNI.setColumns(10);
 		textFieldDNI.setBounds(87, 31, 134, 28);
 		contentPane.add(textFieldDNI);
 
 		JLabel lblContrasena = new JLabel("Contrasena:");
-
 		lblContrasena.setBounds(6, 81, 69, 16);
 		contentPane.add(lblContrasena);
-
 		textFieldContrasena = new JTextField();
 		textFieldContrasena.setBounds(87, 75, 134, 28);
 		contentPane.add(textFieldContrasena);
 		textFieldContrasena.setColumns(10);
 
-		JLabel label_1 = new JLabel("Estado");
-		label_1.setForeground(Color.RED);
-		label_1.setBounds(6, 120, 61, 16);
-		contentPane.add(label_1);
-
+		JLabel label1 = new JLabel("Estado");
+		label1.setForeground(Color.RED);
+		label1.setBounds(6, 120, 61, 16);
+		contentPane.add(label1);
 		textPane = new JTextPane();
 		textPane.setToolTipText(
 				"Panel para mostrar el restultado de la comprobaci\u00F3n de login o las excepciones lanzadas");
@@ -82,10 +76,10 @@ public class PantallaLogin extends JFrame implements ActionListener {
 		textPane.setBounds(6, 168, 400, 75);
 		contentPane.add(textPane);
 
-		JButton Blogin = new JButton("Login");
-		Blogin.setBounds(300, 80, 70, 35);
-		contentPane.add(Blogin);
-		Blogin.addActionListener(new ActionListener() {
+		JButton bLogin = new JButton("Login");
+		bLogin.setBounds(300, 80, 70, 35);
+		contentPane.add(bLogin);
+		bLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 
@@ -93,7 +87,8 @@ public class PantallaLogin extends JFrame implements ActionListener {
 
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					PantallaErrores err = new PantallaErrores(e.toString());
+					err.setVisible(true);
 				}
 			}
 		});
@@ -110,9 +105,9 @@ public class PantallaLogin extends JFrame implements ActionListener {
 			break;
 
 		case 'P':
-			textPane.setText("EL login ha sido correcto: Bienvenido " + usuario.getProfesor().getNombre() + " "
-					+ usuario.getProfesor().getApellidos());
-			PantallaDireccionCursos frame1 = new PantallaDireccionCursos(usuario.getProfesor());
+			textPane.setText("EL login ha sido correcto: Bienvenido " + usuario.getProfesorUCLM().getNombre() + " "
+					+ usuario.getProfesorUCLM().getApellidos());
+			PantallaDireccionCursos frame1 = new PantallaDireccionCursos(usuario.getProfesorUCLM());
 			frame1.setVisible(true);
 			break;
 
@@ -120,7 +115,7 @@ public class PantallaLogin extends JFrame implements ActionListener {
 			textPane.setText("EL login ha sido correcto: Bienvenido Jefe de Gabiente del Vicerrectorado con DNI: "
 					+ usuario.getUsuario().getDNI());
 
-			PantallaJefeGabineteVicerrectorado frame2 = new PantallaJefeGabineteVicerrectorado();
+			PantallaJefeGabineteVicerrectorado frame2 = new PantallaJefeGabineteVicerrectorado(usuario.getUsuario());
 			frame2.setVisible(true);
 			break;
 		case 'J':
@@ -139,14 +134,8 @@ public class PantallaLogin extends JFrame implements ActionListener {
 		}
 	}
 
-	public void logout() {
-		// TODO - implement PantallaLogin.logout
-		throw new UnsupportedOperationException();
-	}
+	
 
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-
-	}
+	
 
 }

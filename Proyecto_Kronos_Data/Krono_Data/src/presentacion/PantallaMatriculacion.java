@@ -1,10 +1,10 @@
 package presentacion;
 
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 import negocio.controllers.GestorMatriculacion;
 import negocio.entities.CursoPropio;
+import negocio.entities.EstadoCurso;
 import negocio.entities.Estudiante;
 import negocio.entities.ModoPago;
 import persistencia.*;
@@ -21,15 +21,16 @@ public class PantallaMatriculacion extends javax.swing.JFrame {
 
 	/**
 	 * Creates new form PantallaMatriculacion
-	 * 
-	 * @throws ClassNotFoundException
+	 * @throws Exception 
 	 */
-	public PantallaMatriculacion(Estudiante estudiante) throws ClassNotFoundException {
-		List<CursoPropio> cursos = CursoPropioDAO.obtenerCursos();
+	public PantallaMatriculacion(Estudiante estudiante) throws Exception {
+	
+		List<CursoPropio> cursos = CursoPropioDAO.obtenerCursosPorEstado(CursoPropioDAO.obtenerCursos(), EstadoCurso.EN_MATRICULACION);
 		String[] c = new String[cursos.size()];
 		int i = 0;
 		for (CursoPropio cp : cursos) {
-			c[i] = cursos.get(i++).getNombre();
+			c[i] = cp.getNombre();
+			
 		}
 
 		initComponents(c, estudiante, cursos);
@@ -56,7 +57,7 @@ public class PantallaMatriculacion extends javax.swing.JFrame {
 		jScrollPane1 = new javax.swing.JScrollPane();
 		jTextArea1 = new javax.swing.JTextArea();
 
-		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
 		jLabel1.setText("Usuario: " + estudiante.getDNI());
 
@@ -72,27 +73,23 @@ public class PantallaMatriculacion extends javax.swing.JFrame {
 		jButton1.setText("Validar");
 		jButton1.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				jButton1ActionPerformed(evt);
 				int s = jComboBox1.getSelectedIndex();
 				CursoPropio curso = cursos.get(s);
 
-				String SeleccionTipoPago = (String) jComboBox2.getSelectedItem();
-				ModoPago Pago = null;
-				switch (SeleccionTipoPago) {
-				case "Transferencia":
-					Pago = ModoPago.TRANSFERENCIA;
-					break;
-				case "Tarjeta Credito":
-					Pago = ModoPago.TARJETA_CREDITO;
-					break;
-
+				String seleccionTipoPago = (String) jComboBox2.getSelectedItem();
+				ModoPago pago = null;
+				if (seleccionTipoPago.equals("Transferencia")) {
+					pago = ModoPago.TRANSFERENCIA;
 				}
-				if (GestorMatriculacion.realizarMatriculacion(curso, estudiante, Pago) == 1) {
+				else if(seleccionTipoPago.equals("Tarjeta Credito")) {
+					pago = ModoPago.TARJETA_CREDITO;
+				}
+				if (GestorMatriculacion.realizarMatriculacion(curso, estudiante, pago) == 1) {
 					jTextArea1.setText("La matricula realizada del curso: " + curso.getNombre()
 							+ " por el estudiante con DNI: " + estudiante.getDNI());
 
 				} else {
-					jTextArea1.setText("Error, la matricula ya existe");
+					jTextArea1.setText("Error en la matricula");
 
 				}
 
@@ -149,9 +146,7 @@ public class PantallaMatriculacion extends javax.swing.JFrame {
 		pack();
 	}// </editor-fold>//GEN-END:initComponents
 
-	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
-		// TODO add your handling code here:
-	}// GEN-LAST:event_jButton1ActionPerformed
+
 
 	/**
 	 * @param args the command line arguments
