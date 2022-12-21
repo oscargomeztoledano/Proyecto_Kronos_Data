@@ -1,7 +1,6 @@
 package persistencia;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -45,6 +44,7 @@ public class CursoPropioDAO {
 			if (c.equals(curso)) {
 				PantallaErrores err = new PantallaErrores("No se puede proponer un mismo curso, con la misma edición");
 				err.setVisible(true);
+
 return resultado;
 			} else if (c.getNombre() == curso.getNombre()) {
 				PantallaErrores err = new PantallaErrores("Ese nombre ya esta en uso");
@@ -70,15 +70,10 @@ return resultado;
 		return resultado;
 	}
 
-	/**
-	 * 
-	 * @param curso
-	 */
 
-	/**
-	 * 
-	 * @param curso
-	 */
+
+
+
 	public static int editarCurso(CursoPropio curso) {
 		int resultado = 0;
 
@@ -107,20 +102,8 @@ return resultado;
 		return resultado;
 	}
 
-	/**
-	 * 
-	 * @param estado
-	 * @param fechaInicio
-	 * @param fechaFin
-	 */
 
-	/**
-	 * 
-	 * @param tipo
-	 * @param fechaInicio
-	 * @param fechaFin
-	 * @throws Exception
-	 */
+
 
 	public static String[] listarIngresos() throws Exception {
 
@@ -195,8 +178,9 @@ return resultado;
 		}
 
 		List<CursoPropio> listaCursos = new ArrayList<CursoPropio>();
-
+		if(cursos!=null) {
 		listaCursos = recogerCursos(cursos, listaCursos);
+		}
 		return listaCursos;
 	}
 

@@ -78,10 +78,10 @@ public class PantallaMatriculacion extends javax.swing.JFrame {
 
 				String seleccionTipoPago = (String) jComboBox2.getSelectedItem();
 				ModoPago pago = null;
-				if (seleccionTipoPago=="Transferencia") {
+				if (seleccionTipoPago.equals("Transferencia")) {
 					pago = ModoPago.TRANSFERENCIA;
 				}
-				else if(seleccionTipoPago=="Tarjeta Credito") {
+				else if(seleccionTipoPago.equals("Tarjeta Credito")) {
 					pago = ModoPago.TARJETA_CREDITO;
 				}
 				if (GestorMatriculacion.realizarMatriculacion(curso, estudiante, pago) == 1) {
