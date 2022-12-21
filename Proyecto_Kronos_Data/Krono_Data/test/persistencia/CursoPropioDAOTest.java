@@ -23,7 +23,7 @@ public void testcrearNuevoCurso() throws Exception {
 	int resultado=0;
 	GestorUsuario gestor=new GestorUsuario();
 	Usuario usuario= new Usuario("12345678P","123","P");
-	Usuario usuario2= new Usuario("23456789P","123","P");
+	Usuario usuario2= new Usuario("dni","123","P");
 	ProfesorUCLM director= ProfesorDAO.seleccionarProfesorUCLM(ProfesorDAO.seleccionarProfesor(usuario));
 	ProfesorUCLM secretario= ProfesorDAO.seleccionarProfesorUCLM(ProfesorDAO.seleccionarProfesor(usuario2));;
 	Centro centro=CentroDAO.seleccionarCentro("Informatica");

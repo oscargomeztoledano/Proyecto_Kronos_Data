@@ -15,22 +15,26 @@ import negocio.entities.Matricula;
 import negocio.entities.ModoPago;
 import negocio.entities.ProfesorUCLM;
 import negocio.entities.TipoCurso;
+import persistencia.CentroDAO;
+import persistencia.EstudianteDAO;
 import persistencia.MatriculaDAO;
 import presentacion.PantallaErrores;
 
 public class GestorMatriculacionTest {
 @Test
-public void testrealizarMatriculacion() {
+public void testrealizarMatriculacion() throws Exception {
 	ProfesorUCLM director= new ProfesorUCLM("12345678P","123","P", "Nombre", "Apellidos", true,CategoriaProfesor.AYUDANTE,
 			new Centro("nombre","localizacion"));
 	ProfesorUCLM secretario= new ProfesorUCLM("23456789P","123","P", "Nombre", "Apellidos", true,CategoriaProfesor.AYUDANTE,
-			new Centro("nombre","localizacion"));
+			CentroDAO.seleccionarCentro("Informatica"));
+	Centro centro= CentroDAO.seleccionarCentro("Informatica");
 	Date fechaInicio=new Date(122,9,9);
 	Date fechaFin=new Date(123,1,1);
 	Date fechamat=new Date(122,9,1);
 	CursoPropio curso = new CursoPropio("0", "Curso4", 16, fechaInicio, fechaFin,
-			160, 1, TipoCurso.ESPECIALISTA, EstadoCurso.PROPUESTO, new Centro("Salud","Talavera"), director, secretario, new Date(),
-			fechamat, " ");	Estudiante estudiante = new Estudiante(null, null, null, null, null);
+			160, 1, TipoCurso.ESPECIALISTA, EstadoCurso.PROPUESTO, centro, director, secretario, new Date(),
+			fechamat, " ");
+	Estudiante estudiante=EstudianteDAO.seleccionarEstudiante("1234");
 	ModoPago tipoPago= ModoPago.TARJETA_CREDITO;
 	
 	int resultado=0;

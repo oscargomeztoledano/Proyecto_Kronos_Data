@@ -16,7 +16,7 @@ import negocio.entities.Usuario;
 public class ProfesorDAOTest {
 @Test
 	public void testseleccionarProfesor() throws Exception {
-		Usuario usuario=new Usuario(" "," "," ");
+		Usuario usuario=new Usuario("12345678P","123","P");
 		String sql = "SELECT * FROM dbo.Profesor WHERE Dni = '"+usuario.getDNI()+"'";
 
 		Vector<Object> profesor = GestorBD.oneExecuteQuery(sql);
@@ -32,7 +32,7 @@ public class ProfesorDAOTest {
 
 	@Test
 	public void testseleccionarProfesorUCLM() throws Exception {
-		Profesor profesor= new Profesor("12345678P", "Contrasena","P", "Nombre", "Apellidos", true);
+		Profesor profesor= new Profesor("12345678P", "123","P", "Ricardo", "Gomez", true);
 		String sql = "SELECT * FROM profesoruclm WHERE Dni = '"+profesor.getDNI()+"'";
 
 		Vector<Object> profesorUCLM = GestorBD.oneExecuteQuery(sql);
@@ -46,8 +46,8 @@ public class ProfesorDAOTest {
 	}
 @Test
 	public void testseleccionarProfesorExterno() throws Exception {
-		ProfesorUCLM profesor= new ProfesorUCLM("DNI", "Contrasena","P", "Nombre", "Apellidos", true,CategoriaProfesor.AYUDANTE,
-				new Centro("nombre","localizacion"));
+		ProfesorUCLM profesor= new ProfesorUCLM("12345678P", "123","P", "Ricardo", "Gomez" , true,CategoriaProfesor.AYUDANTE,
+				CentroDAO.seleccionarCentro("Talavera"));
 		String sql = "SELECT * FROM profesorexterno WHERE dniprofesorExterno = '"+profesor.getDNI()+"'";
 
 		Vector<Object> profesorExterno = GestorBD.oneExecuteQuery(sql);

@@ -1,23 +1,31 @@
 package persistencia;
 
 import java.text.SimpleDateFormat;
+import java.util.Collection;
 import java.util.Date;
 
 import org.junit.Assert;
 import org.junit.Test;
 
 import negocio.entities.CursoPropio;
+import negocio.entities.EstadoCurso;
 import negocio.entities.Estudiante;
+import negocio.entities.Materia;
 import negocio.entities.Matricula;
 import negocio.entities.ModoPago;
+import negocio.entities.ProfesorUCLM;
+import negocio.entities.TipoCurso;
 import presentacion.PantallaMatriculacion;
 
 public class MatriculaDAOTest {
 @Test
-public void insert() {
+public void insert() throws Exception {
 	int resultadoMatricula = 0;
-	
-	Matricula mat=new Matricula( new Estudiante(null, null, null, null, null, null, null, null),  new CursoPropio(null, null, resultadoMatricula, null, null, resultadoMatricula, resultadoMatricula, null, null, null, null, null, null, null, null, null) , new Date());
+	Collection<Materia> materias = null;
+	ProfesorUCLM secretario= ProfesorDAO.seleccionarProfesorUCLM(ProfesorDAO.seleccionarProfesor(UsuarioDAO.seleccionarUsuario("DNI")));
+	ProfesorUCLM director= ProfesorDAO.seleccionarProfesorUCLM(ProfesorDAO.seleccionarProfesor(UsuarioDAO.seleccionarUsuario("DNI")));
+
+	Matricula mat=new Matricula( EstudianteDAO.seleccionarEstudiante("DNI"),  new CursoPropio(" ", "", 15, new Date(), new Date(), 150, 1, TipoCurso.CORTA_DURACION, EstadoCurso.EN_MATRICULACION, CentroDAO.seleccionarCentro(" "), director,secretario , new Date(), new Date(), " ",materias) , new Date());
 	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 	String fechaTexto = formatter.format(mat.getFecha());
 	int bit;
