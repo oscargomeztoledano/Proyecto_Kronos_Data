@@ -130,21 +130,25 @@ public class GestorBD {
 		return resultado;
 	}
 
-	public static Vector<Object> obtenerResulset(ResultSet result) throws SQLException {
+	public static Vector<Object> obtenerResulset(ResultSet result) {
 		Vector<Object> vectoradevolver = new Vector<>();
-		while (result.next()) {
-			Vector<Object> v = new Vector<>();
-			int i = 1;
-			while (true) {
-				try {
-					v.add(result.getObject(i));
-					i++;
-				} catch (SQLException ex) {
-					break;
+		try {
+			while (result.next()) {
+				Vector<Object> v = new Vector<>();
+				int i = 1;
+				while (true) {
+					try {
+						v.add(result.getObject(i));
+						i++;
+					} catch (SQLException ex) {
+						break;
+					}
 				}
+				vectoradevolver.add(v);
 			}
-			vectoradevolver.add(v);
-		}
+		} catch (SQLException e) {
+		
+}
 		return vectoradevolver;
 	}
 

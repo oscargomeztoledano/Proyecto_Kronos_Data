@@ -43,9 +43,14 @@ public void testcrearNuevoCurso() throws Exception {
 	resultado= CursoPropioDAO.crearNuevoCurso(curso);
 	
 	List<CursoPropio> cursosDespues =CursoPropioDAO.obtenerCursos();
-	
+	if(resultado==0) {
+		Assert.assertEquals(resultado, 0);
+	}else {
+		Assert.assertEquals(resultado, 1);
+	Assert.assertTrue((cursosAntes.size())== cursosDespues.size());
 
-Assert.assertTrue((cursosAntes.size()+1)== cursosDespues.size());
+	}
+
 
 }
 @Test
