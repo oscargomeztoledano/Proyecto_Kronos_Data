@@ -34,7 +34,7 @@ public void testrealizarMatriculacion() throws Exception {
 	CursoPropio curso = new CursoPropio("0", "Curso4", 16, fechaInicio, fechaFin,
 			160, 1, TipoCurso.ESPECIALISTA, EstadoCurso.PROPUESTO, centro, director, secretario, new Date(),
 			fechamat, " ");
-	Estudiante estudiante=EstudianteDAO.seleccionarEstudiante("1234");
+	Estudiante estudiante=EstudianteDAO.seleccionarEstudiante("12345678E");
 	ModoPago tipoPago= ModoPago.TARJETA_CREDITO;
 	
 	int resultado=0;

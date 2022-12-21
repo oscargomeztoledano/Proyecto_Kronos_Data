@@ -19,13 +19,13 @@ import presentacion.PantallaMatriculacion;
 
 public class MatriculaDAOTest {
 @Test
-public void insert() throws Exception {
+public void testinsert() throws Exception {
 	int resultadoMatricula = 0;
 	Collection<Materia> materias = null;
-	ProfesorUCLM secretario= ProfesorDAO.seleccionarProfesorUCLM(ProfesorDAO.seleccionarProfesor(UsuarioDAO.seleccionarUsuario("DNI")));
-	ProfesorUCLM director= ProfesorDAO.seleccionarProfesorUCLM(ProfesorDAO.seleccionarProfesor(UsuarioDAO.seleccionarUsuario("DNI")));
+	ProfesorUCLM secretario= ProfesorDAO.seleccionarProfesorUCLM(ProfesorDAO.seleccionarProfesor(UsuarioDAO.seleccionarUsuario("12345678P")));
+	ProfesorUCLM director= ProfesorDAO.seleccionarProfesorUCLM(ProfesorDAO.seleccionarProfesor(UsuarioDAO.seleccionarUsuario("23456789P")));
 
-	Matricula mat=new Matricula( EstudianteDAO.seleccionarEstudiante("DNI"),  new CursoPropio(" ", "", 15, new Date(), new Date(), 150, 1, TipoCurso.CORTA_DURACION, EstadoCurso.EN_MATRICULACION, CentroDAO.seleccionarCentro(" "), director,secretario , new Date(), new Date(), " ",materias) , new Date());
+	Matricula mat=new Matricula( EstudianteDAO.seleccionarEstudiante("12345678E"),  new CursoPropio(" ", "", 15, new Date(), new Date(), 150, 1, TipoCurso.CORTA_DURACION, EstadoCurso.EN_MATRICULACION, CentroDAO.seleccionarCentro(" "), director,secretario , new Date(), new Date(), " ",materias) , new Date());
 	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 	String fechaTexto = formatter.format(mat.getFecha());
 	int bit;

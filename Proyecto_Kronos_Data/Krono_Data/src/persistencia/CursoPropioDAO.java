@@ -46,11 +46,11 @@ public class CursoPropioDAO {
 				err.setVisible(true);
 
 return resultado;
-			} else if (c.getNombre() == curso.getNombre()) {
+			} else if (c.getNombre().equals(curso.getNombre())) {
 				PantallaErrores err = new PantallaErrores("Ese nombre ya esta en uso");
 				err.setVisible(true);
 				return resultado;
-			} else if (c.getNombre() == curso.getNombre() && c.getEdicion() != curso.getEdicion()
+			} else if (c.getNombre().equals(curso.getNombre()) && c.getEdicion() != curso.getEdicion()
 					&& !(c.getEstado().equals(EstadoCurso.TERMINADO))) {
 				PantallaErrores err = new PantallaErrores(
 						"El curso que la edicion pasada necesita estar terminado para poder proponer la siguiente edicion");
